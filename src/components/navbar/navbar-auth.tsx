@@ -1,25 +1,68 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import {
-  Avatar, Box, Button, Typography,
+  Avatar,
+  Box,
+  MenuItem,
+  MenuList,
+  Paper,
+  Popper,
 } from '@mui/material';
 import NavbarLink from './navbar-link';
 import AuthContext from '../../features/auth/auth-context';
 
 const NavbarAuthMenu: React.FC = () => {
   const { logout, user } = useContext(AuthContext);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const popperAnchorRef = useRef<HTMLDivElement>(null);
+
+  const handleMenuOpen = () => {
+    setMenuOpen(!menuOpen);
+  };
+
   return (
-    <>
-      <NavbarLink to="/homework">Homework</NavbarLink>
-      <NavbarLink to="/about">About</NavbarLink>
-      <NavbarLink to="/gallery">Gallery</NavbarLink>
-      <NavbarLink to="/contact">Contact</NavbarLink>
-      <Box>
-        <Typography sx={{ color: 'primary.main' }}>{user?.email}</Typography>
+    <Box
+      ref={popperAnchorRef}
+      component="section"
+      sx={{ display: 'flex' }}
+    >
+      <Box sx={{ display: 'flex' }}>
+        <NavbarLink to="/homework">Homework</NavbarLink>
+        <NavbarLink to="/about">About</NavbarLink>
+        <NavbarLink to="/gallery">Gallery</NavbarLink>
+        <NavbarLink to="/contact">Contact</NavbarLink>
       </Box>
-      <Button variant="contained" onClick={logout}>Atsijungti</Button>
-    </>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          cursor: 'pointer',
+        }}
+        onClick={handleMenuOpen}
+      >
+        <Avatar src={user?.img} />
+      </Box>
+      <Popper
+        placement="bottom-end"
+        anchorEl={popperAnchorRef.current}
+        open={menuOpen}
+        sx={{ zIndex: 'tooltip' }}
+      >
+        <Paper elevation={3}>
+          <MenuList>
+            <MenuItem onClick={logout}>
+              Atsijungti
+            </MenuItem>
+          </MenuList>
+        </Paper>
+      </Popper>
+    </Box>
 
   );
 };
 
 export default NavbarAuthMenu;
+
+/* <Box sx={{ display: 'flex' }}>
+        <Typography sx={{ color: 'primary.main' }}>{user?.email}</Typography>
+        <Button variant="contained" onClick={logout} sx={{ fontSize: 12, width: 20 }}>Logout</Button>
+      </Box> */
