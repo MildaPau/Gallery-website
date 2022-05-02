@@ -1,4 +1,14 @@
-{
+{  
+     "users": [
+    {
+        "id": "1",
+        "name": "Milda",
+        "surname": "Pauzaitė",
+        "email": "mp@gmail.com",
+        "password": "123123",
+        "img": "https://www.gardeningknowhow.com/wp-content/uploads/2019/09/flower-color-400x391.jpg"
+    }
+    ],
     "sculptures": [
         {
             "id": "1",
