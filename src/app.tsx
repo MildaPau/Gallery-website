@@ -20,7 +20,7 @@ const App: React.FC = () => (
         <Route path="about" element={<AboutPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="contact" element={<ContactPage />} />
-        <Route path="auth/login" element={<LoginPage />} />
+        <Route path="wp-admin" element={<LoginPage />} />
         <Route path="auth/register" element={<RegisterPage />} />
       </Route>
     </Routes>

@@ -10,19 +10,19 @@ const MainSection: React.FC = () => (
     <MainText />
     <ImagesSection>
       <BouncingBox>
-        <Box component="img" src="kareivelis1.jpg" sx={{ width: 125 }} />
+        <Box component="img" src="kareivelis1.png" sx={{ width: 115 }} />
       </BouncingBox>
       <BouncingBox2>
-        <Box component="img" src="kareivelis1.jpg" sx={{ width: 125 }} />
+        <Box component="img" src="kareivelis1.png" sx={{ width: 115 }} />
       </BouncingBox2>
       <BouncingBox>
-        <Box component="img" src="kareivelis1.jpg" sx={{ width: 125 }} />
+        <Box component="img" src="kareivelis1.png" sx={{ width: 115 }} />
       </BouncingBox>
       <BouncingBox2>
-        <Box component="img" src="kareivelis1.jpg" sx={{ width: 125 }} />
+        <Box component="img" src="kareivelis1.png" sx={{ width: 115 }} />
       </BouncingBox2>
       <BouncingBox>
-        <Box component="img" src="kareivelis1.jpg" sx={{ width: 125 }} />
+        <Box component="img" src="kareivelis1.png" sx={{ width: 115 }} />
       </BouncingBox>
 
     </ImagesSection>
