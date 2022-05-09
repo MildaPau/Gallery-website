@@ -36,7 +36,7 @@ const validationSchema = Yup.object({
 
 const LoginPage: React.FC = () => {
   const [searchParams] = useSearchParams();
-  const { login } = useContext(AuthContext);
+  const { login, loading } = useContext(AuthContext);
 
   const handleLogin: LoginFormikConfig['onSubmit'] = ({ email, password }) => {
     const nextPage = searchParams.get('next') ?? '/';
@@ -61,14 +61,6 @@ const LoginPage: React.FC = () => {
   return (
 
     <Box component="section" sx={{ display: 'flex', justifyContent: 'center' }}>
-      <pre style={{
-        position: 'fixed', top: 300, left: 50, fontSize: 20,
-      }}
-      >
-        {JSON.stringify({
-          isValid, dirty, values, touched, errors,
-        }, null, 4)}
-      </pre>
       <Box sx={{ textAlign: 'center' }}>
         <Form
           formTitle="Login"
@@ -87,6 +79,7 @@ const LoginPage: React.FC = () => {
             onBlur={handleBlur}
             error={touched.email && Boolean(errors.email)}
             helperText={touched.email && errors.email}
+            disabled={loading}
             sx={{ mt: 3 }}
           />
           <TextField
@@ -100,6 +93,7 @@ const LoginPage: React.FC = () => {
             onBlur={handleBlur}
             error={touched.password && Boolean(errors.password)}
             helperText={touched.password && errors.password}
+            disabled={loading}
             sx={{ mt: 3 }}
           />
         </Form>

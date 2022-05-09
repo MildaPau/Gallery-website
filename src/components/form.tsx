@@ -5,6 +5,7 @@ import {
   Button,
   Container,
   Typography,
+  CircularProgress,
 } from '@mui/material';
 
 import lightTheme from '../styles/theme';
@@ -24,11 +25,11 @@ const Form: React.FC<FormProps> = ({
   formTitle,
   submitText,
   icon,
-  btnActive,
+  btnActive = true,
   onSubmit,
   children,
 }) => {
-  const { error, clearError } = useContext(AuthContext);
+  const { loading, error, clearError } = useContext(AuthContext);
 
   return (
     <Container sx={{ position: 'relative', pt: 15 }}>
@@ -65,10 +66,10 @@ const Form: React.FC<FormProps> = ({
           type="submit"
           variant="contained"
           endIcon={icon}
-          disabled={!btnActive}
+          disabled={!btnActive && loading}
           sx={{
             mt: 4,
-            backgroundColor: 'primary.main',
+            backgroundColor: 'grey.700',
             px: 3,
             opacity: 0.9,
             transition: lightTheme.transitions.create('transform', {
@@ -81,7 +82,7 @@ const Form: React.FC<FormProps> = ({
             },
           }}
         >
-          {submitText}
+          {loading ? <CircularProgress /> : submitText}
         </Button>
       </Box>
     </Container>
