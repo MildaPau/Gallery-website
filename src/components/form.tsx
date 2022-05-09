@@ -5,7 +5,6 @@ import {
   Button,
   Container,
   Typography,
-  CircularProgress,
 } from '@mui/material';
 
 import lightTheme from '../styles/theme';
@@ -33,22 +32,6 @@ const Form: React.FC<FormProps> = ({
 
   return (
     <Container sx={{ position: 'relative', pt: 15 }}>
-      {error && (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Alert
-            sx={{
-              position: 'absolute',
-              top: 0,
-              minWidth: contentWidth,
-              mt: 6,
-            }}
-            color="error"
-            onClose={clearError}
-          >
-            {error}
-          </Alert>
-        </Box>
-      )}
       <Box
         component="form"
         sx={{
@@ -60,16 +43,30 @@ const Form: React.FC<FormProps> = ({
         }}
         onSubmit={onSubmit}
       >
+        {error && (
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Alert
+              variant="outlined"
+              sx={{
+                mb: 3,
+              }}
+              color="error"
+              onClose={clearError}
+            >
+              {error}
+            </Alert>
+          </Box>
+        )}
         <Typography component="h1" variant="h5" color="primary.main">{formTitle}</Typography>
         {children}
         <Button
           type="submit"
           variant="contained"
           endIcon={icon}
-          disabled={!btnActive && loading}
+          disabled={!btnActive || loading}
           sx={{
             mt: 4,
-            backgroundColor: 'grey.700',
+            backgroundColor: 'grey.900',
             px: 3,
             opacity: 0.9,
             transition: lightTheme.transitions.create('transform', {
@@ -82,7 +79,7 @@ const Form: React.FC<FormProps> = ({
             },
           }}
         >
-          {loading ? <CircularProgress /> : submitText}
+          {submitText}
         </Button>
       </Box>
     </Container>

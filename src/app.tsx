@@ -19,6 +19,7 @@ const App: React.FC = () => (
       <Route path="/" element={<LandingPageLayoutLogin />}>
         <Route path="admin/login" element={<LoginPage />} />
         <Route path="admin" element={<AdminPage />} />
+        <Route path="auth/register" element={<RegisterPage />} />
       </Route>
     </Routes>
     <Routes>
@@ -28,7 +29,6 @@ const App: React.FC = () => (
         <Route path="about" element={<AboutPage />} />
         <Route path="gallery" element={<GalleryPage />} />
         <Route path="contact" element={<ContactPage />} />
-        <Route path="auth/register" element={<RegisterPage />} />
       </Route>
     </Routes>
 
