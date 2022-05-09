@@ -14,6 +14,7 @@ type FormProps = {
   formTitle: string,
   submitText: string,
   icon?: ReactNode,
+  btnActive?: boolean,
   onSubmit?: React.FormEventHandler<HTMLFormElement>,
 };
 
@@ -23,6 +24,7 @@ const Form: React.FC<FormProps> = ({
   formTitle,
   submitText,
   icon,
+  btnActive,
   onSubmit,
   children,
 }) => {
@@ -63,6 +65,7 @@ const Form: React.FC<FormProps> = ({
           type="submit"
           variant="contained"
           endIcon={icon}
+          disabled={!btnActive}
           sx={{
             mt: 4,
             backgroundColor: 'primary.main',

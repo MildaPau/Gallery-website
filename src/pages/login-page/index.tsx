@@ -74,6 +74,7 @@ const LoginPage: React.FC = () => {
           formTitle="Login"
           submitText="Login"
           onSubmit={handleSubmit}
+          btnActive={dirty && isValid}
         >
           <TextField
             name="email"
