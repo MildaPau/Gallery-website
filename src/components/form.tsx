@@ -57,7 +57,13 @@ const Form: React.FC<FormProps> = ({
             </Alert>
           </Box>
         )}
-        <Typography component="h1" variant="h5" color="primary.main">{formTitle}</Typography>
+        <Typography
+          component="h1"
+          variant="h5"
+          color="primary.main"
+        >
+          {formTitle}
+        </Typography>
         {children}
         <Button
           type="submit"

@@ -19,18 +19,17 @@ const initialValues: LoginValues = {
   password: '',
 };
 
-const validationSchema = Yup.object({
+const validationSchema: Yup.SchemaOf<LoginValues> = Yup.object({
   email: Yup.string()
     .required('Email is required')
-    .min(6, 'Min 6 symbols')
-    .max(32, 'Max 32 symbols')
-    .email('Enter a valid email'),
+    .min(6, 'Password should be of minimum 6 characters length')
+    .max(32, 'Must be 32 character or less'),
   password: Yup.string()
     .required('Password is required')
-    .min(8, 'Min 8 symbols')
-    .max(32, 'Max 32 symbols')
-    .matches(/[A-ZĄČĘĖĮŠŲŪŽ]/, 'Upper case letter required')
-    .matches(/[a-ząčęėįšųūž]/, 'Lower case letter required')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .max(32, 'Must be 32 character or less')
+    .matches(/[A-ZĄČĘĖĮŠŲŪŽ]/, 'Upper case letter required.')
+    .matches(/[A-Ząčęėįšųūž]/, 'Lower case letter required.')
     .matches(/\d/, 'Number is required'),
 });
 
