@@ -29,7 +29,7 @@ export const AuthProvider: React.FC = ({ children }) => {
       const loggedInUser = await AuthService.login(crudentials);
       setLoggedIn(true);
       setUser(loggedInUser);
-      navigate(next);
+      navigate('admin');
     } catch (err) {
       const { message } = (err as Error);
       setError(message);

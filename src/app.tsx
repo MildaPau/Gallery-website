@@ -10,13 +10,15 @@ import GalleryPage from './pages/gallery-page';
 import ContactPage from './pages/contact-page';
 import LoginPage from './pages/login-page/index';
 import RegisterPage from './pages/register-page/index';
+import AdminPage from './pages/admin-page';
 import { AuthProvider } from './features/auth/auth-context';
 
 const App: React.FC = () => (
   <AuthProvider>
     <Routes>
       <Route path="/" element={<LandingPageLayoutLogin />}>
-        <Route path="admin" element={<LoginPage />} />
+        <Route path="admin/login" element={<LoginPage />} />
+        <Route path="admin" element={<AdminPage />} />
       </Route>
     </Routes>
     <Routes>

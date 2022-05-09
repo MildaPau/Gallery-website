@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
         <Box sx={(theme) => theme.mixins.navbar}>
           <Logo />
           <Box sx={{ display: 'flex' }}>
+
             <NavbarLink to="/">Home</NavbarLink>
             {loggedIn ? <NavbarAuthMenu /> : <NavbarVisitorMenu />}
           </Box>
