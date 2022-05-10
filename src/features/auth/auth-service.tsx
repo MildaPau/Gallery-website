@@ -1,10 +1,14 @@
 import axios from 'axios';
 import { Crudentials, TemporaryAdmin, User } from '../../types';
 
+export type AuthPromise = (crudential: Crudentials) => Promise<User>;
+
 namespace AuthService {
 
-  export const login = async ({ email, password }: Crudentials): Promise<User> => {
-    const { data: tempAdmin } = await axios.get<TemporaryAdmin[]>(`http://localhost:8000/admin?email=${email}`);
+  export const login: AuthPromise = async ({ email, password }: Crudentials): Promise<User> => {
+    const { data: tempAdmin } = await axios
+      .get<TemporaryAdmin[]>(`http://localhost:8000/admin?email=${email}`);
+
     if (tempAdmin.length === 0) {
       throw new Error('User with such email was not found');
     }
@@ -22,6 +26,24 @@ namespace AuthService {
       email: tempUser.email,
       img: tempUser.img,
     };
+  };
+
+  export const register: AuthPromise = async ({ email, password }: Crudentials) => {
+    const { data: tempAdmin } = await axios.get<TemporaryAdmin[]>('http://localhost:8000/admin');
+
+    const userExists = tempAdmin.map((x) => x.email).includes(email);
+    if (userExists) {
+      throw new Error('Toks vartotojas jau egzistuoja. Pasirinkite kitą el. paštą');
+    }
+
+    const { data: createdTempAdmin } = await axios.post('http://localhost:8000/admin', { email, password });
+
+    const createdAdmin: User = {
+      id: createdTempAdmin.id,
+      email: createdTempAdmin.email,
+    };
+
+    return createdAdmin;
   };
 
 }

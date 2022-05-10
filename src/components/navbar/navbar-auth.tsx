@@ -19,6 +19,10 @@ const NavbarAuthMenu: React.FC = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const userInitials = user && user.name && user.surname
+    ? user.name[0] + user.surname[0]
+    : null;
+
   return (
     <Box
       ref={popperAnchorRef}
@@ -39,7 +43,7 @@ const NavbarAuthMenu: React.FC = () => {
         }}
         onClick={handleMenuOpen}
       >
-        <Avatar src={user?.img} />
+        {(userInitials || user?.img) && <Avatar src={user?.img}>{userInitials}</Avatar>}
       </Box>
       <Popper
         placement="bottom-end"

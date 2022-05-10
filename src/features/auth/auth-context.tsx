@@ -1,8 +1,8 @@
 import React, { createContext, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Crudentials, User } from '../../types';
+import { Crudentials, User, UserRegistration } from '../../types';
 import useLocalStorage from '../../hooks/use-local-storage-state';
-import AuthService from './auth-service';
+import AuthService, { AuthPromise } from './auth-service';
 import pause from '../../helpers/pause';
 
 export type AuthContextType = {
@@ -12,6 +12,7 @@ export type AuthContextType = {
   loading: boolean,
   clearError: VoidFunction,
   login: (crudentials: Crudentials, next: string) => void,
+  register: (userRegistration: UserRegistration) => void,
   logout: VoidFunction,
 };
 
@@ -24,14 +25,14 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [error, setError] = useState<AuthContextType['error']>(null);
   const [loading, setLoading] = useState<AuthContextType['loading']>(false);
 
-  const login: AuthContextType['login'] = async (crudentials: Crudentials, next) => {
+  const authenticate = async (crudentials: Crudentials, authMethod: AuthPromise, next = 'admin') => {
     if (error) {
       setError(null);
     }
     try {
       setLoading(true);
       await pause(3000);
-      const loggedInUser = await AuthService.login(crudentials);
+      const loggedInUser = await authMethod(crudentials);
       setLoggedIn(true);
       setUser(loggedInUser);
       navigate('admin');
@@ -43,8 +44,24 @@ export const AuthProvider: React.FC = ({ children }) => {
     }
   };
 
+  const login: AuthContextType['login'] = async (crudentials, next) => {
+    if (error) setError(null);
+    authenticate(crudentials, AuthService.login, next);
+  };
+
+  const register: AuthContextType['register'] = async ({ email, password, repeatPassword }) => {
+    if (error) setError(null);
+    if (password !== repeatPassword) {
+      setError('Slaptažodžiai nesutampa');
+      return;
+    }
+    const crudentials: Crudentials = { email, password };
+    authenticate(crudentials, AuthService.register);
+  };
+
   const logout: AuthContextType['logout'] = () => {
     setLoggedIn(false);
+    setUser(null);
     navigate('/');
   };
 
@@ -54,13 +71,14 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   const providerValue = useMemo(() => ({
     user,
-    loggedIn,
+    loggedIn: Boolean(user),
     error,
-    loading,
     clearError,
+    loading,
     login,
+    register,
     logout,
-  }), [loggedIn, user, error, loading]);
+  }), [user, error, loading]);
 
   return (
     <AuthContext.Provider value={providerValue}>

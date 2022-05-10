@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { TextField, Box } from '@mui/material';
 
 import Form from '../../components/form';
+import AuthContext from '../../features/auth/auth-context';
 
 const RegisterPage: React.FC = () => {
+  const { register } = useContext(AuthContext);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [repPassword, setRepPassword] = useState<string>('');
+  const [repeatPassword, setRepeatPassword] = useState<string>('');
+
+  const handleRegister: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    register({ email, password, repeatPassword });
+  };
 
   return (
     <Box component="section" sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -14,6 +21,7 @@ const RegisterPage: React.FC = () => {
         <Form
           formTitle="Register"
           submitText="Register"
+          onSubmit={handleRegister}
         >
           <TextField
             type="email"
@@ -39,8 +47,8 @@ const RegisterPage: React.FC = () => {
             variant="standard"
             fullWidth
             sx={{ mt: 3 }}
-            value={repPassword}
-            onChange={(e) => setRepPassword(e.target.value)}
+            value={repeatPassword}
+            onChange={(e) => setRepeatPassword(e.target.value)}
           />
         </Form>
       </Box>
