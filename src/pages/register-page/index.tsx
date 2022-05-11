@@ -1,19 +1,69 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import { TextField, Box } from '@mui/material';
+import { useFormik, FormikConfig } from 'formik';
+import * as Yup from 'yup';
+import validator from 'validator';
 
 import Form from '../../components/form';
 import AuthContext from '../../features/auth/auth-context';
+import { UserRegistration } from '../../types';
+import AuthService from '../../features/auth/auth-service';
+
+type RegisterConfig = FormikConfig<UserRegistration>;
+
+const initialValues = {
+  email: '',
+  password: '',
+  repeatPassword: '',
+};
+
+const validationSchema = Yup.object({
+  email: Yup.string()
+    .required('Required')
+    .test(
+      'emailAvailabilityCheck',
+      'Email is not valid',
+      async (email, context) => {
+        if (!email) return false;
+        if (!validator.isEmail(email)) return false;
+
+        const emailIsAvailable = await AuthService.checkEmailAvailability(email);
+        if (!emailIsAvailable) {
+          throw context.createError({
+            message: 'Email is taken',
+          });
+        }
+
+        return true;
+      },
+    ),
+  password: Yup.string()
+    .required('Required')
+    .min(8, 'Min 8 symbols')
+    .max(32, 'Max 32 symbols')
+    .matches(/[A-ZĄČĘĖĮŠŲŪŽ]/, 'Upper case letter required')
+    .matches(/[a-ząčęėįšųūž]/, 'Lower case letter required')
+    .matches(/\d/, 'Number is required'),
+  repeatPassword: Yup.string()
+    .required('Required')
+    .oneOf([Yup.ref('password')], 'Password do not match'),
+});
 
 const RegisterPage: React.FC = () => {
   const { register } = useContext(AuthContext);
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [repeatPassword, setRepeatPassword] = useState<string>('');
 
-  const handleRegister: React.FormEventHandler<HTMLFormElement> = (e) => {
-    e.preventDefault();
+  const handleRegister: RegisterConfig['onSubmit'] = ({ email, password, repeatPassword }) => {
     register({ email, password, repeatPassword });
   };
+
+  const {
+    values, errors, touched, dirty, isValid,
+    handleChange, handleSubmit, handleBlur,
+  } = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit: handleRegister,
+  });
 
   return (
     <Box component="section" sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -21,34 +71,47 @@ const RegisterPage: React.FC = () => {
         <Form
           formTitle="Register"
           submitText="Register"
-          onSubmit={handleRegister}
+          btnActive={dirty && isValid}
+          onSubmit={handleSubmit}
         >
           <TextField
+            name="email"
             type="email"
             label="Email"
             variant="standard"
             fullWidth
             sx={{ mt: 3 }}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.email && Boolean(errors.email)}
+            helperText={touched.email && errors.email}
           />
           <TextField
+            name="password"
             type="password"
             label="Password"
             variant="standard"
             fullWidth
             sx={{ mt: 3 }}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.password && Boolean(errors.password)}
+            helperText={touched.password && errors.password}
           />
           <TextField
+            name="repeatPassword"
             type="password"
             label="Repeat password"
             variant="standard"
             fullWidth
             sx={{ mt: 3 }}
-            value={repeatPassword}
-            onChange={(e) => setRepeatPassword(e.target.value)}
+            value={values.repeatPassword}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.repeatPassword && Boolean(errors.repeatPassword)}
+            helperText={touched.repeatPassword && errors.repeatPassword}
           />
         </Form>
       </Box>

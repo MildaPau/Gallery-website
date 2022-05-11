@@ -46,6 +46,12 @@ namespace AuthService {
     return createdAdmin;
   };
 
+  export const checkEmailAvailability = async (email: string): Promise<boolean> => {
+    const { data: tempAdmin } = await axios.get<TemporaryAdmin[]>('http://localhost:8000/admin');
+    const emails = tempAdmin.map((x) => x.email);
+
+    return !emails.includes(email);
+  };
 }
 
 export default AuthService;
