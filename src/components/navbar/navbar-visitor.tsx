@@ -7,6 +7,7 @@ const NavbarVisitorMenu: React.FC = () => (
     <NavbarLink to="/about">About</NavbarLink>
     <NavbarLink to="/gallery">Gallery</NavbarLink>
     <NavbarLink to="/contact">Contact</NavbarLink>
+    <NavbarLink to="/sculpture">Sculpture</NavbarLink>
   </>
 );
 
