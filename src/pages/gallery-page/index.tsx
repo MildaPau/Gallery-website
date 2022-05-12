@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Box, Grid } from '@mui/material';
 
 import axios from 'axios';
-import Sculpture from '../../types/sculpture';
+import { Sculpture } from '../../types';
 import SculptureCard from './sculpture-card';
 
 const GaleryPage: React.FC = () => {

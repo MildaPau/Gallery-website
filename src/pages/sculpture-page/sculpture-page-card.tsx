@@ -1,30 +1,34 @@
 import React from 'react';
-import { Box, Typography } from '@mui/material';
+import {
+  Box, Typography,
+} from '@mui/material';
 import Img from '../gallery-page/sculpture-card-img';
-import { Sculpture } from '../../store/types';
+import { SculptureItem } from '../../types';
+import SculpturePageCardAddToCartButtons from './sculpture-page-card-add-to-cart-buttons';
+import SculpturePageCardText from './sculpture-page-card-text';
 
-type SculptureCardProps = Omit<Sculpture, 'id'>;
+type ShopPageCardProps = SculptureItem & {
+  addToCart: (itemId: string) => void,
+};
 
-const SculpturePageCard: React.FC<SculptureCardProps> = ({
-  img, title, year, dimensions, price,
+const SculpturePageCard: React.FC<ShopPageCardProps> = ({
+  id, img, addToCart, ...SculpturePageCardTextProps
 }) => (
   <>
     <Img src={img} alt="Image" />
-    <Box sx={{ p: 3 }}>
-      <Typography
-        component="h2"
-        variant="h6"
-        sx={{
-          lineHeight: '24px',
-          mb: 2,
-          fontStyle: 'italic',
-        }}
-      >
-        {`${title}`}
-      </Typography>
-      <Typography>{`year: ${year}`}</Typography>
-      <Typography>{`dimensions: ${dimensions}`}</Typography>
-      <Typography>{`price: ${price}€`}</Typography>
+    <Box sx={{
+      p: 3,
+      height: 250,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+    }}
+    >
+      <SculpturePageCardText {...SculpturePageCardTextProps} />
+      <SculpturePageCardAddToCartButtons
+        id={id}
+        addToCart={addToCart}
+      />
     </Box>
   </>
 );

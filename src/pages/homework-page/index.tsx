@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Stack, ImageList, ImageListItem, Box, Container, ImageListItemBar, Typography,
+  Stack, ImageList, ImageListItem, Box, Container, ImageListItemBar,
 } from '@mui/material';
 
 import axios from 'axios';
-import { flexbox } from '@mui/material/node_modules/@mui/system';
-import Sculpture from '../../types/sculpture';
+import { Sculpture } from '../../types';
 import lightTheme from '../../styles/theme';
 
 const HomeworkPage: React.FC = () => {

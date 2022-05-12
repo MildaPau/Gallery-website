@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
-import Sculpture from '../../types/sculpture';
+import { Sculpture } from '../../types';
 import Img from './sculpture-card-img';
 import hoverCardMixin from './hover-card-mixin';
 
