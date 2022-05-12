@@ -1,4 +1,4 @@
-type TemporaryAdmin = {
+export type TemporaryAdmin = {
   id: string,
   email: string,
   name: string,
@@ -6,5 +6,3 @@ type TemporaryAdmin = {
   password: string,
   img: string,
 };
-
-export default TemporaryAdmin;
