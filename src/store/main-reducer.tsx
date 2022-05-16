@@ -34,18 +34,41 @@ const initialState: State = {
 };
 
 const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
-  // console.log(state);
-  if (action.type === 'ADD_TO_CART') {
-    return {
-      ...state,
-      cart: [
-        ...state.cart,
-        { id: createId(), itemId: action.payload.id, amount: 1 },
-      ],
+  console.log(state);
+  // if (action.type === 'ADD_TO_CART') {
+  //   return {
+  //     ...state,
+  //     cart: [
+  //       ...state.cart,
+  //       { id: createId(), itemId: action.payload.id, amount: 1 },
+  //     ],
 
-    };
+  //   };
+  // }
+  // if (action.type === 'DELETE_ITEM') {
+  //   return {
+  //     ...state,
+  //     items: state.sculptures.filter((sculpture) => sculpture.id !== action.payload.id),
+  //   };
+  // }
+  // return { ...state };
+  switch (action.type) {
+    case 'ADD_TO_CART':
+      return {
+        ...state,
+        cart: [
+          ...state.cart,
+          { id: createId(), itemId: action.payload.id, amount: 1 },
+        ],
+      };
+    case 'DELETE_SCULPTURE':
+      return {
+        ...state,
+        sculptures: state.sculptures.filter((sculpture) => sculpture.id !== action.payload.id),
+      };
+    default:
+      return state;
   }
-  return { ...state };
 };
 
 export default mainReducer;

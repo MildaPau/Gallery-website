@@ -17,6 +17,12 @@ const SculpturePage: React.FC = () => {
       payload: { id },
     });
   };
+  const deleteItem = (id: string): void => {
+    dispatch({
+      type: 'DELETE_SCULPTURE',
+      payload: { id },
+    });
+  };
 
   return (
     <Container sx={{ mt: 6, pb: 6 }}>
@@ -33,8 +39,8 @@ const SculpturePage: React.FC = () => {
       <Box component="section" sx={{ display: 'flex', gap: 5, mb: 6 }}>
         {
           sculptures.map((sculpture) => (
-            <Paper key={sculpture.id} sx={{ maxWidth: 350 }}>
-              <SculpturePageCard {...sculpture} addToCart={addToCart} />
+            <Paper key={sculpture.id} sx={{ maxWidth: 350, position: 'relative' }}>
+              <SculpturePageCard {...sculpture} addToCart={addToCart} deleteItem={deleteItem} />
             </Paper>
           ))
         }
