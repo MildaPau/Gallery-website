@@ -10,13 +10,13 @@ import AboutPage from './pages/about-page';
 import GalleryPage from './pages/gallery-page';
 import ContactPage from './pages/contact-page';
 import LoginPage from './pages/login-page/index';
-import RegisterPage from './pages/register-page/index';
+// import RegisterPage from './pages/register-page/index';
 import AdminPage from './pages/admin-page';
 import { AuthProvider } from './features/auth/auth-context';
 import SculpturePage from './pages/sculpture-page';
 
 import store from './store';
-import CreateNewSculptureForm from './pages/sculpture-page/create-new-sculpture-form';
+import CreateNewSculpturePage from './pages/create-new-sculpture-page';
 
 const App: React.FC = () => (
   <AuthProvider>
@@ -25,7 +25,7 @@ const App: React.FC = () => (
         <Route path="/" element={<LandingPageLayoutLogin />}>
           <Route path="admin/login" element={<LoginPage />} />
           <Route path="admin" element={<AdminPage />} />
-          <Route path="create" element={<CreateNewSculptureForm />} />
+          <Route path="create" element={<CreateNewSculpturePage />} />
         </Route>
       </Routes>
       <Routes>

@@ -5,12 +5,11 @@ import { SculptureItem } from '../../types';
 import SculpturePageCardText from './sculpture-page-card-text';
 
 type ShopPageCardProps = SculptureItem & {
-  addToCart: (itemId: string) => void,
   deleteItem: (itemId: string) => void,
 };
 
 const SculpturePageCard: React.FC<ShopPageCardProps> = ({
-  id, img, addToCart, deleteItem, ...SculpturePageCardTextProps
+  id, img, deleteItem, ...SculpturePageCardTextProps
 }) => (
   <>
     <Img src={img} alt="Image" />

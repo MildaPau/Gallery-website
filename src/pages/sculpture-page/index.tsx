@@ -3,21 +3,22 @@ import {
   Box, Button, Container, Paper, Typography,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import SculpturePageCard from './sculpture-page-card';
 import useRootSelector from '../../store/hooks';
 
 const SculpturePage: React.FC = () => {
+  const navigate = useNavigate();
   const sculptures = useRootSelector((state) => state.sculptures);
-  const cart = useRootSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const createNewItem = (): void => {
+  const createNewSculpture = (): void => {
     dispatch({
       type: 'NEW_SCULPTURE',
       payload: {},
     });
   };
-  const deleteItem = (id: string): void => {
+  const deleteSculpture = (id: string): void => {
     dispatch({
       type: 'DELETE_SCULPTURE',
       payload: { id },
@@ -39,9 +40,14 @@ const SculpturePage: React.FC = () => {
       <Button
         variant="outlined"
         sx={{ display: 'block', mx: 'auto', mb: 4 }}
-        onClick={() => createNewItem()}
+        onClick={() => createNewSculpture()}
       >
         Add new Sculpture
+      </Button>
+      <Button
+        onClick={() => navigate('/create')}
+      >
+        Create new item
       </Button>
 
       <Box
@@ -60,7 +66,7 @@ const SculpturePage: React.FC = () => {
                 flexDirection: 'column',
               }}
             >
-              <SculpturePageCard {...sculpture} deleteItem={deleteItem} />
+              <SculpturePageCard {...sculpture} deleteItem={deleteSculpture} />
             </Paper>
           ))
         }
