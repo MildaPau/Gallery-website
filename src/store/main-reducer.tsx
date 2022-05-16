@@ -35,30 +35,21 @@ const initialState: State = {
 
 const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
   console.log(state);
-  // if (action.type === 'ADD_TO_CART') {
-  //   return {
-  //     ...state,
-  //     cart: [
-  //       ...state.cart,
-  //       { id: createId(), itemId: action.payload.id, amount: 1 },
-  //     ],
 
-  //   };
-  // }
-  // if (action.type === 'DELETE_ITEM') {
-  //   return {
-  //     ...state,
-  //     items: state.sculptures.filter((sculpture) => sculpture.id !== action.payload.id),
-  //   };
-  // }
-  // return { ...state };
   switch (action.type) {
-    case 'ADD_TO_CART':
+    case 'NEW_SCULPTURE':
       return {
         ...state,
-        cart: [
-          ...state.cart,
-          { id: createId(), itemId: action.payload.id, amount: 1 },
+        sculptures: [
+          ...state.sculptures,
+          {
+            id: createId(),
+            img: 'images/Eina.jpg',
+            title: 'Naujai sukurta skulptūra',
+            year: 2020,
+            dimensions: '41,5 x 8,5 x 24,5 cm',
+            price: 1000,
+          },
         ],
       };
     case 'DELETE_SCULPTURE':

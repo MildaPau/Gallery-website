@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Box, Container, Paper, Typography,
+  Box, Button, Container, Paper, Typography,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import SculpturePageCard from './sculpture-page-card';
@@ -11,10 +11,10 @@ const SculpturePage: React.FC = () => {
   const cart = useRootSelector((state) => state.cart);
   const dispatch = useDispatch();
 
-  const addToCart = (id: string): void => {
+  const createNewItem = (): void => {
     dispatch({
-      type: 'ADD_TO_CART',
-      payload: { id },
+      type: 'NEW_SCULPTURE',
+      payload: {},
     });
   };
   const deleteItem = (id: string): void => {
@@ -36,28 +36,34 @@ const SculpturePage: React.FC = () => {
       >
         Gallery / Shop
       </Typography>
-      <Box component="section" sx={{ display: 'flex', gap: 5, mb: 6 }}>
+      <Button
+        variant="outlined"
+        sx={{ display: 'block', mx: 'auto', mb: 4 }}
+        onClick={() => createNewItem()}
+      >
+        Add new Sculpture
+      </Button>
+
+      <Box
+        component="section"
+        sx={{
+          display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap',
+        }}
+      >
         {
           sculptures.map((sculpture) => (
-            <Paper key={sculpture.id} sx={{ maxWidth: 350, position: 'relative' }}>
-              <SculpturePageCard {...sculpture} addToCart={addToCart} deleteItem={deleteItem} />
+            <Paper
+              key={sculpture.id}
+              sx={{
+                maxWidth: 350,
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <SculpturePageCard {...sculpture} deleteItem={deleteItem} />
             </Paper>
           ))
         }
-      </Box>
-
-      <Typography
-        component="h1"
-        variant="h3"
-        sx={{
-          textAlign: 'center',
-          mb: 6,
-        }}
-      >
-        Chart
-      </Typography>
-      <Box component="pre">
-        {JSON.stringify(cart, null, 2)}
       </Box>
     </Container>
   );

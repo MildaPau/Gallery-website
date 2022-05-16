@@ -16,6 +16,7 @@ import { AuthProvider } from './features/auth/auth-context';
 import SculpturePage from './pages/sculpture-page';
 
 import store from './store';
+import CreateNewSculptureForm from './pages/sculpture-page/create-new-sculpture-form';
 
 const App: React.FC = () => (
   <AuthProvider>
@@ -24,7 +25,7 @@ const App: React.FC = () => (
         <Route path="/" element={<LandingPageLayoutLogin />}>
           <Route path="admin/login" element={<LoginPage />} />
           <Route path="admin" element={<AdminPage />} />
-          <Route path="auth/register" element={<RegisterPage />} />
+          <Route path="create" element={<CreateNewSculptureForm />} />
         </Route>
       </Routes>
       <Routes>
