@@ -2,6 +2,7 @@
 import { Reducer } from 'redux';
 import { v4 as createId } from 'uuid';
 import { State, Action } from './types';
+import { setLocalStoreageItem, getLocalStorageItem } from '../helpers/local-storage-helpers';
 
 const initialState: State = {
   sculptures: [
@@ -32,7 +33,7 @@ const initialState: State = {
   ],
   cart: [],
   auth: {
-    user: null,
+    user: getLocalStorageItem('user'),
     error: null,
     loading: false,
   },
@@ -66,6 +67,7 @@ const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
       };
 
     case 'AUTH_SUCCESS': {
+      setLocalStoreageItem('user', action.payload.user);
       return {
         ...state,
         auth: {
@@ -78,6 +80,7 @@ const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
     }
 
     case 'AUTH_FAILURE': {
+      localStorage.removeItem('user');
       return {
         ...state,
         auth: {
