@@ -10,37 +10,34 @@ import AboutPage from './pages/about-page';
 import GalleryPage from './pages/gallery-page';
 import ContactPage from './pages/contact-page';
 import LoginPage from './pages/login-page/index';
-// import RegisterPage from './pages/register-page/index';
 import AdminPage from './pages/admin-page';
-import { AuthProvider } from './features/auth/auth-context';
 import SculpturePage from './pages/sculpture-page';
 
 import store from './store';
 import CreateNewSculpturePage from './pages/create-new-sculpture-page';
+import RequireAuth from './routing/require-auth';
+import RequireVisitor from './routing/require-visitor';
 
 const App: React.FC = () => (
-  <AuthProvider>
-    <ReduxProvider store={store}>
-      <Routes>
-        <Route path="/" element={<LandingPageLayoutLogin />}>
-          <Route path="admin/login" element={<LoginPage />} />
-          <Route path="admin" element={<AdminPage />} />
-          <Route path="create" element={<CreateNewSculpturePage />} />
-        </Route>
-      </Routes>
-      <Routes>
-        <Route path="/" element={<LandingPageLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="homework" element={<HomeworkPage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="gallery" element={<GalleryPage />} />
-          <Route path="sculpture" element={<SculpturePage />} />
-          <Route path="contact" element={<ContactPage />} />
-        </Route>
-      </Routes>
-    </ReduxProvider>
-  </AuthProvider>
-
+  <ReduxProvider store={store}>
+    <Routes>
+      <Route path="/" element={<LandingPageLayoutLogin />}>
+        <Route path="admin/login" element={<RequireVisitor><LoginPage /></RequireVisitor>} />
+        <Route path="admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
+        <Route path="create" element={<RequireAuth><CreateNewSculpturePage /></RequireAuth>} />
+      </Route>
+    </Routes>
+    <Routes>
+      <Route path="/" element={<LandingPageLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="homework" element={<HomeworkPage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="gallery" element={<GalleryPage />} />
+        <Route path="sculpture" element={<SculpturePage />} />
+        <Route path="contact" element={<ContactPage />} />
+      </Route>
+    </Routes>
+  </ReduxProvider>
 );
 
 export default App;

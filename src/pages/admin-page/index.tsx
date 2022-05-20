@@ -1,12 +1,19 @@
 import {
   Box, Button, Container, Typography,
 } from '@mui/material';
-import React, { useContext } from 'react';
-import AuthContext from '../../features/auth/auth-context';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { authLogoutAction } from '../../store/action-creators';
+import { useRootDispatch } from '../../store/hooks';
 import lightTheme from '../../styles/theme';
 
 const AdminPage: React.FC = () => {
-  const { logout } = useContext(AuthContext);
+  const dispatch = useRootDispatch();
+  const navigate = useNavigate();
+  const logout = () => {
+    dispatch(authLogoutAction);
+    navigate('/');
+  };
   return (
     <Container>
       <Box sx={{ textAlign: 'center', mt: 10 }}>

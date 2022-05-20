@@ -31,6 +31,12 @@ const initialState: State = {
     },
   ],
   cart: [],
+  auth: {
+    user: null,
+    error: null,
+    loading: false,
+  },
+  redirect: null,
 };
 
 const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
@@ -52,11 +58,73 @@ const mainReducer: Reducer<State, Action> = (state = initialState, action) => {
           },
         ],
       };
+
     case 'DELETE_SCULPTURE':
       return {
         ...state,
         sculptures: state.sculptures.filter((sculpture) => sculpture.id !== action.payload.id),
       };
+
+    case 'AUTH_SUCCESS': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          user: action.payload.user,
+          loading: false,
+        },
+        redirect: action.payload.redirect,
+      };
+    }
+
+    case 'AUTH_FAILURE': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          error: action.payload.error,
+          loading: false,
+        },
+      };
+    }
+
+    case 'AUTH_LOGOUT': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          user: null,
+        },
+      };
+    }
+
+    case 'AUTH_CLEAR_ERROR': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          error: null,
+        },
+      };
+    }
+
+    case 'CLEAR_REDIRECT': {
+      return {
+        ...state,
+        redirect: null,
+      };
+    }
+
+    case 'AUTH_LOADING': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          error: null,
+          loading: true,
+        },
+      };
+    }
     default:
       return state;
   }

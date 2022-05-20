@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  Box, Button, Container, Paper, Typography,
+  Box, Button, Container, Paper,
 } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SculpturePageCard from './sculpture-page-card';
-import useRootSelector from '../../store/hooks';
+import { useRootSelector } from '../../store/hooks';
 
 const SculpturePage: React.FC = () => {
   const navigate = useNavigate();
@@ -27,16 +27,6 @@ const SculpturePage: React.FC = () => {
 
   return (
     <Container sx={{ mt: 6, pb: 6 }}>
-      <Typography
-        component="h1"
-        variant="h3"
-        sx={{
-          textAlign: 'center',
-          mb: 6,
-        }}
-      >
-        Gallery / Shop
-      </Typography>
       <Button
         variant="outlined"
         sx={{ display: 'block', mx: 'auto', mb: 4 }}

@@ -1,6 +1,7 @@
 import { Backdrop, Box, keyframes } from '@mui/material';
-import React, { useContext } from 'react';
-import AuthContext from '../../features/auth/auth-context';
+import React from 'react';
+import { useRootSelector } from '../../store/hooks';
+import { selectAuthLoading } from '../../store/selectors';
 import LoadingLogo from './logo.png';
 
 const rotating = keyframes`
@@ -10,7 +11,7 @@ const rotating = keyframes`
 `;
 
 const Loading: React.FC = () => {
-  const { loading } = useContext(AuthContext);
+  const loading = useRootSelector(selectAuthLoading);
   return (
     <Backdrop
       open={loading}
