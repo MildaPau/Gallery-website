@@ -3,5 +3,5 @@ export type Sculpture = {
   img: string,
   title: string,
   year: string,
-  dimesions: string,
+  dimensions: string,
 };

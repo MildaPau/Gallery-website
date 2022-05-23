@@ -7,7 +7,7 @@ import hoverCardMixin from './hover-card-mixin';
 type SculptureCardProps = Omit<Sculpture, 'id'>;
 
 const SculptureCard: React.FC<SculptureCardProps> = ({
-  title, img, year, dimesions,
+  title, img, year, dimensions,
 }) => (
   <Box
     boxShadow={1}
@@ -26,7 +26,7 @@ const SculptureCard: React.FC<SculptureCardProps> = ({
           <Typography>
             Dimensions:
             {' '}
-            {dimesions}
+            {dimensions}
           </Typography>
         </Box>
       </Box>

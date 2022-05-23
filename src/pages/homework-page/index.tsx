@@ -27,7 +27,7 @@ const HomeworkPage: React.FC = () => {
             gap={20}
           >
             {sculptures.map(({
-              id, title, img, year, dimesions,
+              id, title, img, year, dimensions,
             }) => (
 
               <ImageListItem
@@ -54,7 +54,7 @@ const HomeworkPage: React.FC = () => {
                       <br />
                       Dimesions:
                       {' '}
-                      {dimesions}
+                      {dimensions}
                       .
                     </h4>
                     )}

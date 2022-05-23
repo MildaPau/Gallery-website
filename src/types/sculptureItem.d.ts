@@ -2,7 +2,6 @@ export type SculptureItem = {
   id: string,
   img: string,
   title: string,
-  year: number,
+  year: string,
   dimensions: string,
-  price: number,
 };

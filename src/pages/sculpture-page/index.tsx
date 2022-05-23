@@ -6,10 +6,11 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SculpturePageCard from './sculpture-page-card';
 import { useRootSelector } from '../../store/hooks';
+import { selectSculptures } from '../../store/selectors';
 
 const SculpturePage: React.FC = () => {
   const navigate = useNavigate();
-  const sculptures = useRootSelector((state) => state.sculptures);
+  const sculptures = useRootSelector(selectSculptures);
   const dispatch = useDispatch();
 
   const createNewSculpture = (): void => {

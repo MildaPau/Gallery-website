@@ -5,7 +5,7 @@ import { SculptureItem } from '../../types';
 type SculpturePageCardTextProps = Omit<SculptureItem, 'id' | 'img' >;
 
 const SculpturePageCardText: React.FC<SculpturePageCardTextProps> = ({
-  title, year, dimensions, price,
+  title, year, dimensions,
 }) => (
   <Box>
     <Typography
@@ -21,7 +21,6 @@ const SculpturePageCardText: React.FC<SculpturePageCardTextProps> = ({
     </Typography>
     <Typography>{`year: ${year}`}</Typography>
     <Typography>{`dimensions: ${dimensions}`}</Typography>
-    <Typography>{`price: ${price}€`}</Typography>
   </Box>
 );
 

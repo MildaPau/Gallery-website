@@ -1,67 +1,14 @@
 import { ThunkDispatch } from 'redux-thunk';
-import { User } from '../types';
+import { AuthState, AuthAction } from './features/auth/types';
+import { NavigationState, NavigationAction } from './features/navigation/types';
+import { SculpturesState, SculpturesAction } from './features/sculptures/types';
 
-export type State = {
-  sculptures: Sculpture[],
-  cart: CartItem[],
-  auth: {
-    user: User | null,
-    error: string | null,
-    loading: boolean,
-  },
-  redirect: string | null,
+export type RootState = {
+  auth: AuthState,
+  navigation: NavigationState,
+  sculptures: SculpturesState,
 };
 
-export type CreatNewSculptureAction = {
-  type: 'NEW_SCULPTURE',
-};
-
-export type DeleteSculptureAction = {
-  type: 'DELETE_SCULPTURE',
-  payload: {
-    id: string,
-  }
-};
-
-export type AuthSuccessAction = {
-  type: 'AUTH_SUCCESS',
-  payload: {
-    user: User,
-    redirect: string,
-  }
-};
-
-export type AuthFailureAction = {
-  type: 'AUTH_FAILURE',
-  payload: {
-    error: string,
-  }
-};
-
-export type AuthLoadingAction = {
-  type: 'AUTH_LOADING',
-};
-
-export type AuthClearErrorAction = {
-  type: 'AUTH_CLEAR_ERROR',
-};
-
-export type ClearRedirectAction = {
-  type: 'CLEAR_REDIRECT',
-};
-
-export type AuthLogoutAction = {
-  type: 'AUTH_LOGOUT',
-};
-
-export type Action =
-  CreatNewSculptureAction |
-  DeleteSculptureAction |
-  AuthSuccessAction |
-  AuthFailureAction |
-  AuthLoadingAction |
-  AuthClearErrorAction |
-  ClearRedirectAction |
-  AuthLogoutAction;
+export type AppAction = AuthAction | NavigationAction | SculpturesAction;
 
 export type AppDispatch = ThunkDispatch<State, undefined, Action>;
