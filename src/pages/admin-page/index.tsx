@@ -1,19 +1,21 @@
 import {
-  Box, Button, Container, Paper, Typography,
+  Box, Button, CircularProgress, Container, Paper, Typography,
 } from '@mui/material';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { authLogoutAction } from '../../store/action-creators';
-import { useRootSelector } from '../../store/hooks';
-import { selectSculptures } from '../../store/selectors';
+
+import { authLogoutAction, createfetchSculpturesAction } from '../../store/action-creators';
+import { useRootSelector, useRootDispatch } from '../../store/hooks';
+import { selectSculptures, selectSculpturesLoading } from '../../store/selectors';
+
 import lightTheme from '../../styles/theme';
 import SculpturePageCard from './sculpture-page-card';
 
 const AdminPage: React.FC = () => {
   const navigate = useNavigate();
   const sculptures = useRootSelector(selectSculptures);
-  const dispatch = useDispatch();
+  const sculpturesLoading = useRootSelector(selectSculpturesLoading);
+  const dispatch = useRootDispatch();
 
   const deleteSculpture = (id: string): void => {
     dispatch({
@@ -26,6 +28,10 @@ const AdminPage: React.FC = () => {
     dispatch(authLogoutAction);
     navigate('/');
   };
+
+  useEffect(() => {
+    dispatch(createfetchSculpturesAction);
+  }, []);
 
   return (
     <Container>
@@ -66,8 +72,8 @@ const AdminPage: React.FC = () => {
           display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap',
         }}
       >
-        {
-          sculptures.map((sculpture) => (
+        {sculptures.length > 0
+          ? (sculptures.map((sculpture) => (
             <Paper
               key={sculpture.id}
               sx={{
@@ -78,8 +84,8 @@ const AdminPage: React.FC = () => {
             >
               <SculpturePageCard {...sculpture} deleteItem={deleteSculpture} />
             </Paper>
-          ))
-        }
+          )))
+          : <Typography component="h2" variant="h3" sx={{ my: 3 }}>No items, sorry.</Typography>}
       </Box>
     </Container>
   );

@@ -10,4 +10,6 @@ export const selectAuthError = (state: RootState) => state.auth.error;
 
 export const selectRedirect = (state: RootState) => state.navigation.redirect;
 
+export const selectSculpturesLoading = (state: RootState) => state.sculptures.loading;
+
 export const selectSculptures = (state: RootState) => state.sculptures.sculptures;
