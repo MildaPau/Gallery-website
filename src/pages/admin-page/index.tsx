@@ -4,7 +4,7 @@ import {
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { authLogoutAction, creatNewSculptureAction } from '../../store/action-creators';
+import { authLogoutAction } from '../../store/action-creators';
 import { useRootSelector } from '../../store/hooks';
 import { selectSculptures } from '../../store/selectors';
 import lightTheme from '../../styles/theme';
@@ -15,9 +15,6 @@ const AdminPage: React.FC = () => {
   const sculptures = useRootSelector(selectSculptures);
   const dispatch = useDispatch();
 
-  const createNewSculpture = (): void => {
-    dispatch(creatNewSculptureAction);
-  };
   const deleteSculpture = (id: string): void => {
     dispatch({
       type: 'DELETE_SCULPTURE',
@@ -53,20 +50,14 @@ const AdminPage: React.FC = () => {
           }}
         >
           Logout
-
         </Button>
       </Box>
       <Button
         variant="outlined"
         sx={{ display: 'block', mx: 'auto', mb: 4 }}
-        onClick={() => dispatch(creatNewSculptureAction)}
-      >
-        Add new Sculpture
-      </Button>
-      <Button
         onClick={() => navigate('/create')}
       >
-        Create new item
+        Add new Sculpture
       </Button>
 
       <Box

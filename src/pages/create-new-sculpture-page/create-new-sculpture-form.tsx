@@ -2,20 +2,17 @@ import {
   Container, Box, TextField, Button, Typography,
 } from '@mui/material';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { creatNewSculptureAction } from '../../store/action-creators';
 import lightTheme from '../../styles/theme';
 
-type CreateNewSculptureFormProps = {
-  createNewItem: () => void,
-};
-
-const CreateNewSculptureForm: React.FC<CreateNewSculptureFormProps> = ({
-  createNewItem,
-}) => {
+const CreateNewSculptureForm: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const create = () => {
-    createNewItem();
+  const createAction = () => {
+    dispatch(creatNewSculptureAction);
     navigate('/admin');
   };
 
@@ -54,7 +51,7 @@ const CreateNewSculptureForm: React.FC<CreateNewSculptureFormProps> = ({
         <Button
           type="submit"
           variant="contained"
-          onClick={create}
+          onClick={createAction}
           sx={{
             mt: 4,
             backgroundColor: 'grey.900',
