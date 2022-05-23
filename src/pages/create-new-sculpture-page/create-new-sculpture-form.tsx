@@ -16,7 +16,7 @@ const CreateNewSculptureForm: React.FC<CreateNewSculptureFormProps> = ({
 
   const create = () => {
     createNewItem();
-    navigate('/sculpture');
+    navigate('/admin');
   };
 
   return (
@@ -78,28 +78,3 @@ const CreateNewSculptureForm: React.FC<CreateNewSculptureFormProps> = ({
 };
 
 export default CreateNewSculptureForm;
-
-/* <Box component="section" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-    <Box sx={{ textAlign: 'center' }}>
-
-        <Form
-            formTitle="Create new sculpture"
-            submitText="Create"
-        >
-            <TextField
-                type="text"
-                label="Title"
-                variant="outlined"
-                fullWidth
-                sx={{ mt: 3 }}
-            />
-            <Button variant="outlined">
-                <NavbarLink
-                    to="/sculpture"
-                >
-                    Back
-                </NavbarLink>
-            </Button>
-        </Form>
-    </Box>
-</Box> */

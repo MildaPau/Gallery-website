@@ -11,7 +11,6 @@ import GalleryPage from './pages/gallery-page';
 import ContactPage from './pages/contact-page';
 import LoginPage from './pages/login-page/index';
 import AdminPage from './pages/admin-page';
-import SculpturePage from './pages/sculpture-page';
 
 import store from './store';
 import CreateNewSculpturePage from './pages/create-new-sculpture-page';
@@ -33,7 +32,6 @@ const App: React.FC = () => (
         <Route path="homework" element={<HomeworkPage />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="gallery" element={<GalleryPage />} />
-        <Route path="sculpture" element={<SculpturePage />} />
         <Route path="contact" element={<ContactPage />} />
       </Route>
     </Routes>

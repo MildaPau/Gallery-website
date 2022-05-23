@@ -1,19 +1,38 @@
 import {
-  Box, Button, Container, Typography,
+  Box, Button, Container, Paper, Typography,
 } from '@mui/material';
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { authLogoutAction } from '../../store/action-creators';
-import { useRootDispatch } from '../../store/hooks';
+import { useRootSelector } from '../../store/hooks';
+import { selectSculptures } from '../../store/selectors';
 import lightTheme from '../../styles/theme';
+import SculpturePageCard from './sculpture-page-card';
 
 const AdminPage: React.FC = () => {
-  const dispatch = useRootDispatch();
   const navigate = useNavigate();
+  const sculptures = useRootSelector(selectSculptures);
+  const dispatch = useDispatch();
+
+  const createNewSculpture = (): void => {
+    dispatch({
+      type: 'NEW_SCULPTURE',
+      payload: {},
+    });
+  };
+  const deleteSculpture = (id: string): void => {
+    dispatch({
+      type: 'DELETE_SCULPTURE',
+      payload: { id },
+    });
+  };
+
   const logout = () => {
     dispatch(authLogoutAction);
     navigate('/');
   };
+
   return (
     <Container>
       <Box sx={{ textAlign: 'center', mt: 10 }}>
@@ -39,6 +58,40 @@ const AdminPage: React.FC = () => {
           Logout
 
         </Button>
+      </Box>
+      <Button
+        variant="outlined"
+        sx={{ display: 'block', mx: 'auto', mb: 4 }}
+        onClick={() => createNewSculpture()}
+      >
+        Add new Sculpture
+      </Button>
+      <Button
+        onClick={() => navigate('/create')}
+      >
+        Create new item
+      </Button>
+
+      <Box
+        component="section"
+        sx={{
+          display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap',
+        }}
+      >
+        {
+          sculptures.map((sculpture) => (
+            <Paper
+              key={sculpture.id}
+              sx={{
+                maxWidth: 350,
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <SculpturePageCard {...sculpture} deleteItem={deleteSculpture} />
+            </Paper>
+          ))
+        }
       </Box>
     </Container>
   );
