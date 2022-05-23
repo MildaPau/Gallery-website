@@ -4,7 +4,7 @@ import {
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { authLogoutAction } from '../../store/action-creators';
+import { authLogoutAction, creatNewSculptureAction } from '../../store/action-creators';
 import { useRootSelector } from '../../store/hooks';
 import { selectSculptures } from '../../store/selectors';
 import lightTheme from '../../styles/theme';
@@ -16,10 +16,7 @@ const AdminPage: React.FC = () => {
   const dispatch = useDispatch();
 
   const createNewSculpture = (): void => {
-    dispatch({
-      type: 'NEW_SCULPTURE',
-      payload: {},
-    });
+    dispatch(creatNewSculptureAction);
   };
   const deleteSculpture = (id: string): void => {
     dispatch({
@@ -62,7 +59,7 @@ const AdminPage: React.FC = () => {
       <Button
         variant="outlined"
         sx={{ display: 'block', mx: 'auto', mb: 4 }}
-        onClick={() => createNewSculpture()}
+        onClick={() => dispatch(creatNewSculptureAction)}
       >
         Add new Sculpture
       </Button>
