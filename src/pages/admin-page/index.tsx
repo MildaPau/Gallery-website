@@ -1,13 +1,14 @@
 import {
-  Box, Button, CircularProgress, Container, Paper, Typography,
+  Alert,
+  Box, Button, Container, Paper, Typography,
 } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingAnimation from '../../components/loading/loading-animation';
 
-import { authLogoutAction, createfetchSculpturesAction } from '../../store/action-creators';
+import { authLogoutAction, createfetchSculpturesAction, sculpturesClearErrorAction } from '../../store/action-creators';
 import { useRootSelector, useRootDispatch } from '../../store/hooks';
-import { selectSculptures, selectSculpturesLoading } from '../../store/selectors';
+import { selectSculptures, selectSculpturesLoading, selectSculpturesError } from '../../store/selectors';
 
 import lightTheme from '../../styles/theme';
 import SculpturePageCard from './sculpture-page-card';
@@ -16,6 +17,7 @@ const AdminPage: React.FC = () => {
   const navigate = useNavigate();
   const sculptures = useRootSelector(selectSculptures);
   const sculpturesLoading = useRootSelector(selectSculpturesLoading);
+  const error = useRootSelector(selectSculpturesError);
   const dispatch = useRootDispatch();
 
   const deleteSculpture = (id: string): void => {
@@ -68,6 +70,9 @@ const AdminPage: React.FC = () => {
     <Container>
       <Box sx={{ textAlign: 'center', mt: 10 }}>
         <Typography component="h1" variant="h3">Turinio valdymo sistema</Typography>
+        {error && (
+          <Alert color="error" onClose={() => dispatch(sculpturesClearErrorAction)}>{error}</Alert>
+        )}
         <Button
           onClick={logout}
           variant="contained"

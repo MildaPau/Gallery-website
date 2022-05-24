@@ -2,7 +2,6 @@ import { Dispatch } from 'react';
 import axios from 'axios';
 import { AppAction } from '../../types';
 import {
-  FetchSculpturesSuccessAction,
   SculpturesAction,
 } from './types';
 import { Sculpture } from '../../../types';
@@ -12,19 +11,33 @@ export const createfetchSculpturesLoadingAction: SculpturesAction = ({
   type: 'FETCH_SCULPTURES_LOADING',
 });
 
-const createFecthSculpturesSuccessAction = (sculptures: Sculpture[]): FetchSculpturesSuccessAction => ({
+const createFecthSculpturesSuccessAction = (sculptures: Sculpture[]): SculpturesAction => ({
   type: 'FETCH_SCULPTURES_SUCCESS',
   payload: { sculptures },
 });
 
+const createFecthSculpturesFailureAction = (error: string): SculpturesAction => ({
+  type: 'FETCH_SCULPTURES_FAILURE',
+  payload: { error },
+});
+
+export const sculpturesClearErrorAction: SculpturesAction = ({
+  type: 'SCULPTURES_CLEAR_ERROR',
+});
+
 export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>): Promise<void> => {
-  alert('Daromas Siuntimas ....');
   dispatch(createfetchSculpturesLoadingAction);
 
-  const { data } = await axios.get<Sculpture[]>('http://localhost:8000/sculptures');
-  await pause(2000);
-  const fecthSculpturesSuccessAction = createFecthSculpturesSuccessAction(data);
-  dispatch(fecthSculpturesSuccessAction);
+  try {
+    const { data } = await axios.get<Sculpture[]>('http://localhost:8001/sculptures');
+    await pause(2000);
+    const fecthSculpturesSuccessAction = createFecthSculpturesSuccessAction(data);
+    dispatch(fecthSculpturesSuccessAction);
+  } catch (error) {
+    const errMsg = error instanceof Error ? error.message : String(error);
+    const fecthSculpturesFailureAction = createFecthSculpturesFailureAction(errMsg);
+    dispatch(fecthSculpturesFailureAction);
+  }
 };
 
 export const creatNewSculptureAction: SculpturesAction = ({

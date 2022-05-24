@@ -6,6 +6,7 @@ import { SculpturesAction, SculpturesState } from './types';
 const initialState: SculpturesState = {
   sculptures: [],
   loading: false,
+  error: null,
 };
 
 const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = initialState, action) => {
@@ -16,6 +17,7 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
       return {
         ...state,
         loading: true,
+        error: null,
       };
     }
 
@@ -24,6 +26,21 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
         ...state,
         loading: false,
         sculptures: action.payload.sculptures,
+      };
+    }
+
+    case 'FETCH_SCULPTURES_FAILURE': {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    }
+
+    case 'SCULPTURES_CLEAR_ERROR': {
+      return {
+        ...state,
+        error: null,
       };
     }
 

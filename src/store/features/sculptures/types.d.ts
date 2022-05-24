@@ -3,6 +3,7 @@ import { Sculpture } from '../../../types';
 export type SculpturesState = {
   sculptures: Sculpture[],
   loading: boolean,
+  error: string | null,
 };
 
 export type FetchSculpturesLoadingAction = {
@@ -22,6 +23,10 @@ export type FetchSculpturesFailureAction = {
   }
 };
 
+export type SculpturesClearErrorAction = {
+  type: 'SCULPTURES_CLEAR_ERROR',
+};
+
 export type CreatNewSculptureAction = {
   type: 'NEW_SCULPTURE',
 };
@@ -37,5 +42,6 @@ export type SculpturesAction =
   FetchSculpturesLoadingAction |
   FetchSculpturesSuccessAction |
   FetchSculpturesFailureAction |
+  SculpturesClearErrorAction |
   CreatNewSculptureAction |
   DeleteSculptureAction;

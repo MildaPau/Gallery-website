@@ -13,3 +13,5 @@ export const selectRedirect = (state: RootState) => state.navigation.redirect;
 export const selectSculpturesLoading = (state: RootState) => state.sculptures.loading;
 
 export const selectSculptures = (state: RootState) => state.sculptures.sculptures;
+
+export const selectSculpturesError = (state: RootState) => state.sculptures.error;
