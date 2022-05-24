@@ -3,6 +3,7 @@ import {
 } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoadingAnimation from '../../components/loading/loading-animation';
 
 import { authLogoutAction, createfetchSculpturesAction } from '../../store/action-creators';
 import { useRootSelector, useRootDispatch } from '../../store/hooks';
@@ -32,6 +33,36 @@ const AdminPage: React.FC = () => {
   useEffect(() => {
     dispatch(createfetchSculpturesAction);
   }, []);
+
+  let pageContent = (
+    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 9 }}>
+      <LoadingAnimation />
+    </Box>
+  );
+
+  if (!sculpturesLoading) {
+    pageContent = sculptures.length > 0 ? (
+      <Box
+        component="section"
+        sx={{
+          display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap',
+        }}
+      >
+        {sculptures.map((sculpture) => (
+          <Paper
+            key={sculpture.id}
+            sx={{
+              maxWidth: 350,
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <SculpturePageCard {...sculpture} deleteItem={deleteSculpture} />
+          </Paper>
+        ))}
+      </Box>
+    ) : <Typography component="h2" variant="h3" sx={{ my: 3 }}>No items, sorry.</Typography>;
+  }
 
   return (
     <Container>
@@ -66,27 +97,8 @@ const AdminPage: React.FC = () => {
         Add new Sculpture
       </Button>
 
-      <Box
-        component="section"
-        sx={{
-          display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap',
-        }}
-      >
-        {sculptures.length > 0
-          ? (sculptures.map((sculpture) => (
-            <Paper
-              key={sculpture.id}
-              sx={{
-                maxWidth: 350,
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-            >
-              <SculpturePageCard {...sculpture} deleteItem={deleteSculpture} />
-            </Paper>
-          )))
-          : <Typography component="h2" variant="h3" sx={{ my: 3 }}>No items, sorry.</Typography>}
-      </Box>
+      {pageContent}
+
     </Container>
   );
 };
