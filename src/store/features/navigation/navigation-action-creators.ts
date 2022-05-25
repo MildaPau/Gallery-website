@@ -1,10 +1,14 @@
-import { NavigationClearRedirectAction, NavigationSetRedirectAction } from './types';
+import {
+  NavigationClearRedirectAction,
+  NavigationSetRedirectAction,
+  NavigationActionTypes,
+} from './navigation-types';
 
 export const navigationClearRedirectAction: NavigationClearRedirectAction = {
-  type: 'NAVIGATION_CLEAR_REDIRECT',
+  type: NavigationActionTypes.NAVIGATION_CLEAR_REDIRECT,
 };
 
 export const createNavigationSetRedirectAction = (redirect: string): NavigationSetRedirectAction => ({
-  type: 'NAVIGATION_SET_REDIRECT',
+  type: NavigationActionTypes.NAVIGATION_SET_REDIRECT,
   payload: { redirect },
 });
