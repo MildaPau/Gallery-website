@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Reducer } from 'redux';
-import { AuthState, AuthAction } from './types';
+import { AuthState, AuthAction, AuthActionType } from './auth-types';
 
 import { getLocalStorageItem, setLocalStoreageItem } from '../../../helpers/local-storage-helpers';
 
@@ -14,7 +14,7 @@ const initialState: AuthState = {
 
 const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, action) => {
   switch (action.type) {
-    case 'AUTH_SUCCESS': {
+    case AuthActionType.AUTH_SUCCESS: {
       setLocalStoreageItem(USER_KEY_IN_LOCAL_STORAGE, action.payload.user);
       return {
         ...state,
@@ -23,7 +23,7 @@ const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, actio
       };
     }
 
-    case 'AUTH_FAILURE': {
+    case AuthActionType.AUTH_FAILURE: {
       return {
         ...state,
         error: action.payload.error,
@@ -31,7 +31,7 @@ const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, actio
       };
     }
 
-    case 'AUTH_LOGOUT': {
+    case AuthActionType.AUTH_LOGOUT: {
       localStorage.removeItem(USER_KEY_IN_LOCAL_STORAGE);
       return {
         ...state,
@@ -39,14 +39,14 @@ const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, actio
       };
     }
 
-    case 'AUTH_CLEAR_ERROR': {
+    case AuthActionType.AUTH_CLEAR_ERROR: {
       return {
         ...state,
         error: null,
       };
     }
 
-    case 'AUTH_LOADING': {
+    case AuthActionType.AUTH_LOADING: {
       return {
         ...state,
         error: null,

@@ -8,30 +8,31 @@ import {
   AuthLoadingAction,
   AuthClearErrorAction,
   AuthLogoutAction,
-} from './types';
+  AuthActionType,
+} from './auth-types';
 
 import { AppAction } from '../../types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
 
 export const authLoadingAction: AuthLoadingAction = {
-  type: 'AUTH_LOADING',
+  type: AuthActionType.AUTH_LOADING,
 };
 
 export const authClearErrorAction: AuthClearErrorAction = {
-  type: 'AUTH_CLEAR_ERROR',
+  type: AuthActionType.AUTH_CLEAR_ERROR,
 };
 
 export const authLogoutAction: AuthLogoutAction = {
-  type: 'AUTH_LOGOUT',
+  type: AuthActionType.AUTH_LOGOUT,
 };
 
 export const createAuthSuccessAction = (user: User, redirect: string): AuthSuccessAction => ({
-  type: 'AUTH_SUCCESS',
+  type: AuthActionType.AUTH_SUCCESS,
   payload: { user, redirect },
 });
 
 export const createAuthFailureAction = (error: string): AuthFailureAction => ({
-  type: 'AUTH_FAILURE',
+  type: AuthActionType.AUTH_FAILURE,
   payload: { error },
 });
 
