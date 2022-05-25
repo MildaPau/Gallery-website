@@ -48,6 +48,27 @@ const CreateNewSculptureForm: React.FC = () => {
           fullWidth
           sx={{ mt: 3 }}
         />
+        <TextField
+          type="text"
+          label="Year"
+          variant="outlined"
+          fullWidth
+          sx={{ mt: 3 }}
+        />
+        <TextField
+          type="text"
+          label="Dimensions"
+          variant="outlined"
+          fullWidth
+          sx={{ mt: 3 }}
+        />
+        <TextField
+          type="text"
+          label="Image"
+          variant="outlined"
+          fullWidth
+          sx={{ mt: 3 }}
+        />
         <Button
           type="submit"
           variant="contained"

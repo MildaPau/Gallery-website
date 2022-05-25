@@ -32,7 +32,6 @@ const SculpturePageCard: React.FC<ShopPageCardProps> = ({
         onClick={() => deleteItem(id)}
       >
         X
-
       </Button>
     </Box>
   </>

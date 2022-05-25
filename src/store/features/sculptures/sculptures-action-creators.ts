@@ -29,7 +29,7 @@ export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>)
   dispatch(createfetchSculpturesLoadingAction);
 
   try {
-    const { data } = await axios.get<Sculpture[]>('http://localhost:8001/sculptures');
+    const { data } = await axios.get<Sculpture[]>('http://localhost:8000/sculptures');
     await pause(2000);
     const fecthSculpturesSuccessAction = createFecthSculpturesSuccessAction(data);
     dispatch(fecthSculpturesSuccessAction);

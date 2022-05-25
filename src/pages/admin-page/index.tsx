@@ -6,7 +6,9 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingAnimation from '../../components/loading/loading-animation';
 
-import { authLogoutAction, createfetchSculpturesAction, sculpturesClearErrorAction } from '../../store/action-creators';
+import {
+  authLogoutAction, createfetchSculpturesAction, deleteSculptureAction, sculpturesClearErrorAction,
+} from '../../store/action-creators';
 import { useRootSelector, useRootDispatch } from '../../store/hooks';
 import { selectSculptures, selectSculpturesLoading, selectSculpturesError } from '../../store/selectors';
 
@@ -19,13 +21,6 @@ const AdminPage: React.FC = () => {
   const sculpturesLoading = useRootSelector(selectSculpturesLoading);
   const error = useRootSelector(selectSculpturesError);
   const dispatch = useRootDispatch();
-
-  const deleteSculpture = (id: string): void => {
-    dispatch({
-      type: 'DELETE_SCULPTURE',
-      payload: { id },
-    });
-  };
 
   const logout = () => {
     dispatch(authLogoutAction);
@@ -59,7 +54,7 @@ const AdminPage: React.FC = () => {
               flexDirection: 'column',
             }}
           >
-            <SculpturePageCard {...sculpture} deleteItem={deleteSculpture} />
+            <SculpturePageCard {...sculpture} deleteItem={() => dispatch(deleteSculptureAction(sculpture.id))} />
           </Paper>
         ))}
       </Box>
@@ -68,39 +63,27 @@ const AdminPage: React.FC = () => {
 
   return (
     <Container>
-      <Box sx={{ textAlign: 'center', mt: 10 }}>
+      <Box sx={{ textAlign: 'center', mt: 5 }}>
         <Typography component="h1" variant="h3">Turinio valdymo sistema</Typography>
-        {error && (
-          <Alert color="error" onClose={() => dispatch(sculpturesClearErrorAction)}>{error}</Alert>
-        )}
+      </Box>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 5 }}>
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/create')}
+        >
+          Add new Sculpture
+        </Button>
+
         <Button
           onClick={logout}
-          variant="contained"
-          sx={{
-            mt: 4,
-            backgroundColor: 'primary.main',
-            px: 3,
-            opacity: 0.9,
-            transition: lightTheme.transitions.create('transform', {
-              duration: '0.5s',
-            }),
-            ':hover': {
-              opacity: 1,
-              transform: 'scale(1.1)',
-              backgroundColor: 'primary.main',
-            },
-          }}
+          variant="outlined"
         >
           Logout
         </Button>
       </Box>
-      <Button
-        variant="outlined"
-        sx={{ display: 'block', mx: 'auto', mb: 4 }}
-        onClick={() => navigate('/create')}
-      >
-        Add new Sculpture
-      </Button>
+      {error && (
+      <Alert color="error" onClose={() => dispatch(sculpturesClearErrorAction)}>{error}</Alert>
+      )}
 
       {pageContent}
 
