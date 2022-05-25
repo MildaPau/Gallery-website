@@ -2,36 +2,29 @@ import { Dispatch } from 'redux';
 import AuthService, { AuthPromise } from './auth-service';
 import pause from '../../../helpers/pause';
 import { Crudentials, User } from '../../../types';
-import {
-  AuthSuccessAction,
-  AuthFailureAction,
-  AuthLoadingAction,
-  AuthClearErrorAction,
-  AuthLogoutAction,
-  AuthActionType,
-} from './auth-types';
+import { AuthActionType, AuthAction, } from './auth-types';
 
 import { AppAction } from '../../types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
 
-export const authLoadingAction: AuthLoadingAction = {
+export const authLoadingAction: AuthAction = {
   type: AuthActionType.AUTH_LOADING,
 };
 
-export const authClearErrorAction: AuthClearErrorAction = {
+export const authClearErrorAction: AuthAction = {
   type: AuthActionType.AUTH_CLEAR_ERROR,
 };
 
-export const authLogoutAction: AuthLogoutAction = {
+export const authLogoutAction: AuthAction = {
   type: AuthActionType.AUTH_LOGOUT,
 };
 
-export const createAuthSuccessAction = (user: User, redirect: string): AuthSuccessAction => ({
+export const createAuthSuccessAction = (user: User, redirect: string): AuthAction => ({
   type: AuthActionType.AUTH_SUCCESS,
   payload: { user, redirect },
 });
 
-export const createAuthFailureAction = (error: string): AuthFailureAction => ({
+export const createAuthFailureAction = (error: string): AuthAction => ({
   type: AuthActionType.AUTH_FAILURE,
   payload: { error },
 });
