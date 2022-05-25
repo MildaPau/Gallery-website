@@ -6,33 +6,42 @@ export type SculpturesState = {
   error: string | null,
 };
 
+export enum SculptureActionType {
+  FETCH_SCULPTURES_LOADING = 'FETCH_SCULPTURES_LOADING',
+  FETCH_SCULPTURES_SUCCESS = 'FETCH_SCULPTURES_SUCCESS',
+  FETCH_SCULPTURES_FAILURE = 'FETCH_SCULPTURES_FAILURE',
+  SCULPTURES_CLEAR_ERROR = 'SCULPTURES_CLEAR_ERROR',
+  NEW_SCULPTURE = 'NEW_SCULPTURE',
+  DELETE_SCULPTURE = 'DELETE_SCULPTURE',
+}
+
 export type FetchSculpturesLoadingAction = {
-  type: 'FETCH_SCULPTURES_LOADING',
+  type: SculptureActionType.FETCH_SCULPTURES_LOADING,
 };
 
 export type FetchSculpturesSuccessAction = {
-  type: 'FETCH_SCULPTURES_SUCCESS',
+  type: SculptureActionType.FETCH_SCULPTURES_SUCCESS,
   payload: {
-    sculptures: Sculptures[],
+    sculptures: Sculpture[],
   }
 };
 export type FetchSculpturesFailureAction = {
-  type: 'FETCH_SCULPTURES_FAILURE',
+  type: SculptureActionType.FETCH_SCULPTURES_FAILURE,
   payload: {
     error: string,
   }
 };
 
 export type SculpturesClearErrorAction = {
-  type: 'SCULPTURES_CLEAR_ERROR',
+  type: SculptureActionType.SCULPTURES_CLEAR_ERROR,
 };
 
 export type CreatNewSculptureAction = {
-  type: 'NEW_SCULPTURE',
+  type: SculptureActionType.NEW_SCULPTURE,
 };
 
 export type DeleteSculptureAction = {
-  type: 'DELETE_SCULPTURE',
+  type: SculptureActionType.DELETE_SCULPTURE,
   payload: {
     id: string,
   }

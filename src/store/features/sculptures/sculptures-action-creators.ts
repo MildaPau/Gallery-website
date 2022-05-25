@@ -3,33 +3,36 @@ import axios from 'axios';
 import { AppAction } from '../../types';
 import {
   SculpturesAction,
-} from './types';
+  SculptureActionType,
+} from './sculpture-types';
 import { Sculpture } from '../../../types';
 import pause from '../../../helpers/pause';
 
+const API_SERVER = process.env.REACT_APP_API_SERVER;
+
 export const createfetchSculpturesLoadingAction: SculpturesAction = ({
-  type: 'FETCH_SCULPTURES_LOADING',
+  type: SculptureActionType.FETCH_SCULPTURES_LOADING,
 });
 
 const createFecthSculpturesSuccessAction = (sculptures: Sculpture[]): SculpturesAction => ({
-  type: 'FETCH_SCULPTURES_SUCCESS',
+  type: SculptureActionType.FETCH_SCULPTURES_SUCCESS,
   payload: { sculptures },
 });
 
 const createFecthSculpturesFailureAction = (error: string): SculpturesAction => ({
-  type: 'FETCH_SCULPTURES_FAILURE',
+  type: SculptureActionType.FETCH_SCULPTURES_FAILURE,
   payload: { error },
 });
 
 export const sculpturesClearErrorAction: SculpturesAction = ({
-  type: 'SCULPTURES_CLEAR_ERROR',
+  type: SculptureActionType.SCULPTURES_CLEAR_ERROR,
 });
 
 export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>): Promise<void> => {
   dispatch(createfetchSculpturesLoadingAction);
 
   try {
-    const { data } = await axios.get<Sculpture[]>('http://localhost:8000/sculptures');
+    const { data } = await axios.get<Sculpture[]>(`${API_SERVER}/sculptures`);
     await pause(2000);
     const fecthSculpturesSuccessAction = createFecthSculpturesSuccessAction(data);
     dispatch(fecthSculpturesSuccessAction);
@@ -41,10 +44,10 @@ export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>)
 };
 
 export const creatNewSculptureAction: SculpturesAction = ({
-  type: 'NEW_SCULPTURE',
+  type: SculptureActionType.NEW_SCULPTURE,
 });
 
 export const deleteSculptureAction = (id: string): SculpturesAction => ({
-  type: 'DELETE_SCULPTURE',
+  type: SculptureActionType.DELETE_SCULPTURE,
   payload: { id },
 });

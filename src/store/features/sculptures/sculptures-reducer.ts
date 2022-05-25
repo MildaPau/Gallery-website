@@ -1,7 +1,11 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Reducer } from 'react';
 import { v4 as createId } from 'uuid';
-import { SculpturesAction, SculpturesState } from './types';
+import {
+  SculpturesAction,
+  SculpturesState,
+  SculptureActionType,
+} from './sculpture-types';
 
 const initialState: SculpturesState = {
   sculptures: [],
@@ -13,7 +17,7 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
   console.log(state);
 
   switch (action.type) {
-    case 'FETCH_SCULPTURES_LOADING': {
+    case SculptureActionType.FETCH_SCULPTURES_LOADING: {
       return {
         ...state,
         loading: true,
@@ -21,7 +25,7 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
       };
     }
 
-    case 'FETCH_SCULPTURES_SUCCESS': {
+    case SculptureActionType.FETCH_SCULPTURES_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -29,7 +33,7 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
       };
     }
 
-    case 'FETCH_SCULPTURES_FAILURE': {
+    case SculptureActionType.FETCH_SCULPTURES_FAILURE: {
       return {
         ...state,
         loading: false,
@@ -37,14 +41,14 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
       };
     }
 
-    case 'SCULPTURES_CLEAR_ERROR': {
+    case SculptureActionType.SCULPTURES_CLEAR_ERROR: {
       return {
         ...state,
         error: null,
       };
     }
 
-    case 'NEW_SCULPTURE': {
+    case SculptureActionType.NEW_SCULPTURE: {
       return {
         ...state,
         sculptures: [
@@ -60,7 +64,7 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
       };
     }
 
-    case 'DELETE_SCULPTURE':
+    case SculptureActionType.DELETE_SCULPTURE:
       return {
         ...state,
         sculptures: state.sculptures.filter((sculpture) => sculpture.id !== action.payload.id),

@@ -1,7 +1,7 @@
 import { ThunkDispatch } from 'redux-thunk';
 import { AuthState, AuthAction } from './features/auth/auth-types';
 import { NavigationState, NavigationAction } from './features/navigation/navigation-types';
-import { SculpturesState, SculpturesAction } from './features/sculptures/types';
+import { SculpturesState, SculpturesAction } from './features/sculptures/sculpture-types';
 
 export type RootState = {
   auth: AuthState,
