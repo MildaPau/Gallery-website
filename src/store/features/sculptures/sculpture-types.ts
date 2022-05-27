@@ -42,9 +42,6 @@ export type CreatNewSculptureAction = {
 
 export type DeleteSculptureAction = {
   type: SculptureActionType.DELETE_SCULPTURE,
-  payload: {
-    id: string,
-  }
 };
 
 export type SculpturesAction =

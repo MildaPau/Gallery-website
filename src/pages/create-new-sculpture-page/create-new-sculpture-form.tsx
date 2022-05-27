@@ -1,20 +1,42 @@
 import {
-  Container, Box, TextField, Button, Typography,
+  Container, Box, TextField, Typography,
 } from '@mui/material';
+import { useFormik, FormikConfig } from 'formik';
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { creatNewSculptureAction } from '../../store/action-creators';
-import lightTheme from '../../styles/theme';
+import ButtonScale from '../../components/button-scale';
+import { createNewSculptureAction } from '../../store/action-creators';
+import { useRootDispatch } from '../../store/hooks';
+import { CreateSculpture } from '../../types/create-sculpture';
 
 const CreateNewSculptureForm: React.FC = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useRootDispatch();
 
-  const createAction = () => {
-    dispatch(creatNewSculptureAction);
+  type CreateConfig = FormikConfig<CreateSculpture>;
+
+  const initialValues: CreateSculpture = {
+    img: '',
+    title: '',
+    year: '',
+    dimensions: '',
+  };
+
+  const handleSubmitCreateSculpture: CreateConfig['onSubmit'] = ({
+    title, year, dimensions, img,
+  }) => {
+    dispatch(createNewSculptureAction({
+      title, year, dimensions, img,
+    }));
     navigate('/admin');
   };
+
+  const {
+    values, handleSubmit, handleChange,
+  } = useFormik<CreateSculpture>({
+    initialValues,
+    onSubmit: handleSubmitCreateSculpture,
+  });
 
   return (
     <Container
@@ -26,6 +48,7 @@ const CreateNewSculptureForm: React.FC = () => {
     >
       <Box
         component="form"
+        onSubmit={handleSubmit}
         sx={{
           maxWidth: 400,
           px: 4,
@@ -42,54 +65,54 @@ const CreateNewSculptureForm: React.FC = () => {
           Create new sculpture
         </Typography>
         <TextField
+          name="title"
           type="text"
           label="Title"
+          value={values.title}
+          onChange={handleChange}
           variant="outlined"
           fullWidth
           sx={{ mt: 3 }}
         />
         <TextField
+          name="year"
           type="text"
           label="Year"
+          value={values.year}
+          onChange={handleChange}
           variant="outlined"
           fullWidth
           sx={{ mt: 3 }}
         />
         <TextField
+          name="dimensions"
           type="text"
           label="Dimensions"
+          value={values.dimensions}
+          onChange={handleChange}
           variant="outlined"
           fullWidth
           sx={{ mt: 3 }}
         />
         <TextField
+          name="img"
           type="text"
           label="Image"
+          value={values.img}
+          onChange={handleChange}
           variant="outlined"
           fullWidth
           sx={{ mt: 3 }}
         />
-        <Button
-          type="submit"
-          variant="contained"
-          onClick={createAction}
-          sx={{
-            mt: 4,
-            backgroundColor: 'grey.900',
-            px: 3,
-            opacity: 0.9,
-            transition: lightTheme.transitions.create('transform', {
-              duration: '0.5s',
-            }),
-            ':hover': {
-              opacity: 1,
-              transform: 'scale(1.1)',
-              backgroundColor: 'primary.main',
-            },
-          }}
-        >
-          Create
-        </Button>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
+          <ButtonScale type="submit">Create</ButtonScale>
+          <ButtonScale
+            type="button"
+            onClick={() => navigate('/admin')}
+          >
+            Back
+          </ButtonScale>
+        </Box>
       </Box>
     </Container>
   );

@@ -7,12 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import LoadingAnimation from '../../components/loading/loading-animation';
 
 import {
-  authLogoutAction, createfetchSculpturesAction, deleteSculptureAction, sculpturesClearErrorAction,
+  authLogoutAction, createDeleteSculptureAction, createfetchSculpturesAction, sculpturesClearErrorAction,
 } from '../../store/action-creators';
 import { useRootSelector, useRootDispatch } from '../../store/hooks';
 import { selectSculptures, selectSculpturesLoading, selectSculpturesError } from '../../store/selectors';
 
-import lightTheme from '../../styles/theme';
 import SculpturePageCard from './sculpture-page-card';
 
 const AdminPage: React.FC = () => {
@@ -49,12 +48,15 @@ const AdminPage: React.FC = () => {
           <Paper
             key={sculpture.id}
             sx={{
-              maxWidth: 350,
+              maxWidth: 250,
               display: 'flex',
               flexDirection: 'column',
             }}
           >
-            <SculpturePageCard {...sculpture} deleteItem={() => dispatch(deleteSculptureAction(sculpture.id))} />
+            <SculpturePageCard
+              {...sculpture}
+              deleteItem={() => dispatch(createDeleteSculptureAction(sculpture.id))}
+            />
           </Paper>
         ))}
       </Box>
@@ -63,9 +65,7 @@ const AdminPage: React.FC = () => {
 
   return (
     <Container>
-      <Box sx={{ textAlign: 'center', mt: 5 }}>
-        <Typography component="h1" variant="h3">Turinio valdymo sistema</Typography>
-      </Box>
+
       <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 5 }}>
         <Button
           variant="outlined"
@@ -82,7 +82,12 @@ const AdminPage: React.FC = () => {
         </Button>
       </Box>
       {error && (
-      <Alert color="error" onClose={() => dispatch(sculpturesClearErrorAction)}>{error}</Alert>
+      <Alert
+        color="error"
+        onClose={() => dispatch(sculpturesClearErrorAction)}
+      >
+        {error}
+      </Alert>
       )}
 
       {pageContent}

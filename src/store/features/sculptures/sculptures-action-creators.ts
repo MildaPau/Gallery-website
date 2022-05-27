@@ -1,25 +1,23 @@
 import { Dispatch } from 'react';
-import axios from 'axios';
 import { AppAction } from '../../types';
 import {
   SculpturesAction,
   SculptureActionType,
 } from './sculpture-types';
-import { Sculpture } from '../../../types';
+import { CreateSculpture, Sculpture } from '../../../types';
+import ShopService from '../../../services/scultures-api-service';
 import pause from '../../../helpers/pause';
-
-const API_SERVER = process.env.REACT_APP_API_SERVER;
 
 export const createfetchSculpturesLoadingAction: SculpturesAction = ({
   type: SculptureActionType.FETCH_SCULPTURES_LOADING,
 });
 
-const createFecthSculpturesSuccessAction = (sculptures: Sculpture[]): SculpturesAction => ({
+export const createFecthSculpturesSuccessAction = (sculptures: Sculpture[]): SculpturesAction => ({
   type: SculptureActionType.FETCH_SCULPTURES_SUCCESS,
   payload: { sculptures },
 });
 
-const createFecthSculpturesFailureAction = (error: string): SculpturesAction => ({
+export const createFecthSculpturesFailureAction = (error: string): SculpturesAction => ({
   type: SculptureActionType.FETCH_SCULPTURES_FAILURE,
   payload: { error },
 });
@@ -28,14 +26,12 @@ export const sculpturesClearErrorAction: SculpturesAction = ({
   type: SculptureActionType.SCULPTURES_CLEAR_ERROR,
 });
 
-export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>): Promise<void> => {
+export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>) => {
   dispatch(createfetchSculpturesLoadingAction);
-
   try {
-    const { data } = await axios.get<Sculpture[]>(`${API_SERVER}/sculptures`);
+    const sculpturesItems = await ShopService.fetchItems();
     await pause(2000);
-    const fecthSculpturesSuccessAction = createFecthSculpturesSuccessAction(data);
-    dispatch(fecthSculpturesSuccessAction);
+    dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error);
     const fecthSculpturesFailureAction = createFecthSculpturesFailureAction(errMsg);
@@ -43,11 +39,18 @@ export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>)
   }
 };
 
-export const creatNewSculptureAction: SculpturesAction = ({
-  type: SculptureActionType.NEW_SCULPTURE,
-});
+export const createNewSculptureAction = ({
+  title, year, dimensions, img,
+}: CreateSculpture) => async (dispatch: Dispatch<AppAction>): Promise<void> => {
+  await ShopService.createNewItem({
+    title, year, dimensions, img,
+  });
+  const sculpturesItems = await ShopService.fetchItems();
+  dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
+};
 
-export const deleteSculptureAction = (id: string): SculpturesAction => ({
-  type: SculptureActionType.DELETE_SCULPTURE,
-  payload: { id },
-});
+export const createDeleteSculptureAction = (id: string) => async (dispatch: Dispatch<AppAction>) => {
+  await ShopService.deleteItem(id);
+  const sculpturesItems = await ShopService.fetchItems();
+  dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
+};

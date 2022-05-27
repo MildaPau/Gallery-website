@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import AuthService, { AuthPromise } from './auth-service';
 import pause from '../../../helpers/pause';
 import { Crudentials, User } from '../../../types';
-import { AuthActionType, AuthAction, } from './auth-types';
+import { AuthActionType, AuthAction } from './auth-types';
 
 import { AppAction } from '../../types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
