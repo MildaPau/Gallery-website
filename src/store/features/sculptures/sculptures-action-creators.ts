@@ -5,7 +5,7 @@ import {
   SculptureActionType,
 } from './sculpture-types';
 import { CreateSculpture, Sculpture } from '../../../types';
-import ShopService from '../../../services/scultures-api-service';
+import SculptureService from '../../../services/scultures-api-service';
 import pause from '../../../helpers/pause';
 
 export const createfetchSculpturesLoadingAction: SculpturesAction = ({
@@ -29,7 +29,7 @@ export const sculpturesClearErrorAction: SculpturesAction = ({
 export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>) => {
   dispatch(createfetchSculpturesLoadingAction);
   try {
-    const sculpturesItems = await ShopService.fetchItems();
+    const sculpturesItems = await SculptureService.fetchItems();
     await pause(2000);
     dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
   } catch (error) {
@@ -42,15 +42,15 @@ export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>)
 export const createNewSculptureAction = ({
   title, year, dimensions, img,
 }: CreateSculpture) => async (dispatch: Dispatch<AppAction>): Promise<void> => {
-  await ShopService.createNewItem({
+  await SculptureService.createNewItem({
     title, year, dimensions, img,
   });
-  const sculpturesItems = await ShopService.fetchItems();
+  const sculpturesItems = await SculptureService.fetchItems();
   dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
 };
 
 export const createDeleteSculptureAction = (id: string) => async (dispatch: Dispatch<AppAction>) => {
-  await ShopService.deleteItem(id);
-  const sculpturesItems = await ShopService.fetchItems();
+  await SculptureService.deleteItem(id);
+  const sculpturesItems = await SculptureService.fetchItems();
   dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
 };

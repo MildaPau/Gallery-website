@@ -20,10 +20,10 @@ const createNewItem = async ({
   return data;
 };
 
-const ShopService = {
+const SculptureService = {
   fetchItems,
   deleteItem,
   createNewItem,
 };
 
-export default ShopService;
+export default SculptureService;
