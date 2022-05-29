@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
-import Img from '../gallery-page/sculpture-card-img';
 import { SculptureItem } from '../../types';
 import SculpturePageCardText from './sculpture-page-card-text';
+import Img from './sculpture-card-img';
 
 type ShopPageCardProps = SculptureItem & {
   deleteItem: (itemId: string) => void,

@@ -39,6 +39,13 @@
       "dimensions": "54 x 9 x 46 cm"
     },
     {
+      "id": "5",
+      "img": "images/kareivelis.jpg",
+      "title": "Žmuidzinavičius.",
+      "year": "2020",
+      "dimensions": "54 x 9 x 46 cm"
+    },
+    {
       "id": "6",
       "img": "images/Punk go home.jpg",
       "title": "Punk go home!.",
@@ -49,6 +56,13 @@
       "id": "7",
       "img": "images/maxitaxi 1.jpg",
       "title": "maxitaxi 1.",
+      "year": "2021",
+      "dimensions": "54 x 9 x 46 cm"
+    },
+    {
+      "id": "8",
+      "img": "images/maxitaxi 3.jpg",
+      "title": "maxitaxi 3.",
       "year": "2021",
       "dimensions": "54 x 9 x 46 cm"
     }
