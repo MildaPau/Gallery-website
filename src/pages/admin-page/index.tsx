@@ -41,7 +41,7 @@ const AdminPage: React.FC = () => {
       <Box
         component="section"
         sx={{
-          display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap',
+          display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap', justifyContent: 'center',
         }}
       >
         {sculptures.map((sculpture) => (
@@ -82,12 +82,12 @@ const AdminPage: React.FC = () => {
         </Button>
       </Box>
       {error && (
-      <Alert
-        color="error"
-        onClose={() => dispatch(sculpturesClearErrorAction)}
-      >
-        {error}
-      </Alert>
+        <Alert
+          color="error"
+          onClose={() => dispatch(sculpturesClearErrorAction)}
+        >
+          {error}
+        </Alert>
       )}
 
       {pageContent}

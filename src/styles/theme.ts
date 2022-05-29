@@ -10,9 +10,6 @@ const lightTheme = createTheme({
       main: '#373e3d',
       light: '#39FF14',
       dark: '#404040',
-      // main: '#015B8A',
-      // light: '#EBEDF3',
-      // dark: '#404040',
     },
     formColor: {
       main: '#ffffff47',
@@ -30,7 +27,6 @@ const lightTheme = createTheme({
     },
     background: {
       default: '#FDFDFD',
-      // default: '##92ff00',
     },
   },
   mixins: {
@@ -46,11 +42,10 @@ const lightTheme = createTheme({
     },
     navbar: {
       display: 'flex',
-      justifyContent: 'end',
+      justifyContent: 'space-between',
       alignItems: 'center',
       height: 60,
       backgroundColor: 'common.white',
-      // backgroundColor: 'linear-gradient(0deg, rgba(255,255,255,0.9110994739692753) 0%, rgba(255,255,255,1) 100%)',
     },
   },
   typography: {

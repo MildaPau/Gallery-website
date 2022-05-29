@@ -6,10 +6,9 @@ const Logo: React.FC = () => (
     component="img"
     src="logo.png"
     sx={{
-      position: 'absolute',
-      top: 40,
-      left: 0,
-      width: 65,
+      width: 37,
+      pt: 1,
+      ml: 3,
     }}
   />
 );

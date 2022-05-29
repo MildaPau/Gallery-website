@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Stack, ImageList, ImageListItem, Box, Container, ImageListItemBar,
+  Stack, ImageList, ImageListItem as ImageListStyled, Box, Container, ImageListItemBar,
 } from '@mui/material';
 
 import axios from 'axios';
@@ -20,7 +20,10 @@ const HomeworkPage: React.FC = () => {
 
     <Container sx={{ pt: 6 }}>
       <Stack spacing={4}>
-        <Box sx={{ width: '100%', height: '100%' }}>
+        <Box sx={{
+          width: '100%', height: '100%', display: 'flex', flexWrap: 'wrap',
+        }}
+        >
           <ImageList
             variant="masonry"
             cols={3}
@@ -30,7 +33,7 @@ const HomeworkPage: React.FC = () => {
               id, title, img, year, dimensions,
             }) => (
 
-              <ImageListItem
+              <ImageListStyled
                 className="image"
                 key={id}
               >
@@ -44,7 +47,7 @@ const HomeworkPage: React.FC = () => {
                     <h3>
                       {title}
                     </h3>
-                    )}
+                  )}
                   subtitle={(
                     <h4>
                       Year:
@@ -57,8 +60,8 @@ const HomeworkPage: React.FC = () => {
                       {dimensions}
                       .
                     </h4>
-                    )}
-                    // position="bottom"
+                  )}
+                  // position="bottom"
                   sx={{
                     display: 'flex',
                     alignItems: 'end',
@@ -70,7 +73,7 @@ const HomeworkPage: React.FC = () => {
                     },
                   }}
                 />
-              </ImageListItem>
+              </ImageListStyled>
             ))}
           </ImageList>
         </Box>

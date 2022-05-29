@@ -45,17 +45,6 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
       };
     }
 
-    // case SculptureActionType.NEW_SCULPTURE: {
-    //   return {
-    //     ...state,
-    //   };
-    // }
-
-    // case SculptureActionType.DELETE_SCULPTURE:
-    //   return {
-    //     ...state,
-    //   };
-
     default: return state;
   }
 };

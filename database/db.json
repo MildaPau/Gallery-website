@@ -18,6 +18,13 @@
       "dimensions": "41,5 x 8,5 x 24,5 cm"
     },
     {
+      "id": "2",
+      "img": "images/Kalnas.jpg",
+      "title": "Kalnas / Mountain.",
+      "year": "2020",
+      "dimensions": "51 x 9 x 30,5 cm"
+    },
+    {
       "id": "3",
       "img": "images/Peizažas su.jpg",
       "title": "Peizažas su gyvatėm / Landscape with Snakes.",
@@ -32,32 +39,18 @@
       "dimensions": "54 x 9 x 46 cm"
     },
     {
-      "title": "ssas",
-      "year": "2018",
-      "dimensions": "54 x 9 x 46 cm",
-      "img": "https://literaturairmenas.lt/images/iliustracijos/zurnalas/2015/2015-01-02_nr._3502/Evaldo_Pauzos_Pinokis_Europos_parke.jpg",
-      "id": "K_ieqAW"
+      "id": "6",
+      "img": "images/Punk go home.jpg",
+      "title": "Punk go home!.",
+      "year": "2020",
+      "dimensions": "54 x 9 x 46 cm"
     },
     {
-      "title": "sas",
-      "year": "2018",
-      "dimensions": "54 x 9 x 46 cm",
-      "img": "https://literaturairmenas.lt/images/iliustracijos/zurnalas/2015/2015-01-02_nr._3502/Evaldo_Pauzos_Pinokis_Europos_parke.jpg",
-      "id": "RNQiJvQ"
-    },
-    {
-      "title": "a",
-      "year": "2018",
-      "dimensions": "54 x 9 x 46 cm",
-      "img": "https://aruodas-img.dgn.lt/object_62_94365773/kauno-r-sav-uzliedziu-k-ilgoji-g.jpg",
-      "id": "bzzcRMW"
-    },
-    {
-      "title": "Veikia validacija",
-      "year": "2018",
-      "dimensions": "54 x 9 x 46 cm",
-      "img": "https://literaturairmenas.lt/images/iliustracijos/zurnalas/2015/2015-01-02_nr._3502/Evaldo_Pauzos_Pinokis_Europos_parke.jpg",
-      "id": "nKh6-Sd"
+      "id": "7",
+      "img": "images/maxitaxi 1.jpg",
+      "title": "maxitaxi 1.",
+      "year": "2021",
+      "dimensions": "54 x 9 x 46 cm"
     }
   ]
 }

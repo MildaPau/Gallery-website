@@ -7,12 +7,11 @@ const MainText: React.FC = () => (
     component="h1"
     variant="h2"
     sx={{
-      fontSize: 100,
+      fontSize: { sm: 50, md: 93, lg: 100 },
       fontWeight: 800,
-      // fontStyle: 'italic',
       color: theme.palette.primary.main,
       pl: 5,
-      mb: 5,
+      mb: { xs: 7, md: 5 },
       pt: 8,
     }}
   >
