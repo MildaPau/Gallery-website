@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Stack, ImageList, ImageListItem as ImageListStyled, Box, Container, ImageListItemBar,
+  Stack, ImageList, ImageListItem as ImageListStyled, Box, Container, ImageListItemBar, Typography,
 } from '@mui/material';
 import axios from 'axios';
 import { Sculpture } from '../../types';
@@ -25,8 +25,14 @@ const GalleryPage: React.FC = () => {
         >
           <ImageList
             variant="masonry"
-            cols={3}
-            gap={20}
+            gap={40}
+            sx={{
+              columnCount: {
+                xs: '1 !important',
+                sm: '2 !important',
+                md: '3 !important',
+              },
+            }}
           >
             {sculptures.map(({
               id, title, img, year, dimensions,
@@ -42,13 +48,24 @@ const GalleryPage: React.FC = () => {
                   loading="lazy"
                 />
                 <ImageListItemBar
+                  // titleWrap
                   title={(
-                    <h3>
+                    <Typography
+                      component="h3"
+                      sx={{
+                        fontSize: 22,
+                        mb: 2,
+                        '.css-dasnyc-MuiImageListItemBar-title ': {
+                          whiteSpace: 'normal',
+                          color: 'red',
+                        },
+                      }}
+                    >
                       {title}
-                    </h3>
+                    </Typography>
                   )}
                   subtitle={(
-                    <h4>
+                    <Typography component="h4" sx={{ fontSize: 12 }}>
                       Year:
                       {' '}
                       {year}
@@ -58,9 +75,8 @@ const GalleryPage: React.FC = () => {
                       {' '}
                       {dimensions}
                       .
-                    </h4>
+                    </Typography>
                   )}
-                  // position="bottom"
                   sx={{
                     display: 'flex',
                     alignItems: 'end',
