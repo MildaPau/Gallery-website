@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import selectRedirect from '../store/features/navigation/navigation-selectors';
+import { selectRedirect } from '../store/features/navigation/navigation-selectors';
 import { useRootSelector } from '../store/hooks';
 import { selectLoggedIn } from '../store/selectors';
 // import { selectLoggedIn, selectRedirect } from '../store/selectors';

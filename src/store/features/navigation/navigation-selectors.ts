@@ -1,5 +1,4 @@
 import { RootState } from '../../types';
 
-const selectRedirect = (state: RootState) => state.navigation.redirect;
-
-export default selectRedirect;
+// eslint-disable-next-line import/prefer-default-export
+export const selectRedirect = (state: RootState) => state.navigation.redirect;
