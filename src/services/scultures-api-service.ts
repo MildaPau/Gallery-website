@@ -11,12 +11,13 @@ const deleteItem = async (id: string) => {
   return data;
 };
 
-const createNewItem = async ({
-  title, year, dimensions, img,
-}: CreateSculpture) => {
-  const { data } = await ApiService.post<Sculpture>('/sculptures/', {
-    title, year, dimensions, img,
-  });
+const createNewItem = async (sculpture: CreateSculpture) => {
+  const { data } = await ApiService.post<Sculpture>('/sculptures/', sculpture);
+  return data;
+};
+
+const updateItem = async (sculpture: Sculpture) => {
+  const { data } = await ApiService.patch<Sculpture>(`/sculptures/${sculpture.id}`, sculpture);
   return data;
 };
 
@@ -24,6 +25,7 @@ const SculptureService = {
   fetchItems,
   deleteItem,
   createNewItem,
+  updateItem,
 };
 
 export default SculptureService;

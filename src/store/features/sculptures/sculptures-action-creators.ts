@@ -39,12 +39,14 @@ export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>)
   }
 };
 
-export const createNewSculptureAction = ({
-  title, year, dimensions, img,
-}: CreateSculpture) => async (dispatch: Dispatch<AppAction>): Promise<void> => {
-  await SculptureService.createNewItem({
-    title, year, dimensions, img,
-  });
+export const createNewSculptureAction = (sculpture: CreateSculpture) => async (dispatch: Dispatch<AppAction>): Promise<void> => {
+  await SculptureService.createNewItem(sculpture);
+  const sculpturesItems = await SculptureService.fetchItems();
+  dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
+};
+
+export const createUpdateSculptureAction = (sculpture: Sculpture) => async (dispatch: Dispatch<AppAction>): Promise<void> => {
+  await SculptureService.updateItem(sculpture);
   const sculpturesItems = await SculptureService.fetchItems();
   dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
 };

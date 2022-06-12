@@ -12,9 +12,10 @@ import LoginPage from './pages/login-page/index';
 import AdminPage from './pages/admin-page';
 
 import store from './store';
-import CreateNewSculpturePage from './pages/create-new-sculpture-page';
+import CreateNewSculpturePage from './pages/admin-page/create-new-sculpture-page';
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
+import UpdateSculpturePage from './pages/admin-page/update-sculpture-page';
 
 const App: React.FC = () => (
   <ReduxProvider store={store}>
@@ -23,6 +24,7 @@ const App: React.FC = () => (
         <Route path="admin/login" element={<RequireVisitor><LoginPage /></RequireVisitor>} />
         <Route path="admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
         <Route path="create" element={<RequireAuth><CreateNewSculpturePage /></RequireAuth>} />
+        <Route path="update/:id" element={<RequireAuth><UpdateSculpturePage /></RequireAuth>} />
       </Route>
     </Routes>
     <Routes>

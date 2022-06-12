@@ -5,10 +5,10 @@ import { useFormik, FormikConfig } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import ButtonScale from '../../components/button-scale';
-import { createNewSculptureAction } from '../../store/action-creators';
-import { useRootDispatch } from '../../store/hooks';
-import { CreateSculpture } from '../../types/create-sculpture';
+import ButtonScale from '../../../components/button-scale';
+import { createNewSculptureAction } from '../../../store/action-creators';
+import { useRootDispatch } from '../../../store/hooks';
+import { CreateSculpture } from '../../../types/create-sculpture';
 
 type CreateConfig = FormikConfig<CreateSculpture>;
 
@@ -36,12 +36,8 @@ const CreateNewSculptureForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
 
-  const handleSubmitCreateSculpture: CreateConfig['onSubmit'] = ({
-    title, year, dimensions, img,
-  }) => {
-    dispatch(createNewSculptureAction({
-      title, year, dimensions, img,
-    }));
+  const handleSubmitCreateSculpture: CreateConfig['onSubmit'] = (values) => {
+    dispatch(createNewSculptureAction(values));
     navigate('/admin');
   };
 
@@ -56,7 +52,7 @@ const CreateNewSculptureForm: React.FC = () => {
   return (
     <Container
       sx={{
-        pt: 15,
+        py: 10,
         display: 'flex',
         justifyContent: 'center',
       }}
