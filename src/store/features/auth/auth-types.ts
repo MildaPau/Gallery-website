@@ -8,10 +8,10 @@ export type AuthState = {
 };
 
 export enum AuthActionType {
-  AUTH_SUCCESS = 'AUTH_SUCCESS',
-  AUTH_FAILURE = 'AUTH_FAILURE',
   AUTH_LOADING = 'AUTH_LOADING',
   AUTH_LOGOUT = 'AUTH_LOGOUT',
+  AUTH_SUCCESS = 'AUTH_SUCCESS',
+  AUTH_FAILURE = 'AUTH_FAILURE',
   AUTH_CLEAR_ERROR = 'AUTH_CLEAR_ERROR',
 }
 
@@ -20,7 +20,6 @@ export type AuthSuccessAction = {
   payload: {
     user: User,
     token: string,
-    // redirect: string,
   }
 };
 

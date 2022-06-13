@@ -9,7 +9,7 @@ import {
 
 import lightTheme from '../styles/theme';
 import { useRootDispatch, useRootSelector } from '../store/hooks';
-import { selectLoggedIn, selectAuthError } from '../store/selectors';
+import { selectAuthLoggedIn, selectAuthError } from '../store/selectors';
 import { authClearErrorAction } from '../store/action-creators';
 
 type FormProps = {
@@ -31,7 +31,7 @@ const Form: React.FC<FormProps> = ({
   children,
 }) => {
   const dispatch = useRootDispatch();
-  const loading = useRootSelector(selectLoggedIn);
+  const loading = useRootSelector(selectAuthLoggedIn);
   const error = useRootSelector(selectAuthError);
   const clearError = () => {
     dispatch(authClearErrorAction);
