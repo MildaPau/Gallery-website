@@ -6,6 +6,10 @@ import { getLocalStorageItem, setLocalStoreageItem } from '../../../helpers/loca
 
 const USER_KEY_IN_LOCAL_STORAGE = process.env.REACT_APP_USER_KEY_IN_LOCAL_STORAGE;
 
+if (USER_KEY_IN_LOCAL_STORAGE === undefined) {
+  throw new Error('Pleace defined USER_KEY_IN_LOCAL_STORAGE in ./env.locl');
+}
+
 const initialState: AuthState = {
   user: getLocalStorageItem(USER_KEY_IN_LOCAL_STORAGE),
   error: null,

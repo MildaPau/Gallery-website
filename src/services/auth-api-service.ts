@@ -1,9 +1,14 @@
-import { TemporaryAdmin } from '../types';
+import { Crudentials, User } from '../types';
 import ApiService from './api-service';
 
-const fetchUsers = async (email: string): Promise<TemporaryAdmin[]> => {
-  const { data } = await ApiService.get<TemporaryAdmin[]>(`/admin?email=${email}`);
-  return data;
+export type AuthResponseBody = {
+  user: User,
+  token: string,
+};
+
+const fetchUsers = async (crudentials: Crudentials) => {
+  const response = await ApiService.post<AuthResponseBody>('/api/auth/login', crudentials);
+  return response;
 };
 
 const AuthenticateService = {

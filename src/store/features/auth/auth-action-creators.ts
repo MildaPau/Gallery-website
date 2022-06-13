@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import AuthService, { AuthPromise } from './auth-service';
+import AuthService, { AuthPromise } from '../../../services/auth-service';
 import pause from '../../../helpers/pause';
 import { Crudentials, User } from '../../../types';
 import { AuthActionType, AuthAction } from './auth-types';
