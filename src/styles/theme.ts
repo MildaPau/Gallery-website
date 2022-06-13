@@ -42,10 +42,10 @@ const lightTheme = createTheme({
     },
     navbar: {
       display: 'flex',
-      justifyContent: 'space-between',
+      justifyContent: 'end',
       alignItems: 'center',
-      height: 60,
-      backgroundColor: 'common.white',
+      height: 50,
+      backgroundColor: 'transparent',
     },
   },
   typography: {
