@@ -1,6 +1,7 @@
 import { User } from '../../../types';
 
 export type AuthState = {
+  token: string | null,
   user: User | null,
   error: string | null,
   loading: boolean,
@@ -18,7 +19,8 @@ export type AuthSuccessAction = {
   type: AuthActionType.AUTH_SUCCESS,
   payload: {
     user: User,
-    redirect: string,
+    token: string,
+    // redirect: string,
   }
 };
 

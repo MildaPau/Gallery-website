@@ -1,11 +1,12 @@
 import { Dispatch } from 'redux';
 import AuthService, { AuthPromise } from '../../../services/auth-service';
 import pause from '../../../helpers/pause';
-import { Crudentials, User } from '../../../types';
+import { Crudentials } from '../../../types';
 import { AuthActionType, AuthAction } from './auth-types';
 
 import { AppAction } from '../../types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
+import { AuthResponseBody } from '../../../services/auth-api-service';
 
 export const authLoadingAction: AuthAction = {
   type: AuthActionType.AUTH_LOADING,
@@ -19,9 +20,9 @@ export const authLogoutAction: AuthAction = {
   type: AuthActionType.AUTH_LOGOUT,
 };
 
-export const createAuthSuccessAction = (user: User, redirect: string): AuthAction => ({
+export const createAuthSuccessAction = (authResponseBody: AuthResponseBody): AuthAction => ({
   type: AuthActionType.AUTH_SUCCESS,
-  payload: { user, redirect },
+  payload: authResponseBody,
 });
 
 export const createAuthFailureAction = (error: string): AuthAction => ({
@@ -38,9 +39,9 @@ export const authenticate = async (
   // siunčiame Reducer'iui
   dispatch(authLoadingAction);
   try {
-    const user = await authCallback(...authCallbackArgs);
+    const authResponseBody = await authCallback(...authCallbackArgs);
     await pause(3000);
-    const authSuccessAction = createAuthSuccessAction(user, redirect);
+    const authSuccessAction = createAuthSuccessAction(authResponseBody);
     // siunčiame Reducer'iui
     const navigationSetRedirectAction = createNavigationSetRedirectAction(redirect);
     dispatch(navigationSetRedirectAction);
