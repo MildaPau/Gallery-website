@@ -3,7 +3,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 
 import LandingPageLayout from './components/landing-page-layout';
-import LandingPageLayoutLogin from './components/landing-page-layout-login';
+import LandingPageLayoutLogin from './components/landing-page-layout -login';
 
 import HomePage from './pages/home-page';
 import GalleryPage from './pages/gallery-page';
