@@ -57,8 +57,9 @@ const Navbar: React.FC = () => {
             size="large"
             edge="start"
             sx={{ mr: 2 }}
+            onClick={handleMenuOpen}
           >
-            <MenuIcon onClick={handleMenuOpen} />
+            <MenuIcon />
           </IconButton>
         </Box>
       </Box>
@@ -73,9 +74,6 @@ const Navbar: React.FC = () => {
           <MenuList>
             <MenuItem onClick={() => handleNavigate('/')}>
               Home
-            </MenuItem>
-            <MenuItem onClick={() => handleNavigate('/homework')}>
-              Homework
             </MenuItem>
             <MenuItem onClick={() => handleNavigate('/about')}>
               About
