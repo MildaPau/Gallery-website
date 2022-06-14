@@ -7,26 +7,23 @@ const createColor = (color: string): PaletteColor => theme.palette.augmentColor(
 const lightTheme = createTheme({
   palette: {
     primary: {
-      main: '#373e3d',
-      light: '#39FF14',
-      dark: '#404040',
+      main: '#19263B',
+      light: '#B6BFD1',
+      // dark: '#404040',
     },
     formColor: {
       main: '#ffffff47',
     },
 
     green: createColor('#39FF14'),
-
     warm: createColor('#FE2712'),
-
     cold: createColor('#0246FF'),
-    pastel: {
-      main: '#F5D2D3',
-      light: '#BDD0C4',
-      dark: '#9AB7D3',
+
+    neon: {
+      main: '#02F702',
     },
     background: {
-      default: '#FDFDFD',
+      default: '#fefefe',
     },
   },
   mixins: {
