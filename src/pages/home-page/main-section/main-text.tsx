@@ -7,15 +7,13 @@ const MainText: React.FC = () => (
     component="h1"
     variant="h2"
     sx={{
-      fontSize: { sm: 50, md: 93, lg: 100 },
-      fontWeight: 800,
+      fontSize: { sm: 50, md: 74 },
+      fontWeight: 400,
       color: theme.palette.primary.main,
-      pl: 5,
-      mb: { xs: 7, md: 5 },
-      pt: 8,
+      pt: 11,
     }}
   >
-    Sculpture by Evaldas Pauza
+    SCULPTURE BY EVALDAS PAUZA
   </Typography>
 );
 

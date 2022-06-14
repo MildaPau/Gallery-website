@@ -43,6 +43,7 @@ const lightTheme = createTheme({
       alignItems: 'center',
       height: 50,
       backgroundColor: 'transparent',
+      m: 2,
     },
     footer: {
       display: 'flex',
@@ -50,6 +51,7 @@ const lightTheme = createTheme({
       alignItems: 'center',
       height: 45,
       backgroundColor: 'transparent',
+      mb: 2,
     },
   },
   typography: {
