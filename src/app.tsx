@@ -27,7 +27,7 @@ const App: React.FC = () => {
 
   if (!loggedIn && token && !loading) {
     dispatch(createAuthenticateActionThunk(token));
-    return <div>Autentifikuojame...</div>; //Galima uždėti loading animaciją
+    return <div>Autentifikuojame...</div>; // Galima uždėti loading animaciją
   }
 
   return (

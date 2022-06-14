@@ -1,7 +1,6 @@
 import AuthenticateService, { AuthResponseBody } from './auth-api-service';
 import { Crudentials } from '../types';
-import { isResponseError } from './api-service';
-import ApiService from './api-service';
+import ApiService, { isResponseError } from './api-service';
 
 export const login = async (crudentials: Crudentials): Promise<AuthResponseBody> => {
   try {
@@ -15,8 +14,8 @@ export const login = async (crudentials: Crudentials): Promise<AuthResponseBody>
     throw (err);
   }
 };
-export const authenticate = async (token: string): Promise<AuthResponseBody> => {
 
+export const authenticate = async (token: string): Promise<AuthResponseBody> => {
   try {
     const response = await ApiService.post<AuthResponseBody>('/api/auth/authenticate', {}, {
       headers: {
@@ -25,14 +24,12 @@ export const authenticate = async (token: string): Promise<AuthResponseBody> => 
     });
     return response.data;
   } catch (err) {
-
     if (isResponseError(err)) {
       throw new Error(err.response.data.error);
     }
     console.log('Neprognozuota klaida');
     throw (err);
   }
-
 };
 
 const AuthService = {
