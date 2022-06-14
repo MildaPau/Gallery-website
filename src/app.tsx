@@ -16,17 +16,18 @@ import UpdateSculpturePage from './pages/admin-page/update-sculpture-page';
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
 import { useRootSelector, useRootDispatch } from './store/hooks';
-import { selectAuthToken, selectAuthLoggedIn } from './store/selectors';
+import { selectAuthToken, selectAuthLoggedIn, selectAuthLoading } from './store/selectors';
 import { createAuthenticateActionThunk } from './store/action-creators';
 
 const App: React.FC = () => {
   const token = useRootSelector(selectAuthToken);
   const loggedIn = useRootSelector(selectAuthLoggedIn);
+  const loading = useRootSelector(selectAuthLoading);
   const dispatch = useRootDispatch();
 
-  if (!loggedIn && token) {
+  if (!loggedIn && token && !loading) {
     dispatch(createAuthenticateActionThunk(token));
-    return <div>Autentifikuojame...</div>;
+    return <div>Autentifikuojame...</div>; //Galima uždėti loading animaciją
   }
 
   return (
