@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
+import lightTheme from '../../../styles/theme';
 
 const SectionAboutSculptor: React.FC = () => (
   <Box
@@ -16,7 +17,13 @@ const SectionAboutSculptor: React.FC = () => (
       display: 'flex', flexDirection: 'column', justifyContent: 'end', textAlign: 'left',
     }}
     >
-      <Typography component="h2" variant="h3" sx={{ mb: 3 }}>SCULPTOR</Typography>
+      <Typography
+        component="h2"
+        variant="h3"
+        sx={{ mb: 3, color: lightTheme.palette.primary.main }}
+      >
+        SCULPTOR
+      </Typography>
       <Typography
         sx={{
           fontSize: { sm: 19, md: 24 },
