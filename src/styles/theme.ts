@@ -53,7 +53,7 @@ const lightTheme = createTheme({
     },
   },
   typography: {
-    fontFamily: ['Mulish ,sans-serif'].join(','),
+    fontFamily: ['Poppins, sans-serif'].join(','),
   },
 });
 
