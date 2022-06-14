@@ -1,5 +1,5 @@
 import { Crudentials, User } from '../types';
-import ApiService from './api-service';
+import ApiService from './api-service-new';
 
 export type AuthResponseBody = {
   user: User,

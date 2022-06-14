@@ -7,7 +7,7 @@ import { getLocalStorageItem, setLocalStoreageItem } from '../../../helpers/loca
 const { REACT_APP_TOKEN_KEY_IN_LOCAL_STORAGE } = process.env;
 
 if (REACT_APP_TOKEN_KEY_IN_LOCAL_STORAGE === undefined) {
-  throw new Error('Pleace defined USER_KEY_IN_LOCAL_STORAGE in ./env.locl');
+  throw new Error('Please define variables in /.env.local');
 }
 
 const initialState: AuthState = {
@@ -24,7 +24,6 @@ const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, actio
         ...state,
         error: null,
         loading: true,
-        token: null,
       };
     }
     case AuthActionType.AUTH_SUCCESS: {

@@ -1,6 +1,6 @@
 import AuthenticateService, { AuthResponseBody } from './auth-api-service';
 import { Crudentials } from '../types';
-import ApiService, { formatError, isResponseError } from './api-service';
+import ApiService, { formatError } from './api-service-new';
 
 export const login = async (crudentials: Crudentials): Promise<AuthResponseBody> => {
   try {

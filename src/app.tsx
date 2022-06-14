@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 
 import LandingPageLayout from './components/landing-page-layout';
 import LandingPageLayoutLogin from './components/landing-page-layout -login';
@@ -20,13 +20,16 @@ import { selectAuthToken, selectAuthLoggedIn, selectAuthLoading } from './store/
 import { createAuthenticateActionThunk } from './store/action-creators';
 
 const App: React.FC = () => {
+  const location = useLocation();
   const token = useRootSelector(selectAuthToken);
   const loggedIn = useRootSelector(selectAuthLoggedIn);
   const loading = useRootSelector(selectAuthLoading);
   const dispatch = useRootDispatch();
 
-  if (!loggedIn && token && !loading) {
-    dispatch(createAuthenticateActionThunk(token));
+  if (!loggedIn && token) {
+    if (!loading) {
+      dispatch(createAuthenticateActionThunk(token, location.pathname));
+    }
     return <div>Autentifikuojame...</div>; // Galima uždėti loading animaciją
   }
 

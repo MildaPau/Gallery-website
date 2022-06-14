@@ -4,7 +4,7 @@ import pause from '../../../helpers/pause';
 import { Crudentials } from '../../../types';
 import { AuthActionType, AuthAction } from './auth-types';
 
-import { AppAction, RootState } from '../../types';
+import { AppAction } from '../../types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
 import { AuthResponseBody } from '../../../services/auth-api-service';
 
@@ -33,7 +33,7 @@ export const createAuthFailureAction = (error: string): AuthAction => ({
 export const authenticate = async (
   dispatch: Dispatch<AppAction>,
   authCallback: () => Promise<AuthResponseBody>,
-  redirect?: string,
+  redirect: string,
 ) => {
   // siunčiame Reducer'iui
   dispatch(authLoadingAction);
@@ -42,10 +42,8 @@ export const authenticate = async (
     await pause(3000);
     const authSuccessAction = createAuthSuccessAction(authResponseBody);
     // siunčiame Reducer'iui
-    if (redirect) {
-      const navigationSetRedirectAction = createNavigationSetRedirectAction(redirect);
-      dispatch(navigationSetRedirectAction);
-    }
+    const navigationSetRedirectAction = createNavigationSetRedirectAction(redirect);
+    dispatch(navigationSetRedirectAction);
     dispatch(authSuccessAction);
     dispatch(navigationClearRedirectAction);
   } catch (error) {
@@ -56,11 +54,11 @@ export const authenticate = async (
   }
 };
 
-export const createAuthenticateActionThunk = (token: string) => async (
+export const createAuthenticateActionThunk = (token: string, redirect: string) => async (
   dispatch: Dispatch<AppAction>,
 ): Promise<void> => {
   await pause(2000);
-  await authenticate(dispatch, async () => AuthService.authenticate(token));
+  await authenticate(dispatch, async () => AuthService.authenticate(token), redirect);
 };
 
 export const createLoginActionThunk = (
