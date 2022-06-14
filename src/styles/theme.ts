@@ -47,6 +47,13 @@ const lightTheme = createTheme({
       height: 50,
       backgroundColor: 'transparent',
     },
+    footer: {
+      display: 'flex',
+      justifyContent: 'start',
+      alignItems: 'center',
+      height: 45,
+      backgroundColor: 'transparent',
+    },
   },
   typography: {
     fontFamily: ['Mulish ,sans-serif'].join(','),

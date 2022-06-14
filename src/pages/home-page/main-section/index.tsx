@@ -8,7 +8,7 @@ const MainSection: React.FC = () => (
 
   <Box component="section" sx={{ p: 0, height: '100vh' }}>
     <MainText />
-    <ImagesSection>
+    {/* <ImagesSection>
       <BouncingBox>
         <Box component="img" src="kareivelis1.png" sx={{ width: 115 }} />
       </BouncingBox>
@@ -25,7 +25,7 @@ const MainSection: React.FC = () => (
         <Box component="img" src="kareivelis1.png" sx={{ width: 115 }} />
       </BouncingBox>
 
-    </ImagesSection>
+    </ImagesSection> */}
 
   </Box>
 

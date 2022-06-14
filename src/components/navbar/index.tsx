@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
 
   return (
     <AppBar
-      position="sticky"
+      position="fixed"
       sx={{
         backgroundColor: 'transparent',
         boxShadow: 'none',

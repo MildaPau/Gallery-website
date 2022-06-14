@@ -26,6 +26,9 @@ declare module '@mui/material/styles/createMixins' {
     interface Mixins {
         navbar: CSSProperties;
     }
+    interface Mixins {
+        footer: CSSProperties;
+    }
 }
 
 declare module '@mui/material/Button' {
