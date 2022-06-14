@@ -12,15 +12,17 @@ const NavbarLink = styled(NavLink)(({ theme }) => ({
   width: '100%',
   border: `1px solid ${lightTheme.palette.primary.main}`,
   transition: theme.transitions.create(['background'], {
-    duration: '0.6s',
+    duration: '0.8s',
   }),
   position: 'relative',
 
   '&.active': {
-    background: '#02F702',
+    background: theme.palette.neon.main,
+
   },
   ':hover': {
-    background: '#02F702',
+    background: theme.palette.neon.main,
+
   },
 }));
 

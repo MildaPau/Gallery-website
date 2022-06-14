@@ -9,7 +9,7 @@ const lightTheme = createTheme({
     primary: {
       main: '#19263B',
       light: '#B6BFD1',
-      // dark: '#404040',
+      // dark: '#02F702',
     },
     formColor: {
       main: '#ffffff47',

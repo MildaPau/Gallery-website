@@ -6,7 +6,7 @@ declare module '@mui/material/styles/createPalette' {
         green?: PaletteColorOptions;
         warm?: PaletteColorOptions;
         cold?: PaletteColorOptions;
-        neon?: PaletteColorOptions;
+        neon?: PaletteColorOptions | undefind;
         formColor?: PaletteColorOptions;
     }
 
@@ -14,7 +14,7 @@ declare module '@mui/material/styles/createPalette' {
         green?: PaletteOptions;
         warm?: PaletteOptions;
         cold?: PaletteOptions;
-        neon?: PaletteOptions;
+        neon?: PaletteOptions | undefind;
         formColor?: PaletteOptions;
     }
 }

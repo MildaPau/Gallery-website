@@ -11,11 +11,11 @@ const FooterLink = styled(Link)(({ theme }) => ({
   width: 45,
   border: `1px solid ${lightTheme.palette.primary.main}`,
   transition: theme.transitions.create(['background'], {
-    duration: '0.6s',
+    duration: '0.8s',
   }),
 
   ':hover': {
-    background: '#02F702',
+    background: theme.palette.neon.main,
   },
 }));
 

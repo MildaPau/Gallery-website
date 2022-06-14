@@ -11,6 +11,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import NavbarLink from './navbar-link';
+import lightTheme from '../../styles/theme';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -56,10 +57,23 @@ const Navbar: React.FC = () => {
           <IconButton
             size="large"
             edge="start"
-            sx={{ mr: 2 }}
+            sx={{
+              mr: 2,
+              transition: lightTheme.transitions.create(['background'], {
+                duration: '0.8s',
+              }),
+              '&.active': {
+                background: lightTheme.palette.neon.main,
+
+              },
+              ':hover': {
+                background: lightTheme.palette.neon.main,
+
+              },
+            }}
             onClick={handleMenuOpen}
           >
-            <MenuIcon />
+            <MenuIcon sx={{ fontSize: 35, color: 'primary.main' }} />
           </IconButton>
         </Box>
       </Box>
