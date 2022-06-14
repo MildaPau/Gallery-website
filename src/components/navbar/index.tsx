@@ -46,10 +46,10 @@ const Navbar: React.FC = () => {
           justifyContent: 'space-around',
         }}
         >
-          <NavbarLink to="/">Home</NavbarLink>
-          <NavbarLink to="/about">About</NavbarLink>
-          <NavbarLink to="/gallery">Gallery</NavbarLink>
-          <NavbarLink to="/contact">Contact</NavbarLink>
+          <NavbarLink to="/">home</NavbarLink>
+          <NavbarLink to="/about">about</NavbarLink>
+          <NavbarLink to="/gallery">gallery</NavbarLink>
+          <NavbarLink to="/contact">contact</NavbarLink>
         </Box>
 
         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

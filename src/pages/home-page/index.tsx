@@ -1,7 +1,7 @@
 import React from 'react';
-import { Box } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import MainSection from './main-section';
-import MainText from './main-section/main-text';
+import MainText, { MainTextXS } from './main-section/main-text';
 import InlineAnimation from './main-section/keyframe';
 
 const HomePage: React.FC = () => (
@@ -13,11 +13,12 @@ const HomePage: React.FC = () => (
       // height: '100vh',
     }}
   >
-    <Box sx={{ display: 'flex', gap: 50 }}>
-      <InlineAnimation>
-        <MainText />
-      </InlineAnimation>
-    </Box>
+    <InlineAnimation>
+      <MainText />
+    </InlineAnimation>
+    <Container>
+      <MainTextXS />
+    </Container>
     <MainSection />
   </Box>
 

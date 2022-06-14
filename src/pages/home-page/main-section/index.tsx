@@ -9,7 +9,9 @@ const MainSection: React.FC = () => (
     sx={{
       display: 'block',
       float: 'right',
-      height: '100vh',
+      height: { xs: 'auto', sm: '100vh' },
+      width: { xs: '550px', sm: 'auto' },
+      m: '0 auto',
     }}
   />
 
