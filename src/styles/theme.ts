@@ -51,7 +51,7 @@ const lightTheme = createTheme({
       alignItems: 'center',
       height: 45,
       backgroundColor: 'transparent',
-      mb: 2,
+      m: 2,
     },
   },
   typography: {

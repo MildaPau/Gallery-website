@@ -19,21 +19,19 @@ const Footer: React.FC = () => (
     }}
   >
 
-    <Container>
-      <Box
-        sx={(theme) => theme.mixins.footer}
+    <Box
+      sx={(theme) => theme.mixins.footer}
+    >
+      <Box sx={{
+        display: 'flex',
+        height: '100%',
+      }}
       >
-        <Box sx={{
-          display: 'flex',
-          height: '100%',
-        }}
-        >
-          <FooterLink href="https://www.instagram.com/sculpture_by_evaldas_pauza/" target="_blank"><InstagramIcon /></FooterLink>
-          <FooterLink href="https://www.facebook.com/pg/pauza.evaldas/posts/" target="_blank"><FacebookIcon /></FooterLink>
-          <FooterLink sx={{ cursor: 'pointer' }}><MailOutlineIcon /></FooterLink>
-        </Box>
+        <FooterLink href="https://www.instagram.com/sculpture_by_evaldas_pauza/" target="_blank"><InstagramIcon /></FooterLink>
+        <FooterLink href="https://www.facebook.com/pg/pauza.evaldas/posts/" target="_blank"><FacebookIcon /></FooterLink>
+        <FooterLink sx={{ cursor: 'pointer' }}><MailOutlineIcon /></FooterLink>
       </Box>
-    </Container>
+    </Box>
   </Box>
 );
 
