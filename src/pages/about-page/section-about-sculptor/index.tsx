@@ -36,7 +36,7 @@ const SectionAboutSculptor: React.FC = () => (
     <Box>
       <Box
         component="img"
-        src="about-page-sculptor-foto.jpg"
+        src="about-page-image.jpg"
         sx={{
           maxWidth: { xs: 250, sm: 300, md: 370 },
           mb: 10,

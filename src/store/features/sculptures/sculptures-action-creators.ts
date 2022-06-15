@@ -5,7 +5,7 @@ import {
   SculptureActionType,
 } from './sculpture-types';
 import { CreateSculpture, Sculpture } from '../../../types';
-import SculptureService from '../../../services/scultures-api-service';
+import SculptureService from '../../../services/scultures-service';
 
 export const createfetchSculpturesLoadingAction: SculpturesAction = ({
   type: SculptureActionType.FETCH_SCULPTURES_LOADING,
