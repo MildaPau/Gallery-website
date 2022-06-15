@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import { Reducer } from 'react';
-import { v4 as createId } from 'uuid';
 import {
   SculpturesAction,
   SculpturesState,
@@ -46,33 +45,33 @@ const sculpturesReducer: Reducer<SculpturesState, SculpturesAction> = (state = i
       };
     }
 
-    case SculptureActionType.NEW_SCULPTURE:
-      return {
-        ...state,
-        sculptures: [
-          ...state.sculptures,
-          {
-            ...action.payload.sculpture,
-            id: createId(),
-          },
-        ],
-      };
+    // case SculptureActionType.NEW_SCULPTURE:
+    //   return {
+    //     ...state,
+    //     sculptures: [
+    //       ...state.sculptures,
+    //       {
+    //         ...action.payload.sculpture,
+    //         id: createId(),
+    //       },
+    //     ],
+    //   };
 
-    case SculptureActionType.UPDATE_SCULPTURE: {
-      const index = state.sculptures.findIndex((sculpture) => sculpture.id === action.payload.sculpture.id);
-      const newSculptures = [...state.sculptures];
-      newSculptures[index] = action.payload.sculpture;
-      return {
-        ...state,
-        sculptures: newSculptures,
-      };
-    }
+    // case SculptureActionType.UPDATE_SCULPTURE: {
+    //   const index = state.sculptures.findIndex((sculpture) => sculpture.id === action.payload.sculpture.id);
+    //   const newSculptures = [...state.sculptures];
+    //   newSculptures[index] = action.payload.sculpture;
+    //   return {
+    //     ...state,
+    //     sculptures: newSculptures,
+    //   };
+    // }
 
-    case SculptureActionType.DELETE_SCULPTURE:
-      return {
-        ...state,
-        sculptures: state.sculptures.filter((sculptures) => sculptures.id !== action.payload.id),
-      };
+    // case SculptureActionType.DELETE_SCULPTURE:
+    //   return {
+    //     ...state,
+    //     sculptures: state.sculptures.filter((sculptures) => sculptures.id !== action.payload.id),
+    //   };
 
     default: return state;
   }

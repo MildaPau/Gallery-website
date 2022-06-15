@@ -1,12 +1,11 @@
 import { Dispatch } from 'react';
-import { AppAction } from '../../types';
+import { AppAction, RootState } from '../../types';
 import {
   SculpturesAction,
   SculptureActionType,
 } from './sculpture-types';
 import { CreateSculpture, Sculpture } from '../../../types';
 import SculptureService from '../../../services/scultures-api-service';
-import pause from '../../../helpers/pause';
 
 export const createfetchSculpturesLoadingAction: SculpturesAction = ({
   type: SculptureActionType.FETCH_SCULPTURES_LOADING,
@@ -29,8 +28,7 @@ export const sculpturesClearErrorAction: SculpturesAction = ({
 export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>) => {
   dispatch(createfetchSculpturesLoadingAction);
   try {
-    const sculpturesItems = await SculptureService.fetchItems();
-    await pause(2000);
+    const sculpturesItems = await SculptureService.fetchSculptures();
     dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
   } catch (error) {
     const errMsg = error instanceof Error ? error.message : String(error);
@@ -39,20 +37,38 @@ export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>)
   }
 };
 
-export const createNewSculptureAction = (sculpture: CreateSculpture) => async (dispatch: Dispatch<AppAction>): Promise<void> => {
-  await SculptureService.createNewItem(sculpture);
-  const sculpturesItems = await SculptureService.fetchItems();
-  dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
+export const createNewSculptureAction = (sculpture: CreateSculpture) => async (
+  dispatch: Dispatch<AppAction>,
+  getState: () => RootState,
+): Promise<void> => {
+  const { token } = getState().auth;
+  if (token === null) {
+    throw new Error('Reikalingas prisijungimas');
+  }
+  await SculptureService.createNewSculpture(sculpture, token);
+  createfetchSculpturesAction(dispatch);
 };
 
-export const createUpdateSculptureAction = (sculpture: Sculpture) => async (dispatch: Dispatch<AppAction>): Promise<void> => {
-  await SculptureService.updateItem(sculpture);
-  const sculpturesItems = await SculptureService.fetchItems();
-  dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
+export const createUpdateSculptureAction = (sculpture: Sculpture) => async (
+  dispatch: Dispatch<AppAction>,
+  getState: () => RootState,
+) => {
+  const { token } = getState().auth;
+  if (token === null) {
+    throw new Error('Reikalingas prisijungimas');
+  }
+  await SculptureService.updateSculpture(sculpture, token);
+  createfetchSculpturesAction(dispatch);
 };
 
-export const createDeleteSculptureAction = (id: string) => async (dispatch: Dispatch<AppAction>) => {
-  await SculptureService.deleteItem(id);
-  const sculpturesItems = await SculptureService.fetchItems();
-  dispatch(createFecthSculpturesSuccessAction(sculpturesItems));
+export const createDeleteSculptureAction = (id: string) => async (
+  dispatch: Dispatch<AppAction>,
+  getState: () => RootState,
+) => {
+  const { token } = getState().auth;
+  if (token === null) {
+    throw new Error('Reikalingas prisijungimas');
+  }
+  await SculptureService.deleteSculpture(id, token);
+  createfetchSculpturesAction(dispatch);
 };

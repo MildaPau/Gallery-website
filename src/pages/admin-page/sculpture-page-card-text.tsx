@@ -1,8 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import React from 'react';
-import { SculptureItem } from '../../types';
+import { Sculpture } from '../../types';
 
-type SculpturePageCardTextProps = Omit<SculptureItem, 'id' | 'img' >;
+type SculpturePageCardTextProps = Omit<Sculpture, 'id' | 'image' | 'categories' | 'updatedAt'>;
 
 const SculpturePageCardText: React.FC<SculpturePageCardTextProps> = ({
   title, year, dimensions,

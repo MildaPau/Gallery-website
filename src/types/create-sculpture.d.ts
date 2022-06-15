@@ -1,5 +1,5 @@
 export type CreateSculpture = {
-  img: string,
+  image: string,
   title: string,
   year: string,
   dimensions: string,

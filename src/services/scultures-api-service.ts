@@ -1,31 +1,72 @@
 import { CreateSculpture, Sculpture } from '../types';
-import ApiService from './api-service';
+import ApiService, { formatError } from './api-service';
 
-const fetchItems = async (): Promise<Sculpture[]> => {
-  const { data } = await ApiService.get<Sculpture[]>('/sculptures');
-  return data;
+const fetchSculptures = async (): Promise<Sculpture[]> => {
+  try {
+    const { data } = await ApiService.get<{ sculptures: Sculpture[] }>('/api/sculptures?populate=categories');
+    return data.sculptures;
+  } catch (err) {
+    throw new Error(formatError(err));
+  }
 };
 
-const deleteItem = async (id: string) => {
-  const { data } = await ApiService.delete<Sculpture>(`/sculptures/${id}`);
-  return data;
+const deleteSculpture = async (id: string, token: string) => {
+  try {
+    const { data } = await ApiService.delete<{ sculpture: Sculpture }>(`/api/sculptures/${id}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return data.sculpture;
+  } catch (err) {
+    throw new Error(formatError(err));
+  }
 };
 
-const createNewItem = async (sculpture: CreateSculpture) => {
-  const { data } = await ApiService.post<Sculpture>('/sculptures/', sculpture);
-  return data;
+const createNewSculpture = async (sculpture: CreateSculpture, token: string) => {
+  try {
+    const { data } = await ApiService.post<{ sculpture: Sculpture }>(
+      'api/sculptures/',
+      sculpture,
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
+    return data.sculpture;
+  } catch (err) {
+    throw new Error(formatError(err));
+  }
 };
 
-const updateItem = async (sculpture: Sculpture) => {
-  const { data } = await ApiService.patch<Sculpture>(`/sculptures/${sculpture.id}`, sculpture);
-  return data;
+const updateSculpture = async (sculpture: Sculpture, token: string) => {
+  try {
+    const { data } = await ApiService.patch<{ sculpture: Sculpture }>(
+      `api/sculptures/${sculpture.id}`,
+      {
+        title: sculpture.title,
+        year: sculpture.year,
+        dimensions: sculpture.dimensions,
+        image: sculpture.image,
+      },
+      {
+        headers: {
+          Authorization: token,
+        },
+      },
+    );
+    return data.sculpture;
+  } catch (err) {
+    throw new Error(formatError(err));
+  }
 };
 
 const SculptureService = {
-  fetchItems,
-  deleteItem,
-  createNewItem,
-  updateItem,
+  fetchSculptures,
+  deleteSculpture,
+  createNewSculpture,
+  updateSculpture,
 };
 
 export default SculptureService;

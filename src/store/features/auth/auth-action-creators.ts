@@ -1,12 +1,11 @@
 import { Dispatch } from 'redux';
-import AuthService from '../../../services/auth-service';
+import AuthService, { AuthResponseBody } from '../../../services/auth-service';
 import pause from '../../../helpers/pause';
 import { Crudentials } from '../../../types';
 import { AuthActionType, AuthAction } from './auth-types';
 
 import { AppAction } from '../../types';
 import { createNavigationSetRedirectAction, navigationClearRedirectAction } from '../navigation/navigation-action-creators';
-import { AuthResponseBody } from '../../../services/auth-api-service';
 
 export const authLoadingAction: AuthAction = {
   type: AuthActionType.AUTH_LOADING,

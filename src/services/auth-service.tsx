@@ -1,10 +1,14 @@
-import AuthenticateService, { AuthResponseBody } from './auth-api-service';
-import { Crudentials } from '../types';
-import ApiService, { formatError } from './api-service-new';
+import { Crudentials, User } from '../types';
+import ApiService, { formatError } from './api-service';
+
+export type AuthResponseBody = {
+  user: User,
+  token: string,
+};
 
 export const login = async (crudentials: Crudentials): Promise<AuthResponseBody> => {
   try {
-    const response = await AuthenticateService.fetchUsers(crudentials);
+    const response = await ApiService.post<AuthResponseBody>('/api/auth/login', crudentials);
     return response.data;
   } catch (err) {
     throw new Error(formatError(err));

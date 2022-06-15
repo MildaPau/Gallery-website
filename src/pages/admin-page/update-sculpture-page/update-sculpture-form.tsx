@@ -21,7 +21,7 @@ const validationSchema = Yup.object({
     .required('This field is Required'),
   dimensions: Yup.string()
     .required('This field is Required'),
-  img: Yup.string()
+  image: Yup.string()
     .required('This field is Required')
     .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
 });
@@ -36,7 +36,7 @@ const UpdateSculptureForm: React.FC = () => {
 
   const initialValues = sculpture || {
     id: '',
-    img: '',
+    image: '',
     title: '',
     year: '',
     dimensions: '',
@@ -166,7 +166,7 @@ const UpdateSculptureForm: React.FC = () => {
           name="img"
           type="text"
           label="Image"
-          value={values.img}
+          value={values.image}
           onChange={handleChange}
           onBlur={handleBlur}
           variant="outlined"
@@ -177,7 +177,7 @@ const UpdateSculptureForm: React.FC = () => {
           fontSize: 12, color: 'red', mt: 1, ml: 1,
         }}
         >
-          {touched.img && errors.img}
+          {touched.image && errors.image}
         </Typography>
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
