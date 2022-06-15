@@ -2,23 +2,16 @@ import React, { useEffect } from 'react';
 import {
   Stack, ImageList, ImageListItem as ImageListStyled, Box, Container, ImageListItemBar, Typography,
 } from '@mui/material';
-// import axios from 'axios';
-// import { Sculpture } from '../../types';
 import lightTheme from '../../styles/theme';
 import { useRootDispatch, useRootSelector } from '../../store/hooks';
 import { createfetchSculpturesAction } from '../../store/action-creators';
-import { selectSculptures, selectSculpturesError, selectSculpturesLoading } from '../../store/features/sculptures/sculpture-selectors';
+import { selectSculptures } from '../../store/features/sculptures/sculpture-selectors';
 
 const GalleryPage: React.FC = () => {
-  // const [sculptures, setSculptures] = useState<Sculpture[]>([]);
   const sculptures = useRootSelector(selectSculptures);
-  const sculpturesLoading = useRootSelector(selectSculpturesLoading);
-  const error = useRootSelector(selectSculpturesError);
   const dispatch = useRootDispatch();
 
   useEffect(() => {
-    // axios.get<Sculpture[]>('http://localhost:8000/sculptures')
-    //   .then(({ data }) => setSculptures(data))
     dispatch(createfetchSculpturesAction);
   }, []);
 
@@ -27,7 +20,11 @@ const GalleryPage: React.FC = () => {
     <Container sx={{ pt: 6 }}>
       <Stack spacing={4}>
         <Box sx={{
-          width: '100%', height: '100%', display: 'flex', flexWrap: 'wrap',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          flexWrap: 'wrap',
+          mt: 5,
         }}
         >
           <ImageList
