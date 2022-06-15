@@ -18,6 +18,7 @@ import RequireVisitor from './routing/require-visitor';
 import { useRootSelector, useRootDispatch } from './store/hooks';
 import { selectAuthToken, selectAuthLoggedIn, selectAuthLoading } from './store/selectors';
 import { createAuthenticateActionThunk } from './store/action-creators';
+import Loading from './components/loading/loading';
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -30,7 +31,7 @@ const App: React.FC = () => {
     if (!loading) {
       dispatch(createAuthenticateActionThunk(token, location.pathname));
     }
-    return <div>Autentifikuojame...</div>; // Galima uždėti loading animaciją
+    return <Loading />; // Galima uždėti loading animaciją
   }
 
   return (

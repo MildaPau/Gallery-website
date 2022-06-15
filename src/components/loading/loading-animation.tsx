@@ -1,23 +1,15 @@
-import { Box, keyframes } from '@mui/material';
+import { Box } from '@mui/material';
 import React from 'react';
-import LoadingLogo from './logo.png';
-
-const rotating = keyframes`
-  from {
-    transform: rotate(-360deg);
-  }
-`;
+import lightTheme from '../../styles/theme';
+import rotating from './leading-keyframe';
 
 const LoadingAnimation: React.FC = () => (
-
-  <Box
-    component="img"
-    src={`${LoadingLogo}`}
-    sx={{
-      width: 50,
-      animation: `${rotating
-      } 0.8s infinite`,
-    }}
+  <Box sx={{
+    width: 70,
+    height: 70,
+    border: `3px solid ${lightTheme.palette.neon.main}`,
+    animation: `${rotating} 3s infinite`,
+  }}
   />
 );
 

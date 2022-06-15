@@ -1,14 +1,9 @@
-import { Backdrop, Box, keyframes } from '@mui/material';
+import { Backdrop, Box } from '@mui/material';
 import React from 'react';
 import { useRootSelector } from '../../store/hooks';
 import { selectAuthLoading } from '../../store/selectors';
-import LoadingLogo from './logo.png';
-
-const rotating = keyframes`
-  from {
-    transform: rotate(-360deg);
-  }
-`;
+import lightTheme from '../../styles/theme';
+import rotating from './leading-keyframe';
 
 const Loading: React.FC = () => {
   const loading = useRootSelector(selectAuthLoading);
@@ -20,15 +15,29 @@ const Loading: React.FC = () => {
         zIndex: (theme) => theme.zIndex.modal + 1,
       }}
     >
-      <Box
-        component="img"
-        src={`${LoadingLogo}`}
-        sx={{
-          width: 50,
-          animation: `${rotating
-          } 0.8s infinite`,
+      <Box sx={{ display: 'flex', gap: 1 }}>
+        <Box sx={{
+          width: 70,
+          height: 70,
+          border: `3px solid ${lightTheme.palette.neon.main}`,
+          animation: `${rotating} 3s infinite`,
         }}
-      />
+        />
+        <Box sx={{
+          width: 70,
+          height: 70,
+          border: `3px solid ${lightTheme.palette.primary.main}`,
+          animation: `${rotating} 3s infinite`,
+        }}
+        />
+        <Box sx={{
+          width: 70,
+          height: 70,
+          border: `3px solid ${lightTheme.palette.neon.main}`,
+          animation: `${rotating} 3s infinite`,
+        }}
+        />
+      </Box>
     </Backdrop>
   );
 };
