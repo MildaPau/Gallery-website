@@ -5,10 +5,10 @@ import { useFormik, FormikConfig } from 'formik';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
-import ButtonScale from '../../../components/button-scale';
-import { createNewSculptureAction } from '../../../store/action-creators';
-import { useRootDispatch } from '../../../store/hooks';
-import { CreateSculpture } from '../../../types/create-sculpture';
+import ButtonScale from '../../../../components/button-scale';
+import { createNewSculptureAction } from '../../../../store/action-creators';
+import { useRootDispatch } from '../../../../store/hooks';
+import { CreateSculpture } from '../../../../types';
 
 type CreateConfig = FormikConfig<CreateSculpture>;
 
@@ -38,7 +38,7 @@ const CreateNewSculptureForm: React.FC = () => {
 
   const handleSubmitCreateSculpture: CreateConfig['onSubmit'] = (values) => {
     dispatch(createNewSculptureAction(values));
-    navigate('/admin');
+    navigate('/admin/sculptures');
   };
 
   const {
@@ -151,7 +151,7 @@ const CreateNewSculptureForm: React.FC = () => {
           <ButtonScale type="submit">Create</ButtonScale>
           <ButtonScale
             type="button"
-            onClick={() => navigate('/admin')}
+            onClick={() => navigate('/admin/sculptures')}
           >
             Back
           </ButtonScale>

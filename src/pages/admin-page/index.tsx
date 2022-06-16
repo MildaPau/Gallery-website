@@ -1,24 +1,13 @@
 import {
-  Alert,
-  Box, Button, Container, Paper, Typography,
+  Box, Button, Container, Typography,
 } from '@mui/material';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import LoadingAnimation from '../../components/loading/loading-animation';
-
-import {
-  authLogoutAction, createDeleteSculptureAction, createfetchSculpturesAction, sculpturesClearErrorAction,
-} from '../../store/action-creators';
-import { useRootSelector, useRootDispatch } from '../../store/hooks';
-import { selectSculptures, selectSculpturesLoading, selectSculpturesError } from '../../store/selectors';
-
-import SculpturePageCard from './sculpture-page-card';
+import { authLogoutAction } from '../../store/action-creators';
+import { useRootDispatch } from '../../store/hooks';
 
 const AdminPage: React.FC = () => {
   const navigate = useNavigate();
-  const sculptures = useRootSelector(selectSculptures);
-  const sculpturesLoading = useRootSelector(selectSculpturesLoading);
-  const error = useRootSelector(selectSculpturesError);
   const dispatch = useRootDispatch();
 
   const logout = () => {
@@ -26,72 +15,40 @@ const AdminPage: React.FC = () => {
     navigate('/');
   };
 
-  useEffect(() => {
-    dispatch(createfetchSculpturesAction);
-  }, []);
-
-  let pageContent = (
-    <Box sx={{ display: 'flex', justifyContent: 'center', mt: 9 }}>
-      <LoadingAnimation />
-    </Box>
-  );
-
-  if (!sculpturesLoading) {
-    pageContent = sculptures.length > 0 ? (
-      <Box
-        component="section"
-        sx={{
-          display: 'flex', gap: 5, mb: 6, flexWrap: 'wrap', justifyContent: 'center',
-        }}
-      >
-        {sculptures.map((sculpture) => (
-          <Paper
-            key={sculpture.id}
-            sx={{
-              maxWidth: 250,
-              display: 'flex',
-              flexDirection: 'column',
-            }}
-          >
-            <SculpturePageCard
-              {...sculpture}
-              deleteItem={() => dispatch(createDeleteSculptureAction(sculpture.id))}
-            />
-          </Paper>
-        ))}
-      </Box>
-    ) : <Typography component="h2" variant="h3" sx={{ my: 3 }}>No items, sorry.</Typography>;
-  }
-
   return (
     <Container>
-
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 5 }}>
-        <Button
-          variant="outlined"
-          onClick={() => navigate('/create')}
-        >
-          Add new Sculpture
-        </Button>
-
+      <Box sx={{
+        display: 'flex', width: '100%', justifyContent: 'end', mt: 3, mb: 5,
+      }}
+      >
         <Button
           onClick={logout}
-          variant="outlined"
+          variant="contained"
         >
           Logout
         </Button>
       </Box>
-      {error && (
-        <Alert
-          color="error"
-          onClose={() => dispatch(sculpturesClearErrorAction)}
+      <Box sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 2,
+      }}
+      >
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/admin/sculptures')}
         >
-          {error}
-        </Alert>
-      )}
+          Sculptures
+        </Button>
+        <Button
+          variant="outlined"
+          onClick={() => navigate('/admin/infoCard')}
+        >
+          About page info card
+        </Button>
 
-      {pageContent}
-
+      </Box>
     </Container>
   );
 };

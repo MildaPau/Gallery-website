@@ -10,8 +10,7 @@ import AboutPage from './pages/about-page';
 import ContactPage from './pages/contact-page';
 import LoginPage from './pages/login-page/index';
 import AdminPage from './pages/admin-page';
-import CreateNewSculpturePage from './pages/admin-page/create-new-sculpture-page';
-import UpdateSculpturePage from './pages/admin-page/update-sculpture-page';
+import UpdateSculpturePage from './pages/admin-page/admin-sculptures-page/update-sculpture-page';
 
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
@@ -19,6 +18,11 @@ import { useRootSelector, useRootDispatch } from './store/hooks';
 import { selectAuthToken, selectAuthLoggedIn, selectAuthLoading } from './store/selectors';
 import { createAuthenticateActionThunk } from './store/action-creators';
 import Loading from './components/loading/loading';
+import AdminSculpturePage from './pages/admin-page/admin-sculptures-page';
+import CreateNewSculpturePage from './pages/admin-page/admin-sculptures-page/create-new-sculpture-page';
+import AdminAboutPageInfoCardsPage from './pages/admin-page/admin-about-page-info-cards-page';
+import CreateNewAboutPageInfoCardPage from './pages/admin-page/admin-about-page-info-cards-page/create-new-about-page-info-card';
+import UpdateAdminPageInfoCardPage from './pages/admin-page/admin-about-page-info-cards-page/update-about-page-info-card-page';
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -31,7 +35,7 @@ const App: React.FC = () => {
     if (!loading) {
       dispatch(createAuthenticateActionThunk(token, location.pathname));
     }
-    return <Loading />; // Galima uždėti loading animaciją
+    return <Loading />;
   }
 
   return (
@@ -40,8 +44,13 @@ const App: React.FC = () => {
         <Route path="/" element={<LandingPageLayoutLogin />}>
           <Route path="admin/login" element={<RequireVisitor><LoginPage /></RequireVisitor>} />
           <Route path="admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
-          <Route path="create" element={<RequireAuth><CreateNewSculpturePage /></RequireAuth>} />
-          <Route path="update/:id" element={<RequireAuth><UpdateSculpturePage /></RequireAuth>} />
+          <Route path="/admin/sculptures" element={<RequireAuth><AdminSculpturePage /></RequireAuth>} />
+          <Route path="/admin/sculptures/create" element={<RequireAuth><CreateNewSculpturePage /></RequireAuth>} />
+          <Route path="/admin/sculptures/update/:id" element={<RequireAuth><UpdateSculpturePage /></RequireAuth>} />
+
+          <Route path="/admin/infoCard" element={<RequireAuth><AdminAboutPageInfoCardsPage /></RequireAuth>} />
+          <Route path="/admin/infoCard/create" element={<RequireAuth><CreateNewAboutPageInfoCardPage /></RequireAuth>} />
+          <Route path="/admin/infoCard/update/:id" element={<RequireAuth><UpdateAdminPageInfoCardPage /></RequireAuth>} />
         </Route>
       </Routes>
       <Routes>

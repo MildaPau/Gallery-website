@@ -5,11 +5,11 @@ import { useFormik, FormikConfig } from 'formik';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
-import ButtonScale from '../../../components/button-scale';
-import { createfetchSculpturesAction, createUpdateSculptureAction } from '../../../store/action-creators';
-import { useRootDispatch, useRootSelector } from '../../../store/hooks';
-import { Sculpture } from '../../../types';
-import { selectSculptureById, selectSculpturesLoading } from '../../../store/features/sculptures/sculpture-selectors';
+import ButtonScale from '../../../../components/button-scale';
+import { createfetchSculpturesAction, createUpdateSculptureAction } from '../../../../store/action-creators';
+import { useRootDispatch, useRootSelector } from '../../../../store/hooks';
+import { Sculpture } from '../../../../types';
+import { selectSculptureById, selectSculpturesLoading } from '../../../../store/features/sculptures/sculpture-selectors';
 
 type CreateConfig = FormikConfig<Sculpture>;
 
@@ -44,7 +44,7 @@ const UpdateSculptureForm: React.FC = () => {
 
   const handleSubmitUpdateSculpture: CreateConfig['onSubmit'] = (values) => {
     dispatch(createUpdateSculptureAction(values));
-    navigate('/admin');
+    navigate('/admin/sculptures');
   };
 
   const {
@@ -163,7 +163,7 @@ const UpdateSculptureForm: React.FC = () => {
         </Typography>
 
         <TextField
-          name="img"
+          name="image"
           type="text"
           label="Image"
           value={values.image}
@@ -184,7 +184,7 @@ const UpdateSculptureForm: React.FC = () => {
           <ButtonScale type="submit">Update</ButtonScale>
           <ButtonScale
             type="button"
-            onClick={() => navigate('/admin')}
+            onClick={() => navigate('/admin/sculptures')}
           >
             Back
           </ButtonScale>

@@ -42,5 +42,15 @@ module.exports = {
     'react/require-default-props': [0],
     '@typescript-eslint / indent': [0],
     '@typescript-eslint/no-namespace': [0],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
 };

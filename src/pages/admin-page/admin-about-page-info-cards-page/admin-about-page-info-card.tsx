@@ -1,16 +1,16 @@
 import React from 'react';
 import { Box, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Sculpture } from '../../types';
-import SculpturePageCardText from './sculpture-page-card-text';
-import Img from './admin-page-card-img';
+import SculpturePageCardText from './admin-about-page-info-card-text';
+import { Card } from '../../../types';
+import Img from '../admin-page-card-img';
 
-type SculptureCardProps = Sculpture & {
+type InfoCardCardProps = Card & {
   deleteItem: (itemId: string) => void,
 };
 
-const SculpturePageCard: React.FC<SculptureCardProps> = ({
-  id, image, deleteItem, ...SculpturePageCardTextProps
+const AdminAboutPageInfoCardPageCard: React.FC<InfoCardCardProps> = ({
+  id, image, deleteItem, ...AdminAboutPageInfoCardPageCardTextProps
 }) => {
   const navigate = useNavigate();
   return (
@@ -24,7 +24,7 @@ const SculpturePageCard: React.FC<SculptureCardProps> = ({
         justifyContent: 'space-between',
       }}
       >
-        <SculpturePageCardText {...SculpturePageCardTextProps} />
+        <SculpturePageCardText {...AdminAboutPageInfoCardPageCardTextProps} />
         <Box sx={{ display: 'flex', gap: 1, justifyContent: 'end' }}>
           <Button
             variant="outlined"
@@ -33,7 +33,7 @@ const SculpturePageCard: React.FC<SculptureCardProps> = ({
               alignSelf: 'end',
               mt: 3,
             }}
-            onClick={() => navigate(`/admin/sculptures/update/${id}`)}
+            onClick={() => navigate(`/admin/infoCard/update/${id}`)}
           >
             Edit
           </Button>
@@ -53,4 +53,4 @@ const SculpturePageCard: React.FC<SculptureCardProps> = ({
     </>
   );
 };
-export default SculpturePageCard;
+export default AdminAboutPageInfoCardPageCard;
