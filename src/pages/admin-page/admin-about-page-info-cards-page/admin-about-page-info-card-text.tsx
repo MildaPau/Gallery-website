@@ -2,7 +2,7 @@ import { Box, Typography } from '@mui/material';
 import React from 'react';
 import { Card } from '../../../types';
 
-type AdminAboutPageInfoCardPageCardTextProps = Omit<Card, 'id' | 'image' | 'updatedAt'>;
+type AdminAboutPageInfoCardPageCardTextProps = Omit<Card, 'id' | 'image' | 'updatedAt' | 'link'>;
 
 const AdminAboutPageInfoCardPageCardText: React.FC<AdminAboutPageInfoCardPageCardTextProps> = ({
   title, city, year, location,

@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React, { useEffect } from 'react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -22,7 +22,6 @@ const useStyles: any = makeStyles({
     paddingBottom: '3rem',
     '& .swiper-wrapper': {
       alignItems: 'center',
-      justifyContent: 'center',
     },
     '& .swiper-pagination-bullet': {
       background: `${lightTheme.palette.neon.main}`,
@@ -62,33 +61,32 @@ const SectionExbitionCards: React.FC = () => {
       lazy
       pagination={{ clickable: true }}
       breakpoints={{
-        640: {
+        900: {
           slidesPerView: 2,
           spaceBetween: 20,
         },
-        900: {
+        1200: {
           slidesPerView: 3,
           spaceBetween: 40,
         },
       }}
     >
       {cards.map(({
-        id, title, image, city, year, location,
+        id, title, image, city, year, location, link,
       }) => (
 
         <SwiperSlide
           key={id}
-          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
+          style={{
+            width: '100%', display: 'flex', justifyContent: 'center',
+          }}
         >
           <Box
             sx={{
-              flexGrow: 1,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
               border: `1px solid ${lightTheme.palette.primary.main}`,
               maxWidth: 300,
               backgroundColor: 'transparent',
+              boxShadow: 4,
             }}
           >
             <Box>
@@ -126,16 +124,20 @@ const SectionExbitionCards: React.FC = () => {
               >
                 {location}
               </Typography>
+            </Box>
+            <Box>
               <Box
                 component="img"
                 src={`${image}`}
                 sx={{ width: '100%' }}
               />
+              <SectionExibitiobCardButton>
+                <Link href={link} target="_blank">
+                  read more
+                </Link>
+                <ArrowForwardIcon />
+              </SectionExibitiobCardButton>
             </Box>
-            <SectionExibitiobCardButton>
-              read more
-              <ArrowForwardIcon />
-            </SectionExibitiobCardButton>
           </Box>
         </SwiperSlide>
       ))}

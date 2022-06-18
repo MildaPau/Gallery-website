@@ -18,6 +18,7 @@ const initialValues: CreateCard = {
   year: '',
   location: '',
   image: '',
+  link: '',
 };
 
 const validationSchema: Yup.SchemaOf<CreateCard> = Yup.object({
@@ -31,8 +32,10 @@ const validationSchema: Yup.SchemaOf<CreateCard> = Yup.object({
   location: Yup.string()
     .required('This field is Required'),
   image: Yup.string()
-    .required('This field is Required')
-    .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
+    .required('This field is Required'),
+  link: Yup.string()
+    .required('This field is Required'),
+  // .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
 });
 
 const CreateNewAboutPageInfoCardForm: React.FC = () => {
@@ -148,6 +151,24 @@ const CreateNewAboutPageInfoCardForm: React.FC = () => {
         }}
         >
           {touched.location && errors.location}
+        </Typography>
+
+        <TextField
+          name="link"
+          type="text"
+          label="Link to website"
+          value={values.link}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          variant="outlined"
+          fullWidth
+          sx={{ mt: 3 }}
+        />
+        <Typography sx={{
+          fontSize: 12, color: 'red', mt: 1, ml: 1,
+        }}
+        >
+          {touched.link && errors.link}
         </Typography>
 
         <TextField

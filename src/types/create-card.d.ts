@@ -5,5 +5,6 @@ export type Card = {
   year: string,
   location: string,
   image?: string,
+  link: string,
   updatedAt?: string,
 };

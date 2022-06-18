@@ -26,6 +26,9 @@ const validationSchema = Yup.object({
   image: Yup.string()
     .required('This field is Required')
     .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
+  link: Yup.string()
+    .required('This field is Required')
+    .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
 });
 
 const UpdateCardForm: React.FC = () => {
@@ -43,6 +46,7 @@ const UpdateCardForm: React.FC = () => {
     year: '',
     location: '',
     image: '',
+    link: '',
   };
 
   const handleSubmitUpdateCard: CreateConfig['onSubmit'] = (values) => {
@@ -181,6 +185,24 @@ const UpdateCardForm: React.FC = () => {
         }}
         >
           {touched.location && errors.location}
+        </Typography>
+
+        <TextField
+          name="link"
+          type="text"
+          label="Link to website"
+          value={values.link}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          variant="outlined"
+          fullWidth
+          sx={{ mt: 3 }}
+        />
+        <Typography sx={{
+          fontSize: 12, color: 'red', mt: 1, ml: 1,
+        }}
+        >
+          {touched.link && errors.link}
         </Typography>
 
         <TextField

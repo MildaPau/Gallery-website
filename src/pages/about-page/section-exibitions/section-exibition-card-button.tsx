@@ -1,4 +1,5 @@
 import { Button, styled } from '@mui/material';
+import React from 'react';
 
 const SectionExibitiobCardButton: React.FC = styled(Button)(({ theme }) => ({
   width: '100%',

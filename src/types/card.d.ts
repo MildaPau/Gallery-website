@@ -4,4 +4,5 @@ export type CreateCard = {
   year: string,
   location: string,
   image?: string,
+  link: string,
 };
