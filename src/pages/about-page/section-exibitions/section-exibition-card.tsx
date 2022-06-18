@@ -1,88 +1,146 @@
 import { Box, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import React, { useEffect } from 'react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Lazy } from 'swiper';
 import { useRootDispatch, useRootSelector } from '../../../store/hooks';
 import { selectCards } from '../../../store/selectors';
 import lightTheme from '../../../styles/theme';
 import SectionExibitiobCardButton from './section-exibition-card-button';
 import { createfetchCardsActionThunk } from '../../../store/action-creators';
 
-const SectionExbitionCard: React.FC = () => {
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+SwiperCore.use([Navigation, Pagination, Lazy]);
+
+const useStyles: any = makeStyles({
+  swiperContainer: {
+    paddingBottom: '3rem',
+    '& .swiper-wrapper': {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    '& .swiper-pagination-bullet': {
+      background: `${lightTheme.palette.neon.main}`,
+    },
+    '& .swiper-button-next': {
+      color: `${lightTheme.palette.neon.main}`,
+      ':hover': {
+        background: 'red',
+      },
+    },
+
+    '& .swiper-button-prev': {
+      color: `${lightTheme.palette.neon.main}`,
+    },
+  },
+});
+
+const SectionExbitionCards: React.FC = () => {
   const cards = useRootSelector(selectCards);
   const dispatch = useRootDispatch();
+  const { swiperContainer } = useStyles();
 
   useEffect(() => {
     dispatch(createfetchCardsActionThunk);
   }, []);
 
   return (
-    <>
+    <Swiper
+      style={{
+        width: '100%',
+        height: '100%',
+      }}
+      className={swiperContainer}
+      spaceBetween={20}
+      slidesPerView={1}
+      navigation
+      lazy
+      pagination={{ clickable: true }}
+      breakpoints={{
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        900: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+      }}
+    >
       {cards.map(({
         id, title, image, city, year, location,
       }) => (
 
-        <Box
+        <SwiperSlide
           key={id}
-          sx={{
-            flexGrow: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            border: `1px solid ${lightTheme.palette.primary.main}`,
-            boxShadow: 3,
-            maxWidth: 270,
-            backgroundColor: 'transparent',
-          }}
+          style={{ width: '100%', display: 'flex', justifyContent: 'center' }}
         >
-          <Box>
-            <Typography sx={{
-              borderBottom: `1px solid ${lightTheme.palette.primary.main}`,
-              color: 'primary.main',
-              p: 1,
-            }}
-            >
-              {title}
-            </Typography>
-            <Box sx={{
+          <Box
+            sx={{
+              flexGrow: 1,
               display: 'flex',
+              flexDirection: 'column',
               justifyContent: 'space-between',
-              borderBottom: `1px solid ${lightTheme.palette.primary.main}`,
-              color: 'primary.main',
+              border: `1px solid ${lightTheme.palette.primary.main}`,
+              maxWidth: 300,
+              backgroundColor: 'transparent',
             }}
-            >
+          >
+            <Box>
               <Typography sx={{
-                width: '50%',
-                borderRight: `1px solid ${lightTheme.palette.primary.main}`,
+                borderBottom: `1px solid ${lightTheme.palette.primary.main}`,
+                color: 'primary.main',
                 p: 1,
-
               }}
               >
-                {city}
+                {title}
               </Typography>
-              <Typography sx={{ p: 1 }}>{year}</Typography>
+              <Box sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                borderBottom: `1px solid ${lightTheme.palette.primary.main}`,
+                color: 'primary.main',
+              }}
+              >
+                <Typography sx={{
+                  width: '50%',
+                  borderRight: `1px solid ${lightTheme.palette.primary.main}`,
+                  p: 1,
+
+                }}
+                >
+                  {city}
+                </Typography>
+                <Typography sx={{ p: 1 }}>{year}</Typography>
+              </Box>
+              <Typography sx={{
+                borderBottom: `1px solid ${lightTheme.palette.primary.main}`,
+                color: 'primary.main',
+                p: 1,
+              }}
+              >
+                {location}
+              </Typography>
+              <Box
+                component="img"
+                src={`${image}`}
+                sx={{ width: '100%' }}
+              />
             </Box>
-            <Typography sx={{
-              borderBottom: `1px solid ${lightTheme.palette.primary.main}`,
-              color: 'primary.main',
-              p: 1,
-            }}
-            >
-              {location}
-            </Typography>
-            <Box
-              component="img"
-              src={`${image}`}
-              sx={{ width: '100%' }}
-            />
+            <SectionExibitiobCardButton>
+              read more
+              <ArrowForwardIcon />
+            </SectionExibitiobCardButton>
           </Box>
-          <SectionExibitiobCardButton>
-            read more
-            <ArrowForwardIcon />
-          </SectionExibitiobCardButton>
-        </Box>
+        </SwiperSlide>
       ))}
-    </>
+    </Swiper>
   );
 };
 
-export default SectionExbitionCard;
+export default SectionExbitionCards;

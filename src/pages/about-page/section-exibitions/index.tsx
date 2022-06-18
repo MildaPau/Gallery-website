@@ -1,9 +1,20 @@
 import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, {
+  Navigation, Pagination, Scrollbar,
+} from 'swiper';
 import {
   Box, Container,
 } from '@mui/material';
 import SectionExibitionsTitle from './section-exibitions-title';
-import SectionExbitionCard from './section-exibition-card';
+import SectionExbitionCards from './section-exibition-card';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+SwiperCore.use([Navigation, Pagination, Scrollbar]);
 
 const SectionExibitions: React.FC = () => (
   <>
@@ -22,7 +33,7 @@ const SectionExibitions: React.FC = () => (
         gap: 3,
       }}
       >
-        <SectionExbitionCard />
+        <SectionExbitionCards />
       </Box>
     </Container>
   </>
