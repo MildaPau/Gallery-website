@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Container } from '@mui/material';
 import MainSection from './main-section';
 import MainText, { MainTextXS } from './main-section/main-text';
-import InlineAnimation from './main-section/keyframe';
+import InlineAnimation from '../../components/title-keyframe';
 
 const HomePage: React.FC = () => (
   <Box
