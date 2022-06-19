@@ -39,29 +39,25 @@ const App: React.FC = () => {
   }
 
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<LandingPageLayoutLogin />}>
-          <Route path="admin/login" element={<RequireVisitor><LoginPage /></RequireVisitor>} />
-          <Route path="admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
-          <Route path="/admin/sculptures" element={<RequireAuth><AdminSculpturePage /></RequireAuth>} />
-          <Route path="/admin/sculptures/create" element={<RequireAuth><CreateNewSculpturePage /></RequireAuth>} />
-          <Route path="/admin/sculptures/update/:id" element={<RequireAuth><UpdateSculpturePage /></RequireAuth>} />
+    <Routes>
+      <Route path="/" element={<LandingPageLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="gallery" element={<GalleryPage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="contact" element={<ContactPage />} />
+      </Route>
+      <Route element={<LandingPageLayoutLogin />}>
+        <Route path="/admin/login" element={<RequireVisitor><LoginPage /></RequireVisitor>} />
+        <Route path="/admin" element={<RequireAuth><AdminPage /></RequireAuth>} />
+        <Route path="/admin/sculptures" element={<RequireAuth><AdminSculpturePage /></RequireAuth>} />
+        <Route path="/admin/sculptures/create" element={<RequireAuth><CreateNewSculpturePage /></RequireAuth>} />
+        <Route path="/admin/sculptures/update/:id" element={<RequireAuth><UpdateSculpturePage /></RequireAuth>} />
 
-          <Route path="/admin/infoCard" element={<RequireAuth><AdminAboutPageInfoCardsPage /></RequireAuth>} />
-          <Route path="/admin/infoCard/create" element={<RequireAuth><CreateNewAboutPageInfoCardPage /></RequireAuth>} />
-          <Route path="/admin/infoCard/update/:id" element={<RequireAuth><UpdateAdminPageInfoCardPage /></RequireAuth>} />
-        </Route>
-      </Routes>
-      <Routes>
-        <Route path="/" element={<LandingPageLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="gallery" element={<GalleryPage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route path="contact" element={<ContactPage />} />
-        </Route>
-      </Routes>
-    </>
+        <Route path="/admin/infoCard" element={<RequireAuth><AdminAboutPageInfoCardsPage /></RequireAuth>} />
+        <Route path="/admin/infoCard/create" element={<RequireAuth><CreateNewAboutPageInfoCardPage /></RequireAuth>} />
+        <Route path="/admin/infoCard/update/:id" element={<RequireAuth><UpdateAdminPageInfoCardPage /></RequireAuth>} />
+      </Route>
+    </Routes>
   );
 };
 

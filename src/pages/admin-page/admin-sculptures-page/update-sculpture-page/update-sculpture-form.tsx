@@ -162,9 +162,27 @@ const UpdateSculptureForm: React.FC = () => {
           {touched.dimensions && errors.dimensions}
         </Typography>
 
-        <TextField
+        {/* <TextField
           name="image"
           type="text"
+          label="Image"
+          value={values.image}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          variant="outlined"
+          fullWidth
+          sx={{ mt: 3 }}
+        />
+        <Typography sx={{
+          fontSize: 12, color: 'red', mt: 1, ml: 1,
+        }}
+        >
+          {touched.image && errors.image}
+        </Typography> */}
+
+        <TextField
+          name="image"
+          type="url"
           label="Image"
           value={values.image}
           onChange={handleChange}
