@@ -1,5 +1,4 @@
 import { Box, Link, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import React, { useEffect } from 'react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Swiper, SwiperSlide } from 'swiper/react';
