@@ -7,7 +7,7 @@ const SectionExibitiobCardButton: React.FC = styled(Button)(({ theme }) => ({
   justifyContent: 'start',
   borderRadius: 0,
   borderTop: `1px solid ${theme.palette.primary.main}`,
-  transition: theme.transitions.create('justifyContent', {
+  transition: theme.transitions.create('background', {
     duration: '1s',
   }),
   ':hover': {

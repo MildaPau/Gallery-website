@@ -8,13 +8,14 @@ const SectionExibitionsTitle: React.FC = () => (
       component="h1"
       variant="h2"
       sx={{
-        my: 2,
+        mt: 1,
+        mb: 2,
         overflow: 'hidden',
         fontWeight: 400,
         whiteSpace: 'nowrap',
       }}
     >
-      EXIBITIONS | EXIBITIONS | EXIBITIONS
+      EXIBITIONS AND AWARDS
     </Typography>
   </InlineAnimation>
 );

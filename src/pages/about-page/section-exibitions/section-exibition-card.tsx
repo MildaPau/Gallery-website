@@ -14,30 +14,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import useStyles from './section-exibition-swiper-style';
 
 SwiperCore.use([Navigation, Pagination, Lazy]);
-
-const useStyles: any = makeStyles({
-  swiperContainer: {
-    paddingBottom: '3rem',
-    '& .swiper-wrapper': {
-      alignItems: 'center',
-    },
-    '& .swiper-pagination-bullet': {
-      background: `${lightTheme.palette.neon.main}`,
-    },
-    '& .swiper-button-next': {
-      color: `${lightTheme.palette.neon.main}`,
-      ':hover': {
-        background: 'red',
-      },
-    },
-
-    '& .swiper-button-prev': {
-      color: `${lightTheme.palette.neon.main}`,
-    },
-  },
-});
 
 const SectionExbitionCards: React.FC = () => {
   const cards = useRootSelector(selectCards);
@@ -85,8 +64,12 @@ const SectionExbitionCards: React.FC = () => {
             sx={{
               border: `1px solid ${lightTheme.palette.primary.main}`,
               maxWidth: 300,
+              height: 450,
               backgroundColor: 'transparent',
               boxShadow: 4,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
             }}
           >
             <Box>
@@ -124,20 +107,25 @@ const SectionExbitionCards: React.FC = () => {
               >
                 {location}
               </Typography>
+              <Box>
+                <Box
+                  component="img"
+                  src={`${image}`}
+                  sx={{ width: '100%' }}
+                />
+              </Box>
+
             </Box>
-            <Box>
-              <Box
-                component="img"
-                src={`${image}`}
-                sx={{ width: '100%' }}
-              />
-              <SectionExibitiobCardButton>
-                <Link href={link} target="_blank">
-                  read more
-                </Link>
-                <ArrowForwardIcon />
-              </SectionExibitiobCardButton>
-            </Box>
+            <SectionExibitiobCardButton>
+              <Link
+                href={link}
+                target="_blank"
+                sx={{ textDecoration: 'none', mr: 1, fontSize: '16px' }}
+              >
+                read more
+              </Link>
+              <ArrowForwardIcon />
+            </SectionExibitiobCardButton>
           </Box>
         </SwiperSlide>
       ))}

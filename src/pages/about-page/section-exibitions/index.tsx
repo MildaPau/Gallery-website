@@ -29,7 +29,7 @@ const SectionExibitions: React.FC = () => (
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        my: 12,
+        my: 4,
         gap: 3,
       }}
       >
