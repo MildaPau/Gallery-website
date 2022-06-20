@@ -1,8 +1,8 @@
 import React from 'react';
 import { Box, Container } from '@mui/material';
-import MainSection from './main-section';
-import MainText, { MainTextXS } from './main-section/main-text';
+import MainSectionImage from './main-section-image';
 import InlineAnimation from '../../components/title-keyframe';
+import { MainSectionTitle, MainSectionTitleXS } from './main-section-title';
 
 const HomePage: React.FC = () => (
   <Box
@@ -14,12 +14,12 @@ const HomePage: React.FC = () => (
     }}
   >
     <InlineAnimation>
-      <MainText />
+      <MainSectionTitle />
     </InlineAnimation>
     <Container>
-      <MainTextXS />
+      <MainSectionTitleXS />
     </Container>
-    <MainSection />
+    <MainSectionImage />
   </Box>
 
 );

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import theme from '../../../styles/theme';
+import theme from '../../styles/theme';
 
-const MainText: React.FC = () => (
+export const MainSectionTitle: React.FC = () => (
   <Typography
     component="h1"
     variant="h2"
@@ -19,7 +19,7 @@ const MainText: React.FC = () => (
   </Typography>
 );
 
-export const MainTextXS: React.FC = () => (
+export const MainSectionTitleXS: React.FC = () => (
   <Typography
     component="h1"
     variant="h2"
@@ -28,12 +28,9 @@ export const MainTextXS: React.FC = () => (
       fontSize: 50,
       fontWeight: 400,
       color: theme.palette.primary.main,
-      // whiteSpace: 'nowrap',
       pt: 11,
     }}
   >
     SCULPTURE BY EVALDAS PAUZA
   </Typography>
 );
-
-export default MainText;

@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React from 'react';
 
-const MainSection: React.FC = () => (
+const MainSectionImage: React.FC = () => (
 
   <Box
     component="img"
@@ -17,4 +17,4 @@ const MainSection: React.FC = () => (
 
 );
 
-export default MainSection;
+export default MainSectionImage;
