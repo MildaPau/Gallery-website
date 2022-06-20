@@ -37,7 +37,7 @@ export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>)
   }
 };
 
-export const createNewSculptureAction = (sculpture: CreateSculpture) => async (
+export const createNewSculptureActionThunk = (formData: FormData) => async (
   dispatch: Dispatch<AppAction>,
   getState: () => RootState,
 ): Promise<void> => {
@@ -45,11 +45,11 @@ export const createNewSculptureAction = (sculpture: CreateSculpture) => async (
   if (token === null) {
     throw new Error('Reikalingas prisijungimas');
   }
-  await SculptureService.createNewSculpture(sculpture, token);
+  await SculptureService.createNewSculpture(formData, token);
   createfetchSculpturesAction(dispatch);
 };
 
-export const createUpdateSculptureAction = (sculpture: Sculpture) => async (
+export const createUpdateSculptureActionThunk = (sculpture: Sculpture) => async (
   dispatch: Dispatch<AppAction>,
   getState: () => RootState,
 ) => {
@@ -61,7 +61,7 @@ export const createUpdateSculptureAction = (sculpture: Sculpture) => async (
   createfetchSculpturesAction(dispatch);
 };
 
-export const createDeleteSculptureAction = (id: string) => async (
+export const createDeleteSculptureActionThunk = (id: string) => async (
   dispatch: Dispatch<AppAction>,
   getState: () => RootState,
 ) => {

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import LoadingAnimation from '../../../components/loading/loading-animation';
 
 import {
-  authLogoutAction, createDeleteSculptureAction, createfetchSculpturesAction, sculpturesClearErrorAction,
+  createDeleteSculptureActionThunk, createfetchSculpturesAction, sculpturesClearErrorAction,
 } from '../../../store/action-creators';
 import { useRootSelector, useRootDispatch } from '../../../store/hooks';
 import { selectSculptures, selectSculpturesLoading, selectSculpturesError } from '../../../store/selectors';
@@ -49,7 +49,7 @@ const AdminSculpturePage: React.FC = () => {
           >
             <SculpturePageCard
               {...sculpture}
-              deleteItem={() => dispatch(createDeleteSculptureAction(sculpture.id))}
+              deleteItem={() => dispatch(createDeleteSculptureActionThunk(sculpture.id))}
             />
           </Paper>
         ))}

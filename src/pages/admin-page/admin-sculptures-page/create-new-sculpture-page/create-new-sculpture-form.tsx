@@ -2,24 +2,24 @@ import {
   Container, Box, TextField, Typography,
 } from '@mui/material';
 import { useFormik, FormikConfig } from 'formik';
-import React from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import ButtonScale from '../../../../components/button-scale';
-import { createNewSculptureAction } from '../../../../store/action-creators';
+import { createNewSculptureActionThunk } from '../../../../store/action-creators';
 import { useRootDispatch } from '../../../../store/hooks';
 import { CreateSculpture } from '../../../../types';
 
 type CreateConfig = FormikConfig<CreateSculpture>;
 
 const initialValues: CreateSculpture = {
-  image: '',
+  // image: undefined,
   title: '',
   year: '',
   dimensions: '',
 };
 
-const validationSchema: Yup.SchemaOf<CreateSculpture> = Yup.object({
+const validationSchema = Yup.object({
   title: Yup.string()
     .required('This field is Required'),
   year: Yup.string()
@@ -27,18 +27,29 @@ const validationSchema: Yup.SchemaOf<CreateSculpture> = Yup.object({
     .required('This field is Required'),
   dimensions: Yup.string()
     .required('This field is Required'),
-  image: Yup.string()
-    .required('This field is Required')
-    .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
 });
 
 const CreateNewSculptureForm: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useRootDispatch();
+  const imageFieldRef = useRef<HTMLInputElement>(null);
 
   const handleSubmitCreateSculpture: CreateConfig['onSubmit'] = (values) => {
-    dispatch(createNewSculptureAction(values));
-    navigate('/admin/sculptures');
+    if (Object.keys(values).length > 0) {
+      const formData = new FormData();
+      Object.entries(values).forEach(([key, value]) => {
+        formData.set(key, value);
+      });
+
+      if (imageFieldRef?.current?.files && imageFieldRef.current.files[0]) {
+        const imgFile = imageFieldRef.current?.files[0] as File;
+        formData.set('image', imgFile);
+        // values.image = imgFile;
+      }
+
+      dispatch(createNewSculptureActionThunk(formData));
+      // navigate('/admin/sculptures');
+    }
   };
 
   const {
@@ -131,14 +142,19 @@ const CreateNewSculptureForm: React.FC = () => {
 
         <TextField
           name="image"
-          type="text"
+          type="file"
           label="Image"
-          value={values.image}
-          onChange={handleChange}
-          onBlur={handleBlur}
+          // value={values.image}
           variant="outlined"
           fullWidth
+          inputRef={imageFieldRef}
           sx={{ mt: 3 }}
+          inputProps={{
+            accept: 'image/png, image/jpeg',
+          }}
+          InputLabelProps={{
+            shrink: true,
+          }}
         />
         <Typography sx={{
           fontSize: 12, color: 'red', mt: 1, ml: 1,

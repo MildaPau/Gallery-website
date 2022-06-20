@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
 import ButtonScale from '../../../../components/button-scale';
-import { createfetchSculpturesAction, createUpdateSculptureAction } from '../../../../store/action-creators';
+import { createfetchSculpturesAction, createUpdateSculptureActionThunk } from '../../../../store/action-creators';
 import { useRootDispatch, useRootSelector } from '../../../../store/hooks';
 import { Sculpture } from '../../../../types';
 import { selectSculptureById, selectSculpturesLoading } from '../../../../store/features/sculptures/sculpture-selectors';
@@ -43,7 +43,7 @@ const UpdateSculptureForm: React.FC = () => {
   };
 
   const handleSubmitUpdateSculpture: CreateConfig['onSubmit'] = (values) => {
-    dispatch(createUpdateSculptureAction(values));
+    dispatch(createUpdateSculptureActionThunk(values));
     navigate('/admin/sculptures');
   };
 

@@ -1,4 +1,4 @@
-import { CreateSculpture, Sculpture } from '../types';
+import { Sculpture } from '../types';
 import ApiService, { formatError } from './api-service';
 
 const fetchSculptures = async (): Promise<Sculpture[]> => {
@@ -23,18 +23,19 @@ const deleteSculpture = async (id: string, token: string) => {
   }
 };
 
-const createNewSculpture = async (sculpture: CreateSculpture, token: string) => {
+const createNewSculpture = async (formData: FormData, token: string) => {
   try {
-    const { data } = await ApiService.post<{ sculpture: Sculpture }>(
+    const { data } = await ApiService.post<{ formData: FormData }>(
       'api/sculptures/',
-      sculpture,
+      formData,
       {
         headers: {
           Authorization: token,
+          'Content-Type': 'multipart/form-data',
         },
       },
     );
-    return data.sculpture;
+    return data.formData;
   } catch (err) {
     throw new Error(formatError(err));
   }
