@@ -29,7 +29,7 @@ const SectionAboutSculptor: React.FC = () => (
           fontSize: { sm: 19, md: 24 },
         }}
       >
-        Evaldas Pauza gimė 1966 10 27 Kaune. 1982-86 m. studijavo S. Žuko taikomosios dailės technikume Kaune, 1989-95 m. - Vilniaus dailės akademijoje ir įgijo skulptoriaus specialybę. 1996-2000 m. dirbo parodų architektu Nacionaliniame M.K.Čiurlionio dailės muziejuje. Nuo 1996 m. dėsto VDA Kauno dailės institute, skulptūros studijoje. Nuo 2000 m. - Lietuvos dailininkų sąjungos narys. Parodose dalyvauja nuo 1994 m., dirba skulptūros srityje.
+        Evaldas Pauza was born on October 27, 1966 in Kaunas. 1982-86 studied at S. Žukas Technical School of Applied Arts in Kaunas, 1989-95. - Vilnius Academy of Arts and acquired the specialty of sculptor. 1996-2000 worked as an exhibition architect at the M. M. Čiurlionis National Museum of Art. Since 1996 teaches at the Kaunas Art Institute of the Vilnius Academy of Arts, sculpture studio. Since 2000 - Member of the Lithuanian Artists` Union. Participates in exhibitions since 1994, works in the field of sculpture.
 
       </Typography>
     </Box>
