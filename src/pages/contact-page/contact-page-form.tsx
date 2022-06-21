@@ -1,5 +1,6 @@
 import { Box, Button, TextField } from '@mui/material';
 import React from 'react';
+import ButtonScale from '../../components/button-scale';
 
 const ContactPageForm: React.FC = () => (
   <Box
@@ -40,12 +41,17 @@ const ContactPageForm: React.FC = () => (
         mt: 2,
       }}
     />
-    <Button>SEND</Button>
+    <ButtonScale
+      type="button"
+      sx={{
+        display: 'block',
+        mt: 2,
+        m: '0 auto',
+      }}
+    >
+      SEND
+    </ButtonScale>
   </Box>
 );
 
 export default ContactPageForm;
-
-// absolute;
-// top: 40 %;
-// left: 5 %;

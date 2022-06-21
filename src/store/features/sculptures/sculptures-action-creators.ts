@@ -4,7 +4,7 @@ import {
   SculpturesAction,
   SculptureActionType,
 } from './sculpture-types';
-import { CreateSculpture, Sculpture } from '../../../types';
+import { Sculpture } from '../../../types';
 import SculptureService from '../../../services/scultures-service';
 
 export const createfetchSculpturesLoadingAction: SculpturesAction = ({
@@ -25,7 +25,7 @@ export const sculpturesClearErrorAction: SculpturesAction = ({
   type: SculptureActionType.SCULPTURES_CLEAR_ERROR,
 });
 
-export const createfetchSculpturesAction = async (dispatch: Dispatch<AppAction>) => {
+export const fetchSculpturesActionThunk = async (dispatch: Dispatch<AppAction>) => {
   dispatch(createfetchSculpturesLoadingAction);
   try {
     const sculpturesItems = await SculptureService.fetchSculptures();
@@ -46,7 +46,7 @@ export const createNewSculptureActionThunk = (formData: FormData) => async (
     throw new Error('Reikalingas prisijungimas');
   }
   await SculptureService.createNewSculpture(formData, token);
-  createfetchSculpturesAction(dispatch);
+  fetchSculpturesActionThunk(dispatch);
 };
 
 export const createUpdateSculptureActionThunk = (sculpture: Sculpture) => async (
@@ -58,7 +58,7 @@ export const createUpdateSculptureActionThunk = (sculpture: Sculpture) => async 
     throw new Error('Reikalingas prisijungimas');
   }
   await SculptureService.updateSculpture(sculpture, token);
-  createfetchSculpturesAction(dispatch);
+  fetchSculpturesActionThunk(dispatch);
 };
 
 export const createDeleteSculptureActionThunk = (id: string) => async (
@@ -70,5 +70,5 @@ export const createDeleteSculptureActionThunk = (id: string) => async (
     throw new Error('Reikalingas prisijungimas');
   }
   await SculptureService.deleteSculpture(id, token);
-  createfetchSculpturesAction(dispatch);
+  fetchSculpturesActionThunk(dispatch);
 };

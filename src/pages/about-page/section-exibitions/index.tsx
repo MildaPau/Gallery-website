@@ -33,7 +33,7 @@ const SectionExibitions: React.FC = () => (
         flexWrap: 'wrap',
         my: 4,
         gap: 3,
-        mb: { xs: 9, sm: 0 },
+        mb: { xs: 9, sm: 5 },
       }}
       >
         <SectionExbitionCards />

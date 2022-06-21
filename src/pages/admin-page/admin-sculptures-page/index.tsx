@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import LoadingAnimation from '../../../components/loading/loading-animation';
 
 import {
-  createDeleteSculptureActionThunk, createfetchSculpturesAction, sculpturesClearErrorAction,
+  createDeleteSculptureActionThunk, fetchSculpturesActionThunk, sculpturesClearErrorAction,
 } from '../../../store/action-creators';
 import { useRootSelector, useRootDispatch } from '../../../store/hooks';
 import { selectSculptures, selectSculpturesLoading, selectSculpturesError } from '../../../store/selectors';
@@ -21,7 +21,7 @@ const AdminSculpturePage: React.FC = () => {
   const dispatch = useRootDispatch();
 
   useEffect(() => {
-    dispatch(createfetchSculpturesAction);
+    dispatch(fetchSculpturesActionThunk);
   }, []);
 
   let pageContent = (

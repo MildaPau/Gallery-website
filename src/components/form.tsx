@@ -2,15 +2,14 @@ import React, { ReactNode } from 'react';
 import {
   Alert,
   Box,
-  Button,
   Container,
   Typography,
 } from '@mui/material';
 
-import lightTheme from '../styles/theme';
 import { useRootDispatch, useRootSelector } from '../store/hooks';
 import { selectAuthLoggedIn, selectAuthError } from '../store/selectors';
 import { authClearErrorAction } from '../store/action-creators';
+import ButtonScale from './button-scale';
 
 type FormProps = {
   formTitle: string,
@@ -72,28 +71,13 @@ const Form: React.FC<FormProps> = ({
           {formTitle}
         </Typography>
         {children}
-        <Button
+        <ButtonScale
           type="submit"
-          variant="contained"
           endIcon={icon}
           disabled={!btnActive || loading}
-          sx={{
-            mt: 4,
-            backgroundColor: 'grey.900',
-            px: 3,
-            opacity: 0.9,
-            transition: lightTheme.transitions.create('transform', {
-              duration: '0.5s',
-            }),
-            ':hover': {
-              opacity: 1,
-              transform: 'scale(1.1)',
-              backgroundColor: 'primary.main',
-            },
-          }}
         >
           {submitText}
-        </Button>
+        </ButtonScale>
       </Box>
     </Container>
   );

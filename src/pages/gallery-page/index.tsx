@@ -4,7 +4,7 @@ import {
 } from '@mui/material';
 import lightTheme from '../../styles/theme';
 import { useRootDispatch, useRootSelector } from '../../store/hooks';
-import { createfetchSculpturesAction } from '../../store/action-creators';
+import { fetchSculpturesActionThunk } from '../../store/action-creators';
 import { selectSculptures } from '../../store/features/sculptures/sculpture-selectors';
 
 const GalleryPage: React.FC = () => {
@@ -12,7 +12,7 @@ const GalleryPage: React.FC = () => {
   const dispatch = useRootDispatch();
 
   useEffect(() => {
-    dispatch(createfetchSculpturesAction);
+    dispatch(fetchSculpturesActionThunk);
   }, []);
 
   return (

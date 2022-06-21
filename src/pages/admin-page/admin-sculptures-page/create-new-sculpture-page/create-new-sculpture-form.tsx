@@ -13,7 +13,6 @@ import { CreateSculpture } from '../../../../types';
 type CreateConfig = FormikConfig<CreateSculpture>;
 
 const initialValues: CreateSculpture = {
-  // image: undefined,
   title: '',
   year: '',
   dimensions: '',
@@ -44,11 +43,10 @@ const CreateNewSculptureForm: React.FC = () => {
       if (imageFieldRef?.current?.files && imageFieldRef.current.files[0]) {
         const imgFile = imageFieldRef.current?.files[0] as File;
         formData.set('image', imgFile);
-        // values.image = imgFile;
       }
 
       dispatch(createNewSculptureActionThunk(formData));
-      // navigate('/admin/sculptures');
+      navigate('/admin/sculptures');
     }
   };
 
@@ -144,7 +142,6 @@ const CreateNewSculptureForm: React.FC = () => {
           name="image"
           type="file"
           label="Image"
-          // value={values.image}
           variant="outlined"
           fullWidth
           inputRef={imageFieldRef}
