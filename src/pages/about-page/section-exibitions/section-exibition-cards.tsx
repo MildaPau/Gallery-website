@@ -76,6 +76,8 @@ const SectionExbitionCards: React.FC = () => {
                 borderBottom: `1px solid ${lightTheme.palette.primary.main}`,
                 color: 'primary.main',
                 p: 1,
+                fontSize: 28,
+                lineHeight: 1.4,
               }}
               >
                 {title}

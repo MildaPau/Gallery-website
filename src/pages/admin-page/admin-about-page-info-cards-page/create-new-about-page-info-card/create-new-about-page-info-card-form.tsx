@@ -34,8 +34,8 @@ const validationSchema: Yup.SchemaOf<CreateCard> = Yup.object({
   image: Yup.string()
     .required('This field is Required'),
   link: Yup.string()
-    .required('This field is Required'),
-  // .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
+    .required('This field is Required')
+    .matches(/https?:\/\/(www\.)?/, 'Enter correct url'),
 });
 
 const CreateNewAboutPageInfoCardForm: React.FC = () => {

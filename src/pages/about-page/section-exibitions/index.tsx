@@ -24,7 +24,7 @@ const SectionExibitions: React.FC = () => (
     <Container>
       <Box sx={{
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'stretch',
       }}
       />
       <Box sx={{

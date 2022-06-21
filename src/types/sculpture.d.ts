@@ -3,7 +3,7 @@ export type Sculpture = {
   title: string,
   year: string,
   dimensions: string,
-  image: string,
+  image?: string,
   categories?: string[],
   updatedAt?: string,
 };

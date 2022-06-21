@@ -162,6 +162,27 @@ const UpdateSculptureForm: React.FC = () => {
           {touched.dimensions && errors.dimensions}
         </Typography>
 
+        <TextField
+          name="image"
+          type="file"
+          label="Image"
+          variant="outlined"
+          fullWidth
+          // inputRef={imageFieldRef}
+          sx={{ mt: 3 }}
+          inputProps={{
+            accept: 'image/png, image/jpeg',
+          }}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <Typography sx={{
+          fontSize: 12, color: 'red', mt: 1, ml: 1,
+        }}
+        >
+          {touched.image && errors.image}
+        </Typography>
         {/* <TextField
           name="image"
           type="text"
@@ -179,24 +200,6 @@ const UpdateSculptureForm: React.FC = () => {
         >
           {touched.image && errors.image}
         </Typography> */}
-
-        <TextField
-          name="image"
-          type="url"
-          label="Image"
-          value={values.image}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          variant="outlined"
-          fullWidth
-          sx={{ mt: 3 }}
-        />
-        <Typography sx={{
-          fontSize: 12, color: 'red', mt: 1, ml: 1,
-        }}
-        >
-          {touched.image && errors.image}
-        </Typography>
 
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 3 }}>
           <ButtonScale type="submit">Update</ButtonScale>
