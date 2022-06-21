@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import SculpturePageCardText from './admin-about-page-info-card-text';
 import { Card } from '../../../types';
 import Img from '../admin-page-card-img';
+import ButtonScale from '../../../components/button-scale';
 
 type InfoCardCardProps = Card & {
   deleteItem: (itemId: string) => void,
@@ -26,8 +27,7 @@ const AdminAboutPageInfoCardPageCard: React.FC<InfoCardCardProps> = ({
       >
         <SculpturePageCardText {...AdminAboutPageInfoCardPageCardTextProps} />
         <Box sx={{ display: 'flex', gap: 1, justifyContent: 'end' }}>
-          <Button
-            variant="outlined"
+          <ButtonScale
             sx={{
               minWidth: '40px',
               alignSelf: 'end',
@@ -36,9 +36,8 @@ const AdminAboutPageInfoCardPageCard: React.FC<InfoCardCardProps> = ({
             onClick={() => navigate(`/admin/infoCard/update/${id}`)}
           >
             Edit
-          </Button>
-          <Button
-            variant="outlined"
+          </ButtonScale>
+          <ButtonScale
             sx={{
               minWidth: '40px',
               alignSelf: 'end',
@@ -47,7 +46,7 @@ const AdminAboutPageInfoCardPageCard: React.FC<InfoCardCardProps> = ({
             onClick={() => deleteItem(id)}
           >
             X
-          </Button>
+          </ButtonScale>
         </Box>
       </Box>
     </>

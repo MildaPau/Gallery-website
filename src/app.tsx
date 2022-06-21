@@ -4,22 +4,26 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import LandingPageLayout from './components/landing-page-layout';
 import LandingPageLayoutLogin from './components/landing-page-layout -login';
 
-import HomePage from './pages/home-page';
-import GalleryPage from './pages/gallery-page';
-import AboutPage from './pages/about-page';
-import ContactPage from './pages/contact-page';
-import LoginPage from './pages/login-page/index';
-import AdminPage from './pages/admin-page';
-import UpdateSculpturePage from './pages/admin-page/admin-sculptures-page/update-sculpture-page';
-
 import RequireAuth from './routing/require-auth';
 import RequireVisitor from './routing/require-visitor';
+
 import { useRootSelector, useRootDispatch } from './store/hooks';
 import { selectAuthToken, selectAuthLoggedIn, selectAuthLoading } from './store/selectors';
 import { createAuthenticateActionThunk } from './store/action-creators';
 import Loading from './components/loading/loading';
+
+// visitor pages
+import HomePage from './pages/home-page';
+import GalleryPage from './pages/gallery-page';
+import AboutPage from './pages/about-page';
+import ContactPage from './pages/contact-page';
+
+// admin pages
+import LoginPage from './pages/login-page/index';
+import AdminPage from './pages/admin-page';
 import AdminSculpturePage from './pages/admin-page/admin-sculptures-page';
 import CreateNewSculpturePage from './pages/admin-page/admin-sculptures-page/create-new-sculpture-page';
+import UpdateSculpturePage from './pages/admin-page/admin-sculptures-page/update-sculpture-page';
 import AdminAboutPageInfoCardsPage from './pages/admin-page/admin-about-page-info-cards-page';
 import CreateNewAboutPageInfoCardPage from './pages/admin-page/admin-about-page-info-cards-page/create-new-about-page-info-card';
 import UpdateAdminPageInfoCardPage from './pages/admin-page/admin-about-page-info-cards-page/update-about-page-info-card-page';

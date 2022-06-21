@@ -75,6 +75,7 @@ const Form: React.FC<FormProps> = ({
           type="submit"
           endIcon={icon}
           disabled={!btnActive || loading}
+          sx={{ mt: 2 }}
         >
           {submitText}
         </ButtonScale>

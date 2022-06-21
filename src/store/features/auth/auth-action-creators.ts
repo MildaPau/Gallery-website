@@ -1,6 +1,5 @@
 import { Dispatch } from 'redux';
 import AuthService, { AuthResponseBody } from '../../../services/auth-service';
-import pause from '../../../helpers/pause';
 import { Crudentials } from '../../../types';
 import { AuthActionType, AuthAction } from './auth-types';
 
@@ -34,11 +33,10 @@ export const authenticate = async (
   authCallback: () => Promise<AuthResponseBody>,
   redirect: string,
 ) => {
-  // siunčiame Reducer'iui
   dispatch(authLoadingAction);
   try {
     const authResponseBody = await authCallback();
-    await pause(3000);
+    // await pause(2000);
     const authSuccessAction = createAuthSuccessAction(authResponseBody);
     // siunčiame Reducer'iui
     const navigationSetRedirectAction = createNavigationSetRedirectAction(redirect);
@@ -56,7 +54,7 @@ export const authenticate = async (
 export const createAuthenticateActionThunk = (token: string, redirect: string) => async (
   dispatch: Dispatch<AppAction>,
 ): Promise<void> => {
-  await pause(2000);
+  // await pause(2000);
   await authenticate(dispatch, async () => AuthService.authenticate(token), redirect);
 };
 

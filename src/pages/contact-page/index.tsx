@@ -9,7 +9,6 @@ const ContactPage = () => (
     <Container>
       <ContactPageTitle />
     </Container>
-
     <ContactPageImage>
       <Container>
         <ContactPageForm />

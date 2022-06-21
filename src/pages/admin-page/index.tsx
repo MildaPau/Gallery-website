@@ -1,10 +1,12 @@
 import {
-  Box, Button, Container, Typography,
+  Box, Container,
 } from '@mui/material';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import ButtonScale from '../../components/button-scale';
 import { authLogoutAction } from '../../store/action-creators';
 import { useRootDispatch } from '../../store/hooks';
+import lightTheme from '../../styles/theme';
 
 const AdminPage: React.FC = () => {
   const navigate = useNavigate();
@@ -18,15 +20,21 @@ const AdminPage: React.FC = () => {
   return (
     <Container>
       <Box sx={{
-        display: 'flex', width: '100%', justifyContent: 'end', mt: 3, mb: 5,
+        display: 'flex', width: '100%', justifyContent: 'center', mt: 3, mb: 10,
       }}
       >
-        <Button
+        <ButtonScale
           onClick={logout}
           variant="contained"
+          sx={{
+            color: `${lightTheme.palette.primary.light}`,
+            ':hover': {
+              background: `${lightTheme.palette.primary.main}`,
+            },
+          }}
         >
           Logout
-        </Button>
+        </ButtonScale>
       </Box>
       <Box sx={{
         display: 'flex',
@@ -35,18 +43,24 @@ const AdminPage: React.FC = () => {
         gap: 2,
       }}
       >
-        <Button
-          variant="outlined"
+        <ButtonScale
           onClick={() => navigate('/admin/sculptures')}
+          sx={{
+            fontSize: '15px',
+            p: 1,
+          }}
         >
           Sculptures
-        </Button>
-        <Button
-          variant="outlined"
+        </ButtonScale>
+        <ButtonScale
           onClick={() => navigate('/admin/infoCard')}
+          sx={{
+            fontSize: '15px',
+            p: 1,
+          }}
         >
           About page info card
-        </Button>
+        </ButtonScale>
 
       </Box>
     </Container>

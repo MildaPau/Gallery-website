@@ -1,9 +1,10 @@
 import React from 'react';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Sculpture } from '../../types';
+import { Sculpture } from '../../../types';
 import SculpturePageCardText from './sculpture-page-card-text';
-import Img from './admin-page-card-img';
+import Img from '../admin-page-card-img';
+import ButtonScale from '../../../components/button-scale';
 
 type SculptureCardProps = Sculpture & {
   deleteItem: (itemId: string) => void,
@@ -26,8 +27,7 @@ const SculpturePageCard: React.FC<SculptureCardProps> = ({
       >
         <SculpturePageCardText {...SculpturePageCardTextProps} />
         <Box sx={{ display: 'flex', gap: 1, justifyContent: 'end' }}>
-          <Button
-            variant="outlined"
+          <ButtonScale
             sx={{
               minWidth: '40px',
               alignSelf: 'end',
@@ -36,9 +36,8 @@ const SculpturePageCard: React.FC<SculptureCardProps> = ({
             onClick={() => navigate(`/admin/sculptures/update/${id}`)}
           >
             Edit
-          </Button>
-          <Button
-            variant="outlined"
+          </ButtonScale>
+          <ButtonScale
             sx={{
               minWidth: '40px',
               alignSelf: 'end',
@@ -47,7 +46,7 @@ const SculpturePageCard: React.FC<SculptureCardProps> = ({
             onClick={() => deleteItem(id)}
           >
             X
-          </Button>
+          </ButtonScale>
         </Box>
       </Box>
     </>

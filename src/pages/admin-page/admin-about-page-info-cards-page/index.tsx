@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ButtonScale from '../../../components/button-scale';
 import LoadingAnimation from '../../../components/loading/loading-animation';
 
 import {
@@ -61,19 +62,19 @@ const AdminAboutPageInfoCardsPage: React.FC = () => {
     <Container>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 5 }}>
-        <Button
+        <ButtonScale
           variant="outlined"
           onClick={() => navigate('/admin/infoCard/create')}
         >
           Add new Card
-        </Button>
+        </ButtonScale>
 
-        <Button
+        <ButtonScale
           onClick={() => navigate('/admin')}
           variant="outlined"
         >
           Back
-        </Button>
+        </ButtonScale>
       </Box>
       {error && (
         <Alert

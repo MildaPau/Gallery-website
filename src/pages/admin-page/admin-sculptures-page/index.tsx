@@ -4,6 +4,7 @@ import {
 } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ButtonScale from '../../../components/button-scale';
 import LoadingAnimation from '../../../components/loading/loading-animation';
 
 import {
@@ -11,7 +12,7 @@ import {
 } from '../../../store/action-creators';
 import { useRootSelector, useRootDispatch } from '../../../store/hooks';
 import { selectSculptures, selectSculpturesLoading, selectSculpturesError } from '../../../store/selectors';
-import SculpturePageCard from '../sculpture-page-card';
+import SculpturePageCard from './sculpture-page-card';
 
 const AdminSculpturePage: React.FC = () => {
   const navigate = useNavigate();
@@ -61,19 +62,17 @@ const AdminSculpturePage: React.FC = () => {
     <Container>
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', my: 5 }}>
-        <Button
-          variant="outlined"
+        <ButtonScale
           onClick={() => navigate('/admin/sculptures/create')}
         >
           Add new Sculpture
-        </Button>
+        </ButtonScale>
 
-        <Button
+        <ButtonScale
           onClick={() => navigate('/admin')}
-          variant="outlined"
         >
           Back
-        </Button>
+        </ButtonScale>
       </Box>
       {error && (
         <Alert

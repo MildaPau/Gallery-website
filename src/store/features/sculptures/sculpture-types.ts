@@ -11,9 +11,6 @@ export enum SculptureActionType {
   FETCH_SCULPTURES_SUCCESS = 'FETCH_SCULPTURES_SUCCESS',
   FETCH_SCULPTURES_FAILURE = 'FETCH_SCULPTURES_FAILURE',
   SCULPTURES_CLEAR_ERROR = 'SCULPTURES_CLEAR_ERROR',
-  // NEW_SCULPTURE = 'NEW_SCULPTURE',
-  // UPDATE_SCULPTURE = 'UPDATE_SCULPTURE',
-  // DELETE_SCULPTURE = 'DELETE_SCULPTURE',
 }
 
 export type FetchSculpturesLoadingAction = {
@@ -37,32 +34,8 @@ export type SculpturesClearErrorAction = {
   type: SculptureActionType.SCULPTURES_CLEAR_ERROR,
 };
 
-// export type CreatNewSculptureAction = {
-//   type: SculptureActionType.NEW_SCULPTURE,
-//   payload: {
-//     sculpture: CreateSculpture;
-//   }
-// };
-
-// export type CreatUpdateSculptureAction = {
-//   type: SculptureActionType.UPDATE_SCULPTURE,
-//   payload: {
-//     sculpture: Sculpture;
-//   }
-// };
-
-// export type DeleteSculptureAction = {
-//   type: SculptureActionType.DELETE_SCULPTURE,
-//   payload: {
-//     id: string,
-//   }
-// };
-
 export type SculpturesAction =
   FetchSculpturesLoadingAction |
   FetchSculpturesSuccessAction |
   FetchSculpturesFailureAction |
   SculpturesClearErrorAction;
-  // CreatNewSculptureAction |
-  // CreatUpdateSculptureAction |
-  // DeleteSculptureAction;

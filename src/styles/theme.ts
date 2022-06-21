@@ -9,34 +9,20 @@ const lightTheme = createTheme({
     primary: {
       main: '#19263B',
       light: '#B6BFD1',
-      // dark: '#02F702',
     },
     formColor: {
       main: '#ffffff47',
     },
-
-    green: createColor('#39FF14'),
-    warm: createColor('#FE2712'),
-    cold: createColor('#0246FF'),
-
     neon: {
       main: '#02F702',
     },
     background: {
       default: '#fefefe',
     },
+    green: createColor('#ffffff47'),
   },
   mixins: {
-    box: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      m: 2,
-      p: 1,
-      width: 300,
-      height: 100,
-      boxShadow: '3',
-    },
+
     navbar: {
       display: 'flex',
       justifyContent: 'end',
