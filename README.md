@@ -4,7 +4,7 @@
   * Node.js
 
 ## Project configuration
-  * Clone Back-end application and follow instructions in README.md file: [Back-end application link](https://github.com/MildaPau/Gallery-website)
+  * Clone Back-end application and follow instructions in README.md file: [Back-end application link](https://github.com/MildaPau/Gallery-website-express-server)
   * Rename .env.local-example file to .env.local
   * Define variables:
     * REACT_APP_USER_KEY_IN_LOCAL_STORAGE - name of user key in local storage
