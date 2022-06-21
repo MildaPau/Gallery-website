@@ -1,6 +1,7 @@
 import { Box, TextField } from '@mui/material';
 import React from 'react';
 import ButtonScale from '../../components/button-scale';
+import lightTheme from '../../styles/theme';
 
 const ContactPageForm: React.FC = () => (
   <Box
@@ -47,6 +48,9 @@ const ContactPageForm: React.FC = () => (
         display: 'block',
         mt: 2,
         mx: 'auto',
+        ':hover': {
+          background: `${lightTheme.palette.neon.main}`,
+        },
       }}
     >
       SEND
